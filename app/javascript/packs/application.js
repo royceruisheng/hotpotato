@@ -11,3 +11,5 @@ require("@rails/activestorage").start()
 require("channels")
 
 import "stylesheets/application" // Add this line
+
+import "controllers"
