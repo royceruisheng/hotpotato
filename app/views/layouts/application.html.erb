@@ -12,6 +12,7 @@
   </head>
 
   <body>
+  <%= render "shared/navbar" if user_signed_in? %>
     <%= yield %>
   </body>
 </html>
