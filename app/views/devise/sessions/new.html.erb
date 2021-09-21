@@ -26,7 +26,7 @@
           </div>
         </div>
 
-        <div class="flex items-center justify-between my-2">
+        <div class="flex items-center justify-between my-4">
           <div class="flex items-center">
               <%= f.input :remember_me, input_html: { class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded mr-2" }, label_html: {class:"ml-2 block text-sm text-gray-900"}, as: :boolean if devise_mapping.rememberable?%>
           </div>
@@ -47,8 +47,8 @@
             Sign in
           </button>
         </div>
-        <div class='mt-2'>
-          <%= link_to "Sign up", new_user_registration_path, class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" %>
+        <div class='mt-4'>
+          <p class='text-center'>Don't have an account? <%= link_to "Register here", new_user_registration_path, class:"underline" %>.</p>
         </div>
       </form>
     </div>
