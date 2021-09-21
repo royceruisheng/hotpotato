@@ -11,7 +11,3 @@ require("@rails/activestorage").start()
 require("channels")
 
 import "stylesheets/application" // Add this line
-
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
