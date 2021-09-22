@@ -1,7 +1,8 @@
 <div class="flex pb-2" data-controller="workflow">
   <label for="toogleButton" class="flex items-center justify-between w-full cursor-pointer">
-    <div class="px-2"><%= @workflow.title %></div>
-    
+
+    <div class="px-2 text-sm"><%= @workflow.title %></div>
+
     <!-- toggle -->
     <div class="relative">
       <input id="toogleButton" type="checkbox" class="hidden" data-workflow-target="activated"/>

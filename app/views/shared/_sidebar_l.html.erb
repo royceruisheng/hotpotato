@@ -1,29 +1,36 @@
 <div data-controller="sidebar-l">
-    <button class="w-full border border-purple-600 rounded-lg p-2 my-2 flex items-center">
-      <i class="fas fa-plus pr-2"></i>
+    <button class="w-full border border-purple-400 rounded-lg p-2 mt-2 flex items-center">
+      <div class="px-2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+          <path id="mini_plus" d="M44,743H41v-3a1,1,0,0,0-2,0v3H36a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0v-3h3a1,1,0,0,0,0-2Z" transform="translate(-35 -739)"/>
+        </svg>
+      </div>
       <h5 class="text-sm">Create</h5>
     </button>
 
   <%# tab %>
-  <div class="tab flex justify-evenly mt-3">
-    <button class="tablinks text-sm" >My workflows</button>
-    <button class="tablinks text-sm" >My Tasks</button>
+  <div class="tab flex gap-4 mt-6">
+    <button class="tablinks text-sm font-medium text-purple-600 pb-1 border-b-2 border-purple-600" >My Workflows</button>
+    <button class="tablinks text-sm font-medium text-gray-400 pb-1 border-b-2 border-white" >My Tasks</button>
   </div>
 
   <%# tab content %>
-  <div id="workflows" class="tabcontent py-3">
+  <div id="workflows" class="tabcontent my-2">
     <%# search bar form to search within workflows %>
-    <form action="" class="flex justify-center bg-white border-b-2 overflow-hidden">
+    <form action="" class="flex gap-4 justify-center bg-white border-b py-2">
       <button type="submit">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 my-auto m-2" style="color: black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
+        <div class="">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+            <path id="ic24-search" d="M11,2a9,9,0,0,1,7.032,14.617l3.675,3.676a1,1,0,0,1-1.32,1.5l-.094-.083-3.676-3.675A9,9,0,1,1,11,2Zm0,2a7,7,0,1,0,7,7A7,7,0,0,0,11,4Z" transform="translate(-2 -2)" fill-rule="evenodd"/>
+          </svg>
+        </div>
       </button>
-      <input type="search" placeholder="Workflows" class="block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-gray-300 flex-grow p-2">
+
+      <input type="search" placeholder="Workflows" class="text-sm focus:outline-none focus:ring-0 flex-grow">
     </form>
 
     <%# workflows list %>
-    <div class="px-2 pt-2">
+    <div class="px-2 mt-4">
       <%= render "shared/workflow" %>
     </div>
   </div>
