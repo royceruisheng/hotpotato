@@ -32,6 +32,8 @@ gem 'bootsnap', '>= 1.4.4', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'dotenv-rails', groups: [:development, :test]
+  gem 'cloudinary', '~> 1.16.0'
 end
 
 group :development do
