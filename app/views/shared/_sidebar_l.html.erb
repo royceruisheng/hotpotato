@@ -1,19 +1,32 @@
-<div data-controller="">
+<div data-controller="sidebar-l">
   <%# icon and title TODO: replace icon %>
-  <div>
+  <div class="flex">
     <i class="fas fa-record-vinyl"></i>
     <h1>hotpotato</h1>
   </div>
 
-  <%# workflows and create dropdown %>
-  <div>
-    <h2>workflows dropdown here</h2>
-    <h2>create dropdown here</h2>
+  <%# tab %>
+  <div class="tab">
+    <button class="tablinks" >My workflows</button>
+    <button class="tablinks" >My Tasks</button>
   </div>
 
-  <%# search bar form to search within workflows %>
-  <%= form_with url: movies_path, method: :get %>
+  <%# tab content %>
+  <div id="workflows" class="tabcontent">
+    <div>
+      <h3>Create</h3>
+      <i class="fas fa-plus"></i>
+    </div>
 
-  <%# workflows list %>
-  <%= render "shared/workflow" %>
+    <%# search bar form to search within workflows %>
+    <%= form_with url: movies_path, method: :get %>
+
+    <%# workflows list %>
+    <%= render "shared/workflow" %>
+  </div>
+
+  <div id="tasks" class="tabcontent">
+    <h3>Tasks</h3>
+  </div>
+
 </div>
