@@ -1,32 +1,36 @@
 <div data-controller="sidebar-l">
-  <%# icon and title TODO: replace icon %>
-  <div class="flex">
-    <i class="fas fa-record-vinyl"></i>
-    <h1>hotpotato</h1>
-  </div>
+    <button class="w-full border border-purple-600 rounded-lg p-2 my-2 flex">
+      <%# TODO: replace with plus icon %>
+      <h3><strong>+</strong></h3>
+      <h5>Create</h5>
+    </button>
 
   <%# tab %>
-  <div class="tab">
+  <div class="tab flex justify-evenly mt-3">
     <button class="tablinks" >My workflows</button>
     <button class="tablinks" >My Tasks</button>
   </div>
 
   <%# tab content %>
-  <div id="workflows" class="tabcontent">
-    <div>
-      <h3>Create</h3>
-      <i class="fas fa-plus"></i>
-    </div>
-
+  <div id="workflows" class="tabcontent py-3">
     <%# search bar form to search within workflows %>
-    <%= form_with url: movies_path, method: :get %>
+    <form action="" class="flex justify-center bg-white border-b-2 overflow-hidden">
+      <button type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 my-auto m-2" style="color: black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </button>
+      <input type="search" placeholder="Workflows" class="block rounded-md border-0 focus:outline-none focus:ring-0 focus:border-gray-300 flex-grow p-2">
+    </form>
 
     <%# workflows list %>
-    <%= render "shared/workflow" %>
+    <div class="px-2 pt-2">
+      <%= render "shared/workflow" %>
+    </div>
   </div>
 
   <div id="tasks" class="tabcontent">
-    <h3>Tasks</h3>
+    <h3>Tasks tab content</h3>
   </div>
 
 </div>
