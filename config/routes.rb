@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
 
   get '/dashboard', to: "dashboard#index", as: :dashboard
+
+  resources :workflows
 end
