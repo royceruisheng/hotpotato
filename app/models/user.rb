@@ -4,6 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # has_one_attached :photo
+  validates :email, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
 
+  # has_one_attached :photo
+  has_many :workflows, class_name: "Workflows", foreign_key: "creator_id"
+  has_many :task_members, dependent: :destroy
+  has_many :tasks, thorough: :task_members
+  has_many :item_members, dependent: :destroy
+  has_many :items, through: :item_members
 end
