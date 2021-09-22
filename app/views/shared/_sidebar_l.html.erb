@@ -1,0 +1,19 @@
+<div data-controller="">
+  <%# icon and title TODO: replace icon %>
+  <div>
+    <i class="fas fa-record-vinyl"></i>
+    <h1>hotpotato</h1>
+  </div>
+
+  <%# workflows and create dropdown %>
+  <div>
+    <h2>workflows dropdown here</h2>
+    <h2>create dropdown here</h2>
+  </div>
+
+  <%# search bar form to search within workflows %>
+  <%= form_with url: movies_path, method: :get %>
+
+  <%# workflows list %>
+  <%= render "shared/workflow" %>
+</div>
