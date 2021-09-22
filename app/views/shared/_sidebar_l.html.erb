@@ -1,14 +1,13 @@
 <div data-controller="sidebar-l">
-    <button class="w-full border border-purple-600 rounded-lg p-2 my-2 flex">
-      <%# TODO: replace with plus icon %>
-      <h3><strong>+</strong></h3>
-      <h5>Create</h5>
+    <button class="w-full border border-purple-600 rounded-lg p-2 my-2 flex items-center">
+      <i class="fas fa-plus pr-2"></i>
+      <h5 class="text-sm">Create</h5>
     </button>
 
   <%# tab %>
   <div class="tab flex justify-evenly mt-3">
-    <button class="tablinks" >My workflows</button>
-    <button class="tablinks" >My Tasks</button>
+    <button class="tablinks text-sm" >My workflows</button>
+    <button class="tablinks text-sm" >My Tasks</button>
   </div>
 
   <%# tab content %>
@@ -30,7 +29,7 @@
   </div>
 
   <div id="tasks" class="tabcontent">
-    <h3>Tasks tab content</h3>
+    <h3 class="text-sm">Tasks tab content</h3>
   </div>
 
 </div>
