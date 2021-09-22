@@ -1,26 +1,27 @@
 <div class="flex justify-between p-3">
-  <h2>Workflow 1</h2>
+  <h2 class="text-sm">Workflow 1</h2>
 
   <label class="switch">
     <input type="checkbox">
     <span class="slider round"></span>
   </label>
+
 </div>
 
-<div class="flex justify-between p-3">
-  <h2>Workflow 2</h2>
-
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
-  </label>
-</div>
-
-<div class="flex justify-between p-3">
-  <h2>Workflow 3</h2>
-
-  <label class="switch">
-    <input type="checkbox">
-    <span class="slider round"></span>
+<div class="flex align-center">
+  <label for="toogleButton" class="flex toggle-between cursor-pointer">
+        <div class="px-2">Workflow</div>
+    <!-- toggle -->
+    <div class="relative flex align-center">
+      <input id="toogleButton" type="checkbox" class="hidden" />
+      <!-- path -->
+      <div
+        class="toggle-path bg-gray-200 w-9 h-5 rounded-full shadow-inner"
+      ></div>
+      <!-- circle -->
+      <div
+        class="toggle-circle absolute w-3.5 h-3.5 bg-white rounded-full shadow inset-y-0 left-0"
+      ></div>
+    </div>
   </label>
 </div>

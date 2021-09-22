@@ -13,4 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+// External libraries
 @import url('dashboard.scss');
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// Your CSS partials
+@import "components/index";
