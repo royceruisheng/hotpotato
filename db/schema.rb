@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_010028) do
+ActiveRecord::Schema.define(version: 2021_09_22_075417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,45 @@ ActiveRecord::Schema.define(version: 2021_09_22_010028) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "item_members", force: :cascade do |t|
+    t.bigint "items_id", null: false
+    t.bigint "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["items_id"], name: "index_item_members_on_items_id"
+    t.index ["users_id"], name: "index_item_members_on_users_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "order"
+    t.bigint "tasks_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tasks_id"], name: "index_items_on_tasks_id"
+  end
+
+  create_table "task_members", force: :cascade do |t|
+    t.bigint "tasks_id", null: false
+    t.bigint "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tasks_id"], name: "index_task_members_on_tasks_id"
+    t.index ["users_id"], name: "index_task_members_on_users_id"
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.boolean "completed"
+    t.integer "order"
+    t.string "title"
+    t.text "description"
+    t.bigint "workflows_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["workflows_id"], name: "index_tasks_on_workflows_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -51,10 +90,30 @@ ActiveRecord::Schema.define(version: 2021_09_22_010028) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workflows", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.boolean "activated"
+    t.boolean "template"
+    t.bigint "users_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_workflows_on_users_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "item_members", "items", column: "items_id"
+  add_foreign_key "item_members", "users", column: "users_id"
+  add_foreign_key "items", "tasks", column: "tasks_id"
+  add_foreign_key "task_members", "tasks", column: "tasks_id"
+  add_foreign_key "task_members", "users", column: "users_id"
+  add_foreign_key "tasks", "workflows", column: "workflows_id"
+  add_foreign_key "workflows", "users", column: "users_id"
 end

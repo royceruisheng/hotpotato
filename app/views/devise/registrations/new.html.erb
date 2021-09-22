@@ -19,6 +19,19 @@
                   input_html: { autocomplete: "email", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4", placeholder:"Email address" } %>
           </div>
           <div>
+          <%= f.input :first_name,
+                  required: false,
+                  label: false,
+                  input_html: { autocomplete: "first-name", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder:"First Name" } %>
+          </div>
+          <div>
+          <%= f.input :last_name,
+                  required: false,
+                  label: false,
+                  input_html: { autocomplete: "last-name", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm mb-4", placeholder:"Last Name" } %>
+          </div>
+
+          <div>
             <%= f.input :password,
                 required: true,
                 label: false,
