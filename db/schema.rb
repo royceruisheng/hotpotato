@@ -44,31 +44,31 @@ ActiveRecord::Schema.define(version: 2021_09_22_075417) do
   end
 
   create_table "item_members", force: :cascade do |t|
-    t.bigint "items_id", null: false
-    t.bigint "users_id", null: false
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["items_id"], name: "index_item_members_on_items_id"
-    t.index ["users_id"], name: "index_item_members_on_users_id"
+    t.index ["item_id"], name: "index_item_members_on_item_id"
+    t.index ["user_id"], name: "index_item_members_on_user_id"
   end
 
   create_table "items", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.integer "order"
-    t.bigint "tasks_id", null: false
+    t.bigint "task_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tasks_id"], name: "index_items_on_tasks_id"
+    t.index ["task_id"], name: "index_items_on_task_id"
   end
 
   create_table "task_members", force: :cascade do |t|
-    t.bigint "tasks_id", null: false
-    t.bigint "users_id", null: false
+    t.bigint "task_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["tasks_id"], name: "index_task_members_on_tasks_id"
-    t.index ["users_id"], name: "index_task_members_on_users_id"
+    t.index ["task_id"], name: "index_task_members_on_task_id"
+    t.index ["user_id"], name: "index_task_members_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -76,10 +76,10 @@ ActiveRecord::Schema.define(version: 2021_09_22_075417) do
     t.integer "order"
     t.string "title"
     t.text "description"
-    t.bigint "workflows_id", null: false
+    t.bigint "workflow_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["workflows_id"], name: "index_tasks_on_workflows_id"
+    t.index ["workflow_id"], name: "index_tasks_on_workflow_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -101,19 +101,19 @@ ActiveRecord::Schema.define(version: 2021_09_22_075417) do
     t.text "description"
     t.boolean "activated"
     t.boolean "template"
-    t.bigint "users_id", null: false
+    t.bigint "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_workflows_on_users_id"
+    t.index ["creator_id"], name: "index_workflows_on_creator_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "item_members", "items", column: "items_id"
-  add_foreign_key "item_members", "users", column: "users_id"
-  add_foreign_key "items", "tasks", column: "tasks_id"
-  add_foreign_key "task_members", "tasks", column: "tasks_id"
-  add_foreign_key "task_members", "users", column: "users_id"
-  add_foreign_key "tasks", "workflows", column: "workflows_id"
-  add_foreign_key "workflows", "users", column: "users_id"
+  add_foreign_key "item_members", "items"
+  add_foreign_key "item_members", "users"
+  add_foreign_key "items", "tasks"
+  add_foreign_key "task_members", "tasks"
+  add_foreign_key "task_members", "users"
+  add_foreign_key "tasks", "workflows"
+  add_foreign_key "workflows", "users", column: "creator_id"
 end

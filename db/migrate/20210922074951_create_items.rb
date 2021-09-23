@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :description
       t.integer :order
-      t.references :tasks, null: false, foreign_key: true
+      t.references :task, foreign_key: true
 
       t.timestamps
     end
