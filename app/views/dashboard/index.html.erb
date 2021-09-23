@@ -6,10 +6,16 @@
   </div>
 
   <div class="flex-grow pt-4 pl-10 inline-block overflow-scroll">
+    <div data-controller="item">
+      <div data-item-target="newform">
+      </div>
+      <%= render "items/itemadd" %>
+    </div>
     <%= render 'shared/content_main' %>
   </div>
 
   <div class="w-60 pt-2 px-5 inline-block">
     <%= render 'shared/sidebar_r' %>
   </div>
+
 </div>

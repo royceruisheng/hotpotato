@@ -5,20 +5,9 @@
       <div class="gap-2 flex items-center justify-between">
 
         <div class="flex-shrink-0 flex items-center gap-2">
-          <% if current_user.photo %>
-            <%= # cl_image_tag current_user.photo.key, crop: :scale, class: "mx-auto object-cover rounded-full h-10 w-10"
-            # ERROR:Must supply cloud_name in tag or in configuration
-            %>
-            <div class="bg-purple-400 border-2 rounded-full h-8 w-8 flex items-center justify-center text-white text-sm">
-              <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
-            </div>
-          <% else %>
-            <div class="bg-purple-400 border-2 rounded-full h-8 w-8 flex items-center justify-center text-white text-sm">
-              <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
-            </div>
-          <% end %>
-
-          <%= current_user.first_name.capitalize %>&nbsp;<%= current_user.last_name.capitalize %>
+          <div class="bg-purple-400 border-2 rounded-full h-8 w-8 flex items-center justify-center text-white text-sm">
+            <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
+          </div>
         </div>
 
         <div class="px-2">

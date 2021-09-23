@@ -1,0 +1,11 @@
+<%= simple_form_for @item, remote: true, html: {'data-item-target': 'form'} do |f| %>
+  <%= f.input :title,
+              label: false,
+              input_html: {placeholder: "Enter a title for this item", class: "text-sm"} %>
+  <%= f.button :submit,
+              class: "",
+              value: "Add item",
+              input_html: {
+              "data-action": "change->item#submitForm"
+              } %>
+<% end %>
