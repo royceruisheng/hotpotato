@@ -2,10 +2,16 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["new", "newform", 'form']
+  static targets = ["new", "newform", "form", "list"]
 
   connect() {
     console.log("item controller connected")
+    const url = `/items`
+    fetch(url, { headers: { 'Accept': 'text/plain' } })
+      .then(response => response.text())
+      .then((data) => {
+        this.listTarget.outerHTML = data;
+      });
   }
 
   new(e) {
@@ -21,9 +27,5 @@ export default class extends Controller {
   submitForm(e){
     e.preventDefault()
     this.formTarget.submit()
-  }
-
-  onPostSuccess(event) {
-    console.log("success!")
   }
 }
