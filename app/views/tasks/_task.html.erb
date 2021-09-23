@@ -1,0 +1,7 @@
+<div data-item-id=<%= task.id%> class="shadow-lg rounded-md bg-white dark:bg-gray-800 p-2 block" data-controller="item">
+  <button class="bg-gray-200" data-action="click->item#getItems">
+    <%= task.title %>
+  </button>
+  <ul data-item-target="listinject" class="hidden">
+  </ul>
+</div>
