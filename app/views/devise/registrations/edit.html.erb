@@ -60,7 +60,7 @@
               </label>
               <div class="mt-1 items-center">
                 <% if current_user.photo %>
-                  <%= cl_image_tag current_user.photo.key, crop: :scale, class: "inline-block mx-auto object-cover rounded-full h-12 w-12" %>
+                  <%#= cl_image_tag current_user.photo.key, crop: :scale, class: "inline-block mx-auto object-cover rounded-full h-12 w-12" %>
                 <% else %>
                   <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
                     <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@
                     </svg>
                   </span>
                 <% end %>
-              <%= f.input :photo, label: false, direct_upload: true %>
+              <%#= f.input :photo, label: false, direct_upload: true %>
 
             </div>
           </div>

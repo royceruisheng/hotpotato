@@ -13,7 +13,9 @@
               <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
             </div>
           <% else %>
-            <img alt="profile" src="https://res.cloudinary.com/dr9qig39o/image/upload/v1632231170/hotpotato/profile1_n8uxu6.jpg" class="object-cover rounded-full h-8 w-8"/>
+            <div class="bg-purple-400 border-2 rounded-full h-8 w-8 flex items-center justify-center text-white text-sm">
+              <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
+            </div>
           <% end %>
 
           <%= current_user.first_name.capitalize %>&nbsp;<%= current_user.last_name.capitalize %>
