@@ -1,0 +1,12 @@
+
+<% if items.length > 1 %>
+  <ul data-item-target="listinject" class="hidden">
+    <% items.each do |item| %>
+      <%= render partial: 'items/item', locals: { item: item } %>
+    <% end %>
+  </ul>
+<% else %>
+  <div data-item-target="newform">
+  </div>
+  <%= render "items/itemadd" %>
+<% eend  %>
