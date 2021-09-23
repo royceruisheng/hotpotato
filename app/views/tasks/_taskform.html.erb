@@ -1,0 +1,12 @@
+<%= simple_form_for @task, html: {'data-task-target': 'form'} do |f| %>
+  <%= f.input :title,
+              label: false,
+              input_html: {placeholder: "Enter a title for this task", class: "text-sm"} %>
+  <%= f.hidden_field :workflow_id, :value => "1" %>
+  <%= f.button :submit,
+              class: "",
+              value: "Add item",
+              input_html: {
+                "data-action": "change->task#submitForm"
+              } %>
+<% end %>

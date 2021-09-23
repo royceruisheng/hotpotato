@@ -6,15 +6,14 @@
   </div>
 
   <div class="flex-grow pt-4 pl-10 inline-block overflow-scroll">
-    <div data-controller="item">
-      <ol class='list-none'>
-        <div data-item-target="list">
-        </div>
-      </ol>
-      <div data-item-target="newform">
+    <div data-controller="task">
+      <div data-task-target="list">
       </div>
-      <%= render "items/itemadd" %>
+      <div data-task-target="newform">
+      </div>
+      <%= render "tasks/taskadd" %>
     </div>
+
     <%= render 'shared/content_main' %>
   </div>
 
