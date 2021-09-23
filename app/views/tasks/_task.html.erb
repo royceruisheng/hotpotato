@@ -1,10 +1,7 @@
-<div class="shadow-lg rounded-md bg-white dark:bg-gray-800 p-2">
-  <strong><%= task.title %></strong>
-  <ol class='list-none'>
-    <div data-item-target="list">
-    </div>
-  </ol>
-  <div data-item-target="newform">
-  </div>
-  <%= render "items/itemadd" %>
+<div data-item-id=<%= task.id%> class="shadow-lg rounded-md bg-white dark:bg-gray-800 p-2 block" data-controller="item">
+  <button class="bg-gray-200" data-action="click->item#getItems">
+    <%= task.title %>
+  </button>
+  <ul data-item-target="listinject" class="hidden">
+  </ul>
 </div>
