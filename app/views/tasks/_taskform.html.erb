@@ -1,4 +1,4 @@
-<%= simple_form_for @task, html: {'data-task-target': 'form'} do |f| %>
+<%= simple_form_for @task, remote: true, html: {'data-task-target': 'form'} do |f| %>
   <%= f.input :title,
               label: false,
               input_html: {placeholder: "Enter a title for this task", class: "text-sm"} %>

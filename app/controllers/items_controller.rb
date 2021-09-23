@@ -11,9 +11,10 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @task = Task.find(params[:task_id])
     respond_to do |format|
       format.html
-      format.text { render partial: 'items/itemform',locals: { item: @item }, formats: [:html] }
+      format.text { render partial: 'items/itemform',locals: { item: @item, task: @task }, formats: [:html] }
     end
   end
 
