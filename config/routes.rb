@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "dashboard#index", as: :dashboard
 
-  resources :workflows
+  resources :workflows, only: [:create]
 end

@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   has_one_attached :photo
 
-  has_many :workflows, class_name: "Workflows", foreign_key: "creator_id"
+  has_and_belongs_to_many :workflows#, class_name: "Workflows", foreign_key: "creator_id"
   has_many :task_members, dependent: :destroy
   has_many :tasks, through: :task_members
   has_many :item_members, dependent: :destroy
