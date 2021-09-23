@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
   def index
-    @workflows = Workflow.all
+    @workflows = Workflow.limit(20)
   end
 end
