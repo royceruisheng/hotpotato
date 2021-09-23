@@ -1,0 +1,23 @@
+<% workflows.each do |workflow| %>
+
+  <div class="flex pb-2" data-controller="workflow">
+    <label for="toggleButton" class="flex items-center justify-between w-full cursor-pointer">
+
+      <div class="px-2 text-sm"><%= workflow.title %></div>
+
+      <!-- toggle -->
+      <div class="relative">
+        <input id="toggleButton" type="checkbox" class="hidden" data-workflow-target="activated"/>
+        <!-- path -->
+        <div
+          class="toggle-path bg-gray-200 w-9 h-5 rounded-full shadow-inner"
+        ></div>
+        <!-- crcle -->
+        <div
+          class="toggle-circle absolute w-3.5 h-3.5 bg-white rounded-full shadow inset-y-.5 left-.5"
+        ></div>
+      </div>
+    </label>
+  </div>
+
+<% end %>

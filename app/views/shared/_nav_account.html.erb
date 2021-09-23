@@ -2,14 +2,21 @@
 
   <button class="w-full" data-action="click->account-dropdown#toggle">
     <div class="shadow-lg rounded-full bg-white dark:bg-gray-800 p-2">
-      <div class="gap-2 flex items-center">
+      <div class="gap-2 flex items-center justify-between">
 
-        <div class="flex-shrink-0 ">
+        <div class="flex-shrink-0 flex items-center gap-2">
           <% if current_user.photo %>
-            <%= cl_image_tag current_user.photo.key, crop: :scale, class: "mx-auto object-cover rounded-full h-10 w-10" %>
+            <%= # cl_image_tag current_user.photo.key, crop: :scale, class: "mx-auto object-cover rounded-full h-10 w-10"
+            # ERROR:Must supply cloud_name in tag or in configuration
+            %>
+            <div class="bg-purple-400 border-2 rounded-full h-8 w-8 flex items-center justify-center text-white text-sm">
+              <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
+            </div>
           <% else %>
-            <img alt="profile" src="https://res.cloudinary.com/dr9qig39o/image/upload/v1632231170/hotpotato/profile1_n8uxu6.jpg" class="mx-auto object-cover rounded-full h-10 w-10 "/>
+            <img alt="profile" src="https://res.cloudinary.com/dr9qig39o/image/upload/v1632231170/hotpotato/profile1_n8uxu6.jpg" class="object-cover rounded-full h-8 w-8"/>
           <% end %>
+
+          <%= current_user.first_name.capitalize %>&nbsp;<%= current_user.last_name.capitalize %>
         </div>
 
         <div class="px-2">
@@ -23,18 +30,18 @@
   </button>
 
 
-  <div class=" py-2 mt-1 w-full bg-white rounded-md shadow-xl z-20 fixed hidden" data-account-dropdown-target="menu">
-    <%= link_to "Your profile", edit_user_registration_path, class:"block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-100" %>
-    <a href="#" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-100">
+  <div class=" py-2 mt-1 w-full bg-white rounded-md shadow-xl fixed hidden" data-account-dropdown-target="menu">
+    <%= link_to "Your profile", edit_user_registration_path, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
       Your projects
     </a>
-    <a href="#" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-100">
+    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
       Help
     </a>
-    <a href="#" class="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-100">
+    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
       Settings
     </a>
-    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-gray-100" %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
   </div>
 
 </div>
