@@ -1,4 +1,4 @@
 class TaskMember < ApplicationRecord
-  belongs_to :tasks
-  belongs_to :users
+  belongs_to :task
+  belongs_to :user
 end

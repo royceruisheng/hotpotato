@@ -5,7 +5,7 @@ class CreateWorkflows < ActiveRecord::Migration[6.1]
       t.text :description
       t.boolean :activated
       t.boolean :template
-      t.references :users, null: false, foreign_key: true
+      t.references :creator, foreign_key: { to_table: 'users' }, index: true
 
       t.timestamps
     end

@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
       t.integer :order
       t.string :title
       t.text :description
-      t.references :workflows, null: false, foreign_key: true
+      t.references :workflow, foreign_key: true
 
       t.timestamps
     end
