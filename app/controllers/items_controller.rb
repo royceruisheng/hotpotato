@@ -1,4 +1,13 @@
 class ItemsController < ApplicationController
+  def index
+    @items = Item.all
+    #change it to include task_id when task is connected
+
+    respond_to do |format|
+      format.html
+      format.text { render partial: @items, formats: [:html] }
+    end
+  end
 
   def new
     @item = Item.new
@@ -13,7 +22,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to dashboard_path
     else
-      redirect_to edit_user_registration_path
+      redirect_to dashboard_path
     end
   end
 
