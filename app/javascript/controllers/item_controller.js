@@ -20,6 +20,10 @@ export default class extends Controller {
 
   submitForm(e){
     e.preventDefault()
-    Rails.fire(this.formTarget, 'submit')
+    this.formTarget.submit()
+  }
+
+  onPostSuccess(event) {
+    console.log("success!")
   }
 }

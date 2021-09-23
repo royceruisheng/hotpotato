@@ -9,9 +9,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new(item_params)
-    raise
-    if item.save
+    @item = Item.new(item_params)
+    if @item.save
       redirect_to dashboard_path
     else
       redirect_to edit_user_registration_path
@@ -21,6 +20,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description)
+    params.require(:item).permit(:title, :task_id)
   end
 end
