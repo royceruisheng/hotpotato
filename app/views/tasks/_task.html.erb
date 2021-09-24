@@ -3,7 +3,8 @@
     <button data-action="click->item#getItems click->toggle#hide">
       <h3 class='text-xl'><%= task.title %></h3>
     </button>
-    <div data-toggle-target="hide" >
+
+    <div data-toggle-target="hide", class="hidden" >
       <ul data-item-target="list" >
       </ul>
     </div>
