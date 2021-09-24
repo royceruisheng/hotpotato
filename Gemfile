@@ -62,3 +62,5 @@ gem 'autoprefixer-rails', '10.2.5'
 gem 'font-awesome-sass'
 gem 'simple_form'
 gem 'simple_form-tailwind'
+
+gem "pry-byebug", "~> 3.9"

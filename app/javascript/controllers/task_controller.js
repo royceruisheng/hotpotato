@@ -1,16 +1,15 @@
-import { Controller } from "stimulus"
+import { csrfToken } from "@rails/ujs";
+import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list"]
+  static targets = ["new", "newform", "form", "list", 'taskname']
 
   connect() {
     console.log("task controller connected")
-    const url = `/tasks`
+    const url = `/workflows/${this.element.dataset.workflowId}/tasks`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
-      .then((data) => {
-        this.listTarget.outerHTML = data;
-      });
+      .then((data) => this.listTarget.outerHTML = data );
   }
 
   new() {
@@ -25,6 +24,14 @@ export default class extends Controller {
 
   submitForm(e) {
     e.preventDefault()
-    Rails.fire(this.formTarget, 'submit');
+    let workflowId = this.element.dataset.workflowId;
+    let taskTitle = this.tasknameTarget.value;
+    fetch('/tasks', {
+      method: 'POST',
+      headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
+      body: JSON.stringify({ workflowId: workflowId, taskTitle: taskTitle })
+    }).then( res => res.text() )
+      .then( newTask  => this.listTarget.insertAdjacentHTML('beforeend', newTask ) )
+
   }
 }
