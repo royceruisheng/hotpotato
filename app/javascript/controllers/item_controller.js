@@ -29,7 +29,7 @@ export default class extends Controller {
   }
 
   new() {
-    const url = `/tasks/${ this.element.dataset.itemId }/items/new`
+    const url = `/tasks/${ this.element.dataset.taskId }/items/new`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
       .then((data) => {

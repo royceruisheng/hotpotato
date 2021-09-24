@@ -18,7 +18,6 @@ class TasksController < ApplicationController
   end
 
   def create
-    binding.pry
     task_params = JSON.parse(request.body.read)
     @task = Task.new
     @task.title = task_params['taskTitle']
