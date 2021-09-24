@@ -1,7 +1,11 @@
-<div data-item-id=<%= task.id%> class="shadow-lg rounded-md bg-white dark:bg-gray-800 p-2 block" data-controller="item">
-  <button class="bg-gray-200" data-action="click->item#getItems">
-    <%= task.title %>
-  </button>
-  <ul data-item-target="listinject" class="hidden">
-  </ul>
+<div data-controller="toggle">
+  <div data-item-id=<%= task.id%> data-controller="item" class="shadow-lg rounded-md bg-white dark:bg-gray-800 py-3 px-6 block mb-2">
+    <button data-action="click->item#getItems click->toggle#hide">
+      <h3 class='text-xl'><%= task.title %></h3>
+    </button>
+    <div data-toggle-target="hide" >
+      <ul data-item-target="list" >
+      </ul>
+    </div>
+  </div>
 </div>

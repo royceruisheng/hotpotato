@@ -11,9 +11,10 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
+    @task = Task.find(params[:task_id])
     respond_to do |format|
       format.html
-      format.text { render partial: 'items/itemform',locals: { item: @item }, formats: [:html] }
+      format.text { render partial: 'items/itemform',locals: { item: @item, task: @task }, formats: [:html] }
     end
   end
 
@@ -24,6 +25,12 @@ class ItemsController < ApplicationController
     else
       redirect_to dashboard_path
     end
+  end
+
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to dashboard_path
   end
 
   private
