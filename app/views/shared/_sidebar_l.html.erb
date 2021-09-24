@@ -1,7 +1,7 @@
 <div data-controller="sidebar-l">
 
   <%# create button %>
-  <button data-action="click->sidebar-l#createBtnDropdown" class="w-full border border-purple-400 rounded-lg p-2 flex items-center hover:bg-purple-400 hover:text-white duration-100">
+  <button data-action="click->sidebar-l#createBtnDropdown" class="mt-2 w-full border border-purple-400 rounded-lg p-2 flex items-center hover:bg-purple-400 hover:text-white duration-100">
     <div class="px-2">
       <svg class="t-hover-white" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
         <path id="mini_plus" d="M44,743H41v-3a1,1,0,0,0-2,0v3H36a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0v-3h3a1,1,0,0,0,0-2Z" transform="translate(-35 -739)"/>
@@ -12,8 +12,10 @@
 
   <%# create button dropdown %>
   <div data-sidebar-l-target="dropdown" class="hidden py-2 mt-1 w-48 bg-white rounded-md shadow-xl fixed hidden">
+    <%= link_to 'Workflow Good', workflows_path, method: 'post',
+    class: "block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
     <button data-action="click->world#createWorkflow" class="block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-      Workflow
+      Workflow AJAX
     </button>
   </div>
 
@@ -37,7 +39,7 @@
   </form>
 
   <%# workflows list %>
-  <div data-world-target="workflowslist" class="mt-4">
+  <div data-world-target="workflowslist" class="mt-4 h-96 overflow-scroll">
     <%= render 'shared/workflows_list', workflows: @workflows %>
   </div>
 
