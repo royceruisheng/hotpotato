@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list", "card"]
+  static targets = ["new", "newform", "form", "list"]
 
   connect() {
     console.log("task controller connected")
@@ -13,7 +13,7 @@ export default class extends Controller {
       });
   }
 
-  new(e) {
+  new() {
     const url = `/tasks/new`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
@@ -25,16 +25,6 @@ export default class extends Controller {
 
   submitForm(e) {
     e.preventDefault()
-    this.formTarget.submit()
-  }
-
-  getItem(e) {
-    e.preventDefault()
-    const url = `/items`
-    fetch(url, { headers: { 'Accept': 'text/plain' } })
-      .then(response => response.text())
-      .then((data) => {
-        this.newformTarget.outerHTML = data;
-      });
+    Rails.fire(this.formTarget, 'submit');
   }
 }

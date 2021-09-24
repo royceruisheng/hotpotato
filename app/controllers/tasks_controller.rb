@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      format.text { render partial: 'items/task_items', locals: { items: @task.items }, formats: [:html] }
+      format.text { render partial: 'items/task_items', locals: { items: @task.items, task: @task }, formats: [:html] }
     end
   end
 
