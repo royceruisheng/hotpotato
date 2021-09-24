@@ -27,9 +27,4 @@ export default class extends Controller {
   //     // .then(response => response.text())
   }
 
-  // Workflow btn states
-  selectWorkflow(event) {
-    event.currentTarget.classList.toggle('bg-purple-100')
-    event.currentTarget.classList.toggle('hover:bg-gray-100')
-  }
 }

@@ -1,7 +1,7 @@
 <div data-controller="toggle">
-  <div data-task-id=<%= task.id%> data-controller="item" class="shadow-lg rounded-md bg-white dark:bg-gray-800 py-3 px-6 block mb-2">
-    <button data-action="click->item#getItems click->toggle#hide">
-      <h3 class='text-xl'><%= task.title %></h3>
+  <div data-task-id=<%= task.id%> data-controller="item" class="shadow-lg rounded-lg py-4 px-4 mt-2">
+    <button class="text-sm" data-action="click->item#getItems click->toggle#hide">
+      <%= task.title %>
     </button>
     <div data-toggle-target="hide" >
       <ul data-item-target="list" >

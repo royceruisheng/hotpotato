@@ -1,16 +1,15 @@
-<div data-controller="world" class="flex justify-between h-screen">
+<div data-controller="world" class="flex h-screen justify-between">
 
-  <div class="w-72 h-screen p-5 inline-block shadow-lg">
+  <div class="w-72 p-5 shadow-lg">
     <%= link_to '🅗Taskete', dashboard_path, class: 'font-medium pb-3' %>
     <%= render "shared/sidebar_l" %>
   </div>
 
-  <div class="flex-grow pt-4 pl-10 inline-block overflow-scroll">
-
+  <div class="flex-grow pt-4 pl-10 overflow-scroll">
     <%= render 'shared/content_main' %>
   </div>
 
-  <div class="w-60 pt-2 px-5 inline-block">
+  <div class="w-60 pt-2 px-5">
     <%= render 'shared/sidebar_r' %>
   </div>
 

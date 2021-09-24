@@ -1,8 +1,8 @@
-
+import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list"]
+  static targets = ["new", "newform", "form", "list", "itemtitle"]
 
   connect() {
     this.itemsDownloaded = false;
@@ -40,10 +40,19 @@ export default class extends Controller {
 
   submitForm(e){
     e.preventDefault()
-    Rails.fire(this.formTarget, 'submit')
+    let taskId = this.element.dataset.taskId;
+    let itemTitle = this.itemtitleTarget.value;
+    fetch('/items', {
+      method: 'POST',
+      headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
+      body: JSON.stringify({ taskId: taskId, title: itemTitle })
+    }).then(res => res.text())
+      .then(this.insertIntoList.bind(this))
   }
 
-  // onPostSuccess(e) {
+  insertIntoList(newItem) {
+    this.listTarget.insertAdjacentHTML('beforeend', newItem)
+  }  // onPostSuccess(e) {
   //   let [data, status, xhr] = event.detail;
   //   this.commentListTarget.innerHTML += xhr.response;
   //   this.textTarget.value = "";
