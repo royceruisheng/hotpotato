@@ -2,51 +2,51 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "dropdown" ]
+  static targets = [ "dropdown", "member" ]
 
   connect() {
     console.log("task member controller connected");
   }
   //  dropdown for the add members function
   revealContent() {
-    this.dropdownTarget.classList.toggle("hidden");
     
     const url = "/friends"
     fetch(url, { headers: { 'Accept': 'text/plain' } })
-    .then(response => response.text())
-    .then(members => {
-        this.dropdownTarget.innerHTML = ""
-        this.dropdownTarget.insertAdjacentHTML('afterbegin', members )
-      })
-    
+      .then(response => response.text())
+      .then(this.updateAndHide.bind(this))
   }
 
-  // add(event) {
-  //   event.preventDefault();
+  updateAndHide(members) {
+    this.dropdownTarget.classList.toggle("hidden");
+    this.dropdownTarget.innerHTML = ""
+    this.dropdownTarget.insertAdjacentHTML('afterbegin', members )
+  }
 
-  //   fetch(this.dropdownTarget.action, {
-  //     method: 'POST',
-  //     headers: { 'Accept': "application/json", 'X-CSRF-Token': csrfToken() },
-  //     body: new DropdownData(this.dropdownTarget)
-  //   })
-  //     .then(response => response.json())
-  //     .then((data) => {
-  //       console.log(data)
-  //     });
-  // }
 
-  new() {
+  add(e) {
+    // console.log(this.memberTarget);
+    e.preventDefault();
     const url = `/tasks/${ this.element.dataset.itemId }/task_members/new`
+    
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
-      .then((data) => {
-        this.newformTarget.outerHTML = data;
-        this.newTarget.classList.toggle("hidden")
-      });
+      .then(this.addMember.bind(this))
   }
 
-  submitForm(e){
-    e.preventDefault()
-    Rails.fire(this.formTarget, 'submit')
+  addMember(member) {
+    debugger
+    this.memberTarget.insertAdjacentHTML( 'afterbegin', member.first_name )
   }
+
+  // submitForm(e){
+  //   e.preventDefault()
+  //   Rails.fire(this.formTarget, 'submit')
+  // }
+
+
+  // sampleFunction() {
+  //   fetch(whatever)
+  //     .then(res => res.json())
+  //     .then(data => this.doSomething(data).bind(this))
+  // }
 }

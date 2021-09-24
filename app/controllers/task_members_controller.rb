@@ -2,19 +2,25 @@ class TaskMembersController < ApplicationController
   def new
     @task_member = TaskMember.new
     # member id required (get from dropdown selection)
+    binding.pry
     @task = Task.find(params[:task_id])
     respond_to do |format|
       format.html
-      format.text { render partial: 'items/itemform',locals: { item: @item, task: @task }, formats: [:html] }
+      format.text { render partial: 'items/itemform', locals: { item: @item, task: @task }, formats: [:html] }
     end
   end
 
   def create
-    @item = Item.new(item_params)
-    if @item.save
-      redirect_to dashboard_path
-    else
-      redirect_to dashboard_path
+    @user = User.find(params[:user_id])
+    @task_member = TaskMember.new(task_member_params)
+    respond_to do |format|
+      if @task_member.save
+        format.html { redirect_to dashboard_path(@user) }
+        format.text 
+      else
+        format.html { render '/dashboard' }
+        format.text
+      end
     end
   end
 
