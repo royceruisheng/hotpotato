@@ -1,6 +1,8 @@
 <li>
   <div class="shadow-lg rounded-md bg-white dark:bg-gray-800 p-3 mt-2 flex justify-between">
     <%= item.title  %>
+
+    <%= link_to "Delete", item_path(item), method: :delete, remote: true %>
     <button class="p-1 rounded-full"><i class="fas fa-minus-circle text-red-500"></i></button>
   </div>
 </li>
