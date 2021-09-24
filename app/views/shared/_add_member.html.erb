@@ -1,31 +1,23 @@
 <%# this button is to be added to the task partial %>
 <%# This is a temporary button (features: adding member to this task) %>
 <div class="relative inline-block text-left" data-controller="member">
-    <button data-action="click->member#revealContent" class="inline-flex justify-center items-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" aria-expanded="true" aria-haspopup="true">
-      Add members
-      <!-- chevron-down icon -->
-      <i class="fas fa-chevron-down pl-2"></i>
-    </button>
+  <button data-action="click->member#revealContent" class="inline-flex justify-center items-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" aria-expanded="true" aria-haspopup="true">
+    Add members
+    <!-- chevron-down icon -->
+    <i class="fas fa-chevron-down pl-2"></i>
+  </button>
 
 
-    <%# Dropdown menu, show/hide based on menu state.
-
-    Entering: "transition ease-out duration-100"
-      From: "transform opacity-0 scale-95"
-      To: "transform opacity-100 scale-100"
-    Leaving: "transition ease-in duration-75"
-      From: "transform opacity-100 scale-100"
-      To: "transform opacity-0 scale-95" %>
-
+    <%# Dropdown menu, show/hide based on menu state. %>
   <div data-member-target="dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
     <%#  serach bar for users goes here %>
 
-    <%# trying to work with 1 user as a submit button %>
+    <%# trying to work with 1 user as a submit button at first %>
     <%# TODO: render partial users, names %>
     <div class="py-1">
       <form method="POST" action="task_members">
         <button type="submit" data-action="click->member#add" class="text-gray-700 block w-full text-left px-4 py-2 text-sm" role="menuitem" tabindex="-1">
-          <%= User.first.first_name %>
+          <p><%= User.first.first_name %></p>
         </button>
       </form>
     </div>
