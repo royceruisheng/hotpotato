@@ -1,38 +1,25 @@
 class WorkflowsController < ApplicationController
-  before_action :set_workflow, only: [:show, :edit, :update, :destroy]
-
-  def index
-    @workflow = Workflow.all # singular??
-  end
-
-  def new
-    @workflow = Workflow.new
-    # is activated false set here?
-    # is template even set?
-  end
 
   def create
-    new_workflow = Workflow.new(users_id: current_user.id, title: 'New Workflow')
+    title_check = Workflow.where(title: 'New Workflow')
+    title = title_check[0] ? "#{title_check[0].title} copy" : 'New Workflow'
+
+    new_workflow = Workflow.new(title: title)
+    new_workflow.creator = current_user
     new_workflow.save
-    redirect_to dashboard_path
+
+    respond_to do |format|
+      format.html { redirect_to workflow_path(new_workflow) }
+      format.text { render partial: 'shared/workflow', locals: { workflow: new_workflow } }
+    end
   end
 
-  def update
-    @workflow.update(params[:workflow])
-  end
-
-  def destroy
-    @wirkflow.destroy
-    redirect_to dashboard_path
-  end
-
-  private
-
-  def set_workflow
+  def show
+    @workflows = Workflow.limit(20).reverse_order
     @workflow = Workflow.find(params[:id])
-  end
 
-  # def workflow_params
-  #   params.require(:workflow).permit(:title, :description, :users_id)
-  # end
+    respond_to do |format|
+      format.html { render 'dashboard/index' }
+    end
+  end
 end

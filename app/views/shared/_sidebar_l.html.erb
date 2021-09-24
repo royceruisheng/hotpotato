@@ -1,18 +1,35 @@
-<%= render 'shared/search' %>
+<div data-controller="sidebar-l">
 
-<%# tab %>
-<div class="tab flex gap-4 mt-6">
-  <button class="tablinks text-sm font-medium text-purple-600 pb-1 border-b-2 border-purple-600" >My Workflows</button>
-  <button class="tablinks text-sm font-medium text-gray-400 pb-1 border-b-2 border-white" >My Tasks</button>
-</div>
+  <%# create button %>
+  <button data-action="click->sidebar-l#createBtnDropdown" class="mt-2 w-full border border-purple-400 rounded-lg p-2 flex items-center hover:bg-purple-400 hover:text-white duration-100">
+    <div class="px-2">
+      <svg class="t-hover-white" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+        <path id="mini_plus" d="M44,743H41v-3a1,1,0,0,0-2,0v3H36a1,1,0,0,0,0,2h3v3a1,1,0,0,0,2,0v-3h3a1,1,0,0,0,0-2Z" transform="translate(-35 -739)"/>
+      </svg>
+    </div>
+    <h5 class="text-sm">Create</h5>
+  </button>
 
-<%# tab content %>
-<div id="workflows" class="tabcontent my-2">
-  <%# search bar form to search within workflows %>
-  <form action="" class="flex gap-4 justify-center bg-white border-b py-2">
+  <%# create button dropdown %>
+  <div data-sidebar-l-target="dropdown" class="hidden py-2 mt-1 w-48 bg-white rounded-md shadow-xl fixed hidden">
+    <%= link_to 'Workflow Good', workflows_path, method: 'post',
+    class: "block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+    <button data-action="click->world#createWorkflow" class="block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+      Workflow AJAX
+    </button>
+  </div>
+
+  <%# tab %>
+  <div class="flex gap-4 my-5">
+    <button class="tablinks text-sm font-medium text-purple-600 pb-1 border-b-2 border-purple-600" >My Workflows</button>
+    <button class="tablinks text-sm font-medium text-gray-400 pb-1 border-b-2 border-white" >My Tasks</button>
+  </div>
+
+  <%# search bar form to search within tab %>
+  <form action="" class="flex gap-2 justify-center bg-white border-b py-2">
     <button type="submit">
       <div class="">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20">
           <path id="ic24-search" d="M11,2a9,9,0,0,1,7.032,14.617l3.675,3.676a1,1,0,0,1-1.32,1.5l-.094-.083-3.676-3.675A9,9,0,1,1,11,2Zm0,2a7,7,0,1,0,7,7A7,7,0,0,0,11,4Z" transform="translate(-2 -2)" fill-rule="evenodd"/>
         </svg>
       </div>
@@ -22,7 +39,8 @@
   </form>
 
   <%# workflows list %>
-  <div class="px-2 mt-4">
+  <div data-world-target="workflowslist" class="mt-4 h-96 overflow-scroll">
     <%= render 'shared/workflows_list', workflows: @workflows %>
   </div>
+
 </div>

@@ -5,8 +5,11 @@
       <div class="gap-2 flex items-center justify-between">
 
         <div class="flex-shrink-0 flex items-center gap-2">
-          <div class="bg-purple-400 border-2 rounded-full h-8 w-8 flex items-center justify-center text-white text-sm">
+          <div class="bg-purple-400 rounded-full h-8 w-8 flex items-center justify-center text-white text-sm">
             <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
+          </div>
+          <div class="text-sm">
+            <%= current_user.first_name.capitalize %>&nbsp;<%= current_user.last_name.capitalize %>
           </div>
         </div>
 
