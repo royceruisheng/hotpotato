@@ -6,7 +6,9 @@
   </div>
 
   <div class="flex-grow pt-4 pl-10 overflow-scroll">
-    <%= render 'shared/content_main' %>
+    <div data-world-target="contentmain" data-controller = "workflow">
+      <%= render "workflows/workflow", locals: {workflow: @workflow} %>
+    </div>
   </div>
 
   <div class="w-60 pt-2 px-5">
