@@ -12,7 +12,7 @@ export default class extends Controller {
 
   getItems() {
     if (!this.itemsDownloaded) {
-      fetch(`/tasks/${this.element.dataset.itemId}`,
+      fetch(`/tasks/${this.element.dataset.taskId}`,
         { headers: { 'Accept': 'text/plain' } })
         .then(res => res.text())
         .then(this.storeAndRender.bind(this))

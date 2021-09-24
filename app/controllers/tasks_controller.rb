@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   def index
-    @tasks = Task.all
+    @workflow = Workflow.find(params[:workflow_id])
+    @tasks = @workflow.tasks
     #change it to include task_id when task is connected
 
     respond_to do |format|
-      format.text { render partial: 'tasks', locals: { tasks: @tasks }, formats: [:html] }
+      format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
   end
 
@@ -17,11 +18,17 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    binding.pry
+    task_params = JSON.parse(request.body.read)
+    @task = Task.new
+    @task.title = task_params['taskTitle']
+    @task.workflow = Workflow.find(task_params['workflowId'])
+
     if @task.save
-      redirect_to dashboard_path
-    else
-      redirect_to dashboard_path
+      respond_to do |format|
+        format.html
+        format.text { render partial: 'tasks/task', locals: { task: @task }, formats: [:html] }
+      end
     end
   end
 

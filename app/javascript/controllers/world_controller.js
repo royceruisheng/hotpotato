@@ -18,13 +18,13 @@ export default class extends Controller {
       .then((newWorkflow) => {
         this.workflowslistTarget.insertAdjacentHTML('afterbegin', newWorkflow)
       })
-      // .then(response => {
-      //   const workflows_id = document.querySelectorAll('#workflow')
-      //   fetch(url + "/" + workflows_id[0], {
-      //     headers: { 'Accept': 'text/plain' }
-      //   })
-      // })
-      // .then(response => response.text())
+  //     // .then(response => {
+  //     //   const workflows_id = document.querySelectorAll('#workflow')
+  //     //   fetch(url + "/" + workflows_id[0], {
+  //     //     headers: { 'Accept': 'text/plain' }
+  //     //   })
+  //     // })
+  //     // .then(response => response.text())
   }
 
   // Workflow btn states

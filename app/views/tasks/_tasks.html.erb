@@ -1,4 +1,5 @@
-
-<% @tasks.each do |t| %>
-  <%= render partial: 'task', locals: { task: t } %>
-<% end %>
+<div data-task-target="list">
+  <% @tasks.each do |t| %>
+    <%= render partial: 'task', locals: { task: t } %>
+  <% end %>
+</div>
