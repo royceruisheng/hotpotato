@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:index, :new, :create] do
     resources :items, only: [:new]
-    resources :task_members, only: [:new]
+    resources :task_members, only: [:create, :new]
   end
 
   resources :items, only: [:index, :create, :show, :destroy] do

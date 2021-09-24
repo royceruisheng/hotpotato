@@ -1,6 +1,6 @@
 
 <% members.each do |member| %>
-  <button type="submit" data-action="click->task-member#add" class="w-full mt-1 px-4 py-2 text-sm hover:bg-gray-100 duration-100">
+  <button data-task-member-target="membernames" data-member-id=<%= member.id %>   type="submit" data-action="click->task-member#add" class="w-full mt-1 px-4 py-2 text-sm hover:bg-gray-100 duration-100">
     <%= member.first_name.capitalize %>&nbsp;<%= member.last_name.capitalize %>
   </button>
 <% end %>

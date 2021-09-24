@@ -2,7 +2,6 @@ class TaskMembersController < ApplicationController
   def new
     @task_member = TaskMember.new
     # member id required (get from dropdown selection)
-    binding.pry
     @task = Task.find(params[:task_id])
     respond_to do |format|
       format.html
@@ -11,8 +10,11 @@ class TaskMembersController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @task_member = TaskMember.new(task_member_params)
+  
+    member = JSON.parse(request.body.read)
+    @user = User.find(member['task_member_id'])
+    @task = Task.find(params[:task_id])
+    @task_member = TaskMember.new(task: @task, user: @user )
     respond_to do |format|
       if @task_member.save
         format.html { redirect_to dashboard_path(@user) }

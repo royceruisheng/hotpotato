@@ -1,6 +1,8 @@
 <%# this button is to be added to the task partial %>
 <%# This is a temporary button (features: adding member to this task) %>
-<div class="w-48" data-controller="task-member">
+
+<%# THIS COMPONENT IS TAKING A HARD CODED TASK ID %>
+<div class="w-48" data-controller="task-member" data-task-id="1">
 
   <div data-action="click->task-member#revealContent" data-task-member-target="member" class="shadow-lg p-2 rounded-full inline-block">
     <svg xmlns="http://www.w3.org/2000/svg" width="15.998" height="16" viewBox="0 0 15.998 16">
