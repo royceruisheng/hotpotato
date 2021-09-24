@@ -1,0 +1,7 @@
+
+<% members.each do |member| %>
+  <button type="submit" data-action="click->task_member#add" class="text-gray-700 block w-full text-left mt-1 px-4 py-2 text-sm" role="menuitem" tabindex="-1">
+    <%= member.first_name.capitalize %>&nbsp;<%= member.last_name.capitalize %>
+  </button>
+<% end %>
+

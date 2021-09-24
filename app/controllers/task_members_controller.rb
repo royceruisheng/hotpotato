@@ -1,24 +1,21 @@
 class TaskMembersController < ApplicationController
-  def create
-    @task = Task.find(params[:task_id])
-    @user = User.find(params[:user_id])
+  def new
     @task_member = TaskMember.new
-
-    if @task_member.save
-      redirect_to dashboard_path(@user, @task)
-    else
-      render 'dashboard/index'
+    # member id required (get from dropdown selection)
+    @task = Task.find(params[:task_id])
+    respond_to do |format|
+      format.html
+      format.text { render partial: 'items/itemform',locals: { item: @item, task: @task }, formats: [:html] }
     end
+  end
 
-    # respond_to do |format|
-    #   if @task_member.save
-    #     format.html { redirect_to dashboard_path(@task_member) }
-    #     format.json # Follow the classic Rails flow and look for a create.json view
-    #   else
-    #     format.html { render 'dashboards' }
-    #     format.json # Follow the classic Rails flow and look for a create.json view
-    #   end
-    # end
+  def create
+    @item = Item.new(item_params)
+    if @item.save
+      redirect_to dashboard_path
+    else
+      redirect_to dashboard_path
+    end
   end
 
   private
