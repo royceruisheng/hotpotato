@@ -4,3 +4,49 @@
 
 /* Add any custom CSS here */
 @import "tailwindcss/utilities";
+
+@layer components {
+
+  // Buttons
+  .t-btn-outline {
+    @apply w-full border border-purple-400 rounded-lg p-2 flex items-center hover:bg-purple-400 hover:text-white duration-100 ;
+  }
+  .t-workflow-btn-active {
+    @apply px-4 py-2 my-1 text-sm rounded-lg bg-purple-100 duration-100 ;
+  }
+  .t-workflow-btn {
+    @apply px-4 py-2 my-1 text-sm rounded-lg hover:bg-gray-100 duration-100 ;
+  }
+  .t-tab-active {
+    @apply text-sm font-medium text-purple-600 pb-1 border-b-2 border-purple-600 ;
+  }
+  .t-tab {
+    @apply text-sm font-medium text-gray-400 pb-1 border-b-2 border-white ;
+  }
+
+  // Dropdown
+  .t-dropdown {
+    @apply py-2 mt-1 bg-white rounded-md shadow-xl fixed ;
+  }
+  .t-dropdown-btn {
+    @apply block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ;
+  }
+
+  // Profiles
+  .t-no-profile {
+    @apply rounded-full h-8 w-8 flex items-center justify-center text-white text-sm ;
+  }
+
+  // Cards
+  .t-card {
+    @apply rounded-lg shadow-lg ;
+  }
+  .t-round-card {
+    @apply w-full shadow-lg rounded-full ;
+  }
+
+  // Forms
+  .t-input-invis {
+    @apply text-sm focus:outline-none focus:ring-0 ;
+  }
+}
