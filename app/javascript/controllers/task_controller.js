@@ -9,7 +9,7 @@ export default class extends Controller {
     const url = `/workflows/${this.element.dataset.workflowId}/tasks`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
-      .then((data) => this.listTarget.outerHTML = data );
+      .then((data) => this.listTarget.innerHTML = data );
   }
 
   new() {
