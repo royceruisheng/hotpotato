@@ -10,7 +10,7 @@ class WorkflowsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to workflow_path(new_workflow) }
-      format.text { render partial: 'shared/workflow', locals: { workflow: new_workflow } }
+      format.text { render partial: 'shared/workflow', locals: { workflow: new_workflow }, formats: [:html] }
     end
   end
 
