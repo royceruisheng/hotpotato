@@ -1,13 +1,13 @@
 class ItemsController < ApplicationController
-  def index
-    @items = Item.all
-    #change it to include task_id when task is connected
+  # def index
+  #   @items = Item.all
+  #   #change it to include task_id when task is connected
 
-    respond_to do |format|
-      format.html
-      format.text { render partial: @items, formats: [:html] }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html
+  #     format.text { render partial: @items, formats: [:html] }
+  #   end
+  # end
 
   def new
     @item = Item.new

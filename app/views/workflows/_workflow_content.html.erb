@@ -3,15 +3,15 @@
 
 <div class="t-workflow-content flex-grow flex flex-col justify-between border rounded-lg">
 
-  <div class="px-4 py-3 mb-5 bg-gray-100 text-xs text-gray-400 rounded-t-lg">
+  <div class="px-4 py-3 bg-gray-100 text-xs text-gray-400 rounded-t-lg">
     Start
   </div>
 
 
   <% if @workflow %>
   <%# Content inside here %>
-    <div class="flex-grow px-4">
-      <div data-controller="task" data-workflow-id=<%= @workflow.id%> class="flex flex-col justify-center overflow-scroll">
+    <div class="flex-grow px-1">
+      <div data-controller="task" data-workflow-id=<%= @workflow.id%> class="my-5 flex flex-col justify-center">
 
         <div data-task-target="list">
         </div>
@@ -24,7 +24,7 @@
   <% end %>
 
 
-  <div class="px-4 py-3 mt-5 bg-gray-100 text-xs text-gray-400 rounded-b-lg">
+  <div class="px-4 py-3 bg-gray-100 text-xs text-gray-400 rounded-b-lg">
     End
   </div>
 

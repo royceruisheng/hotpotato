@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   def index
     @workflow = Workflow.find(params[:workflow_id])
     @tasks = @workflow.tasks
+    @item = Item.new
     #change it to include task_id when task is connected
 
     respond_to do |format|
@@ -9,19 +10,20 @@ class TasksController < ApplicationController
     end
   end
 
-  def new
-    @task = Task.new
-    respond_to do |format|
-      format.html
-      format.text { render partial: 'tasks/taskform',locals: { task: @task }, formats: [:html] }
-    end
-  end
+  # def new
+  #   @task = Task.new
+  #   respond_to do |format|
+  #     format.html
+  #     format.text { render partial: 'tasks/taskform',locals: { task: @task }, formats: [:html] }
+  #   end
+  # end
 
   def create
     task_params = JSON.parse(request.body.read)
     @task = Task.new
     @task.title = task_params['taskTitle']
     @task.workflow = Workflow.find(task_params['workflowId'])
+    @item = Item.new
 
     if @task.save
       respond_to do |format|

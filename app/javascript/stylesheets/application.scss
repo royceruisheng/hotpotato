@@ -23,6 +23,12 @@
   .t-tab {
     @apply text-sm font-medium text-gray-400 pb-1 border-b-2 border-white ;
   }
+  .t-btn-round {
+    @apply rounded-full w-6 h-6 shadow-md flex justify-center items-center ;
+  }
+  .t-btn-square {
+    @apply rounded-md w-7 h-7 shadow-md flex justify-center items-center ;
+  }
 
   // Dropdown
   .t-dropdown {

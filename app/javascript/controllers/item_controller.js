@@ -24,18 +24,25 @@ export default class extends Controller {
 
   storeAndRender(items) {
     this.itemsHTML = items;
-    this.listTarget.outerHTML = this.itemsHTML;
+    this.listTarget.innerHTML = items;
     this.itemsDownloaded = true;
   }
 
   new() {
-    const url = `/tasks/${ this.element.dataset.taskId }/items/new`
-    fetch(url, { headers: { 'Accept': 'text/plain' } })
-      .then(response => response.text())
-      .then((data) => {
-        this.newformTarget.outerHTML = data;
-        this.newTarget.classList.toggle("hidden")
-      });
+    this.itemtitleTarget.value = ''
+    this.newTarget.classList.toggle('hidden')
+    this.formTarget.classList.toggle('hidden')
+    // const url = `/tasks/${ this.element.dataset.taskId }/items/new`
+    // fetch(url, { headers: { 'Accept': 'text/plain' } })
+    //   .then(response => response.text())
+    //   .then((data) => {
+    //     this.newformTarget.outerHTML = data;
+    //     this.newTarget.classList.toggle("hidden")
+    //   });
+  }
+  closeForm() {
+    this.newTarget.classList.toggle("hidden")
+    this.formTarget.classList.toggle("hidden")
   }
 
   submitForm(e){

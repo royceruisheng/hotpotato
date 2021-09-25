@@ -17,6 +17,7 @@ class WorkflowsController < ApplicationController
   def show
     @workflows = Workflow.limit(20).reverse_order
     @workflow = Workflow.find(params[:id])
+    @task = Task.new
 
     respond_to do |format|
       format.html { render 'dashboard/index' }

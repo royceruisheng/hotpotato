@@ -13,13 +13,21 @@ export default class extends Controller {
   }
 
   new() {
-    const url = `/tasks/new`
-    fetch(url, { headers: { 'Accept': 'text/plain' } })
-      .then(response => response.text())
-      .then((data) => {
-        this.newformTarget.outerHTML = data;
-        this.newTarget.classList.toggle("hidden")
-      });
+    this.tasknameTarget.value = ''
+    this.newTarget.classList.toggle("hidden")
+    this.formTarget.classList.toggle("hidden")
+
+    // const url = `/tasks/new`
+    // fetch(url, { headers: { 'Accept': 'text/plain' } })
+    //   .then(response => response.text())
+    //   .then((data) => {
+    //     this.newformTarget.innerHTML = data;
+    //     this.newTarget.classList.toggle("hidden")
+    //   });
+  }
+  closeForm() {
+    this.newTarget.classList.toggle("hidden")
+    this.formTarget.classList.toggle("hidden")
   }
 
   submitForm(e) {
