@@ -31,10 +31,12 @@ export default class extends Controller {
       headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
       body: JSON.stringify({ workflowId: workflowId, taskTitle: taskTitle })
     }).then( res => res.text() )
-      .then( newTask  => {
-        this.listTarget.insertAdjacentHTML('beforeend', newTask )
-        this.formTarget.classList.toggle("hidden")
-        this.newTarget.classList.toggle("hidden")
-    })
+      .then(this.insertIntoList.bind(this))
+  }
+
+  insertIntoList(newTask) {
+    this.listTarget.insertAdjacentHTML('beforeend', newTask)
+    this.formTarget.classList.toggle("hidden")
+    this.newTarget.classList.toggle("hidden")
   }
 }

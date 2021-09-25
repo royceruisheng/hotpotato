@@ -1,51 +1,31 @@
-
-<%# Title %>
-<% if @workflow %>
-  <div data-item-id=<%= @workflow.id%> data-controller="workflow">
-    <div class="flex gap-2">
-
-      <div class="rounded-xl bg-purple-100 py-2 px-4 mb-3">
-        <h1 class="text-sm"><%= @workflow.title.capitalize %></h1>
-      </div>
-
-      <div class="rounded-xl bg-gray-100 py-2 px-4 mb-3 text-sm text-gray-400">
-        Editing
-      </div>
-
-    </div>
-  </div>
-<% else %>
-  <div class="h-12"></div>
-<% end %>
-
+<%= render partial: 'workflows/workflow_header' %>
 <%# Workflow content %>
-<div class="mb-5 h-screen rounded-lg border mx-auto relative flex">
-  <div class="flex-grow flex flex-col justify-between">
 
-    <div class="px-4 py-3 bg-gray-100 text-xs text-gray-400 rounded-t-lg">
-      Start
-    </div>
+<div class="t-workflow-content flex-grow flex flex-col justify-between border rounded-lg">
 
-
-    <% if @workflow %>
-    <%# Content inside here %>
-      <div class="flex-grow px-4">
-        <div data-controller="task" data-workflow-id=<%= @workflow.id%> class="flex flex-col justify-center">
-
-          <div data-task-target="list">
-          </div>
-
-          <div data-task-target="newform">
-          </div>
-          <%= render "tasks/taskadd" %>
-        </div>
-      </div>
-    <% end %>
-
-
-    <div class="px-4 py-3 bg-gray-100 text-xs text-gray-400 rounded-b-lg">
-      End
-    </div>
-
+  <div class="px-4 py-3 mb-5 bg-gray-100 text-xs text-gray-400 rounded-t-lg">
+    Start
   </div>
+
+
+  <% if @workflow %>
+  <%# Content inside here %>
+    <div class="flex-grow px-4">
+      <div data-controller="task" data-workflow-id=<%= @workflow.id%> class="flex flex-col justify-center overflow-scroll">
+
+        <div data-task-target="list">
+        </div>
+
+        <div data-task-target="newform">
+        </div>
+        <%= render "tasks/taskadd" %>
+      </div>
+    </div>
+  <% end %>
+
+
+  <div class="px-4 py-3 mt-5 bg-gray-100 text-xs text-gray-400 rounded-b-lg">
+    End
+  </div>
+
 </div>
