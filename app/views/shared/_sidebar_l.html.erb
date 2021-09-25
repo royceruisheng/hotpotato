@@ -10,10 +10,10 @@
 
   <%# create button dropdown %>
   <div data-sidebar-l-target="dropdown" class="hidden py-2 mt-1 w-48 bg-white rounded-md shadow-xl fixed hidden">
-    <%= link_to 'Workflow Good', workflows_path, method: 'post',
+    <%= link_to 'Workflow', workflows_path, method: 'post',
     class: "block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
     <button data-action="click->world#createWorkflow" class="block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-      Workflow AJAX
+      Workflow but with AJAX
     </button>
   </div>
 
