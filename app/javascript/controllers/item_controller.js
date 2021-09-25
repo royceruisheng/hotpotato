@@ -52,6 +52,8 @@ export default class extends Controller {
 
   insertIntoList(newItem) {
     this.listTarget.insertAdjacentHTML('beforeend', newItem)
+    this.formTarget.classList.toggle("hidden")
+    this.newTarget.classList.toggle("hidden")
   }  // onPostSuccess(e) {
   //   let [data, status, xhr] = event.detail;
   //   this.commentListTarget.innerHTML += xhr.response;
