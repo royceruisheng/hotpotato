@@ -10,7 +10,7 @@ class WorkflowsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to workflow_path(new_workflow) }
-      format.text { render partial: 'shared/workflow', locals: { workflow: new_workflow }, formats: [:html] }
+      format.text { render partial: 'shared/workflow_tab', locals: { workflow: new_workflow }, formats: [:html] }
     end
   end
 
@@ -22,5 +22,21 @@ class WorkflowsController < ApplicationController
     respond_to do |format|
       format.html { render 'dashboard/index' }
     end
+  end
+
+  def update
+    @workflows = Workflow.limit(20).reverse_order
+    @task = Task.new
+
+    @workflow = Workflow.find(params[:id])
+    @workflow.update(workflow_params)
+
+    render 'dashboard/index'
+  end
+
+  private
+
+  def workflow_params
+    params.require(:workflow).permit(:title)
   end
 end
