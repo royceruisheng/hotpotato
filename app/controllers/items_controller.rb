@@ -43,6 +43,7 @@ class ItemsController < ApplicationController
 
   def move
     @item.insert_at(params[:position].to_i)
+    @item.update(move_item_params)
     head :ok
   end
 
@@ -51,6 +52,10 @@ class ItemsController < ApplicationController
   # def item_params
   #   params.require(:item).permit(:title, :task_id)
   # end
+
+  def move_item_params
+    params.permit(:task_id, :position, :id)
+  end
 
   def set_item
     @item = Item.find(params[:id])
