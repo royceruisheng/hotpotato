@@ -1,21 +1,33 @@
 <%# Title %>
 <% if @workflow %>
   <div data-item-id=<%= @workflow.id%> >
-    <div class="flex gap-2">
+    <div class="flex items-center gap-2 mb-3">
 
-      <%= simple_form_for @workflow, method: 'PUT' do |f| %>
+      <% if @workflow.activated %>
+        <div class="text-sm rounded-xl bg-purple-100 py-2 px-4">
+          <%= @workflow.title %>
+        </div>
+        <div class="shadow-md rounded-md py-1 px-2 text-sm">
+          <i class="fas fa-circle text-xs text-green-400"></i>
+          &nbsp;Running
+        </div>
+
+      <% else %>
+
+        <%= simple_form_for @workflow, method: 'PUT' do |f| %>
         <%= f.input :title,
                     label: false,
-                    input_html: {class: "text-sm rounded-xl bg-purple-100 py-2 px-4 mb-3 outline-none focus:bg-purple-300",
+                    input_html: {class: "text-sm rounded-xl bg-purple-100 py-2 px-4 outline-none focus:bg-purple-300",
                                  autocomplete: "off"
                     },
                     autofocus: true,
                     data: { 'workflow-target': 'form'} %>
-      <% end %>
+        <% end %>
+        <div class="rounded-md bg-gray-100 py-1 px-2 text-sm text-gray-400">
+          Editing
+        </div>
 
-      <div class="rounded-xl bg-gray-100 py-2 px-4 mb-3 text-sm text-gray-400">
-        Editing
-      </div>
+      <% end %>
 
     </div>
   </div>
