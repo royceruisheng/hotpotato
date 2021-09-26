@@ -28,7 +28,7 @@ class TasksController < ApplicationController
     if @task.save
       respond_to do |format|
         format.html
-        format.text { render partial: 'tasks/task', locals: { task: @task }, formats: [:html] }
+        format.text { render partial: 'tasks/task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
       end
     end
   end
@@ -38,7 +38,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     respond_to do |format|
-      format.text { render partial: 'items/task_items', locals: { items: @task.items, task: @task }, formats: [:html] }
+      format.text { render partial: 'items/task_items', locals: { items: @task.items, task: @task, workflow: @workflow }, formats: [:html] }
     end
   end
 

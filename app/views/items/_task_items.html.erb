@@ -1,7 +1,7 @@
 <%# <% if items.length >= 1 %>
   <ul data-item-target="list">
     <% items.each do |item| %>
-      <%= render partial: 'items/item', locals: { item: item } %>
+      <%= render partial: 'items/item', locals: { item: item, workflow: @workflow } %>
     <% end %>
   </ul>
   <%# <div data-item-target="newform">

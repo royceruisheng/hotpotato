@@ -1,5 +1,5 @@
 <div data-controller="toggle-task">
-  <div data-task-id=<%= task.id %> data-workflow-id=<%= @workflow.id %> data-controller="item" class="t-card border py-4 px-4 mb-2 mx-6">
+  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border py-4 px-4 mb-2 mx-6">
     <div class="flex justify-between">
       <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle-task#hide">
         <%= task.title %>
@@ -12,8 +12,8 @@
       <ul data-item-target="list" >
       </ul>
 
-      <% if !@workflow.activated %>
-        <%= render partial: 'items/itemadd', locals: {task_id: task.id} %>
+      <% if !workflow.activated? %>
+        <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
       <% end %>
 
     </div>

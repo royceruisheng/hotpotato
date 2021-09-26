@@ -1,8 +1,7 @@
 class WorkflowsController < ApplicationController
+  before_action :set_workflows_and_task, only:[:create, :show, :update, :activate]
 
   def create
-    set_workflows_and_task
-
     title_check = Workflow.where(title: 'New Workflow')
     title = title_check[0] ? "#{title_check[0].title} copy" : 'New Workflow'
 
@@ -17,8 +16,6 @@ class WorkflowsController < ApplicationController
   end
 
   def show
-    set_workflows_and_task
-
     @workflow = Workflow.find(params[:id])
 
     respond_to do |format|
@@ -27,8 +24,6 @@ class WorkflowsController < ApplicationController
   end
 
   def update
-    set_workflows_and_task
-
     @workflow = Workflow.find(params[:id])
     @workflow.update(workflow_params) # updates title
 
@@ -36,11 +31,9 @@ class WorkflowsController < ApplicationController
   end
 
   def activate
-    set_workflows_and_task
-
     workflow_params = JSON.parse(request.body.read)
     @workflow = Workflow.find(workflow_params['workflowId'])
-    if @workflow.activated
+    if @workflow.activated?
       @workflow.update(activated: false)
     else
       @workflow.update(activated: true)

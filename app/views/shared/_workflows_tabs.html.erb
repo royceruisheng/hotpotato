@@ -13,7 +13,7 @@
     <label for="toggleBtn<%= workflow.id %>" data-action="change->toggle-workflow#activateToggle" class="cursor-pointer">
       <!-- toggle -->
       <div class="relative">
-        <% if workflow.activated %>
+        <% if workflow.activated? %>
           <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden" checked="true">
         <% else %>
           <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden">
