@@ -32,6 +32,7 @@ export default class extends Controller {
     this.itemtitleTarget.value = ''
     this.newTarget.classList.toggle('hidden')
     this.formTarget.classList.toggle('hidden')
+    this.itemtitleTarget.focus();
     // const url = `/tasks/${ this.element.dataset.taskId }/items/new`
     // fetch(url, { headers: { 'Accept': 'text/plain' } })
     //   .then(response => response.text())

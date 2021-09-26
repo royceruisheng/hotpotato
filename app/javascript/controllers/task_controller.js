@@ -16,6 +16,7 @@ export default class extends Controller {
     this.tasknameTarget.value = ''
     this.newTarget.classList.toggle("hidden")
     this.formTarget.classList.toggle("hidden")
+    this.tasknameTarget.focus();
 
     // const url = `/tasks/new`
     // fetch(url, { headers: { 'Accept': 'text/plain' } })
