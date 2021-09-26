@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:destroy, :move]
+
   # def index
   #   @items = Item.all
   #   #change it to include task_id when task is connected
@@ -35,14 +37,22 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    @item = Item.find(params[:id])
     @item.destroy
     redirect_to dashboard_path
   end
 
-  # private
+  def move
+    @item.insert_at(params[:position].to_i)
+    head :ok
+  end
+
+  private
 
   # def item_params
   #   params.require(:item).permit(:title, :task_id)
   # end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
 end

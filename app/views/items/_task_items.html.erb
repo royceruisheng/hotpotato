@@ -1,7 +1,7 @@
 <%# <% if items.length >= 1 %>
-  <ul data-item-target="list" data-controller="drag" data-drag-url="/tasks/:id/move">
+  <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move">
     <% items.order(position: :asc).each do |item| %>
-      <li data-id="<%= @task.id %>">
+      <li data-id="<%= item.id %>">
         <%= render partial: 'items/item', locals: { item: item, workflow: @workflow } %>
       </li>
     <% end %>
