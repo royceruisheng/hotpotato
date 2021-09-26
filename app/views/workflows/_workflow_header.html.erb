@@ -4,19 +4,13 @@
     <div class="flex gap-2">
 
       <%= simple_form_for @workflow, method: 'PUT' do |f| %>
-        <% if @new %>
-          <%= f.input :title,
-                      label: false,
-                      input_html: {class: "text-sm rounded-xl bg-purple-100 py-2 px-4 mb-3 outline-none focus:bg-purple-300"},
-                      autofocus: true,
-                      data: { 'workflow-target': 'form'} %>
-        <% else %>
-          <%= f.input :title,
-                        label: false,
-                        input_html: {class: "text-sm rounded-xl bg-purple-100 py-2 px-4 mb-3 outline-none focus:bg-purple-300"},
-                        autofocus: false,
-                        data: { 'workflow-target': 'form'} %>
-        <% end %>
+        <%= f.input :title,
+                    label: false,
+                    input_html: {class: "text-sm rounded-xl bg-purple-100 py-2 px-4 mb-3 outline-none focus:bg-purple-300",
+                                 autocomplete: "off"
+                    },
+                    autofocus: true,
+                    data: { 'workflow-target': 'form'} %>
       <% end %>
 
       <div class="rounded-xl bg-gray-100 py-2 px-4 mb-3 text-sm text-gray-400">

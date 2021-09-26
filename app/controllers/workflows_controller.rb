@@ -2,7 +2,6 @@ class WorkflowsController < ApplicationController
 
   def create
     set_workflows_and_task
-    @new = true
 
     title_check = Workflow.where(title: 'New Workflow')
     title = title_check[0] ? "#{title_check[0].title} copy" : 'New Workflow'
@@ -12,7 +11,7 @@ class WorkflowsController < ApplicationController
     new_workflow.save
 
     respond_to do |format|
-      format.html redirect_to workflows_path(new_workflow)
+      format.html { redirect_to workflow_path(new_workflow) }
       format.text { render partial: 'shared/workflow_tab', locals: { workflow: new_workflow }, formats: [:html] }
     end
   end
@@ -43,7 +42,7 @@ class WorkflowsController < ApplicationController
   end
 
   def set_workflows_and_task
-    @workflows = Workflow.limit(20).reverse_order
+    @workflows = Workflow.where(creator_id: current_user.id).reverse_order
     @task = Task.new
   end
 end
