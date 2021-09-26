@@ -1,9 +1,9 @@
 <li>
-  <div class="shadow-md rounded-md bg-white px-4 py-2 mt-2 flex justify-between items-center text-sm">
+  <div class="shadow-md rounded-md bg-indigo-600 text-white px-4 py-2 mt-2 flex justify-between items-center text-sm">
     <%= item.title  %>
 
-    <button class="p-1 rounded-full"><i class="fas fa-minus-circle text-red-500"></i>
-      <%= link_to "Delete", item_path(item), method: :delete, remote: true %>
+    <button class="p-1 rounded-lg bg-white"><i class="fas fa-minus-circle text-red-500"></i>
+      <%= link_to "Delete", item_path(item), method: :delete, remote: true, class: "text-red-500" %>
     </button>
   </div>
 </li>

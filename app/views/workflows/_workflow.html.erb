@@ -20,7 +20,7 @@
 
 <%# Workflow content %>
 <div class="mb-5 h-screen rounded-lg border mx-auto relative flex">
-  <div class="flex-grow flex flex-col justify-between">
+  <div class="flex-grow flex flex-col">
 
     <div class="px-4 py-3 bg-gray-100 text-xs text-gray-400 rounded-tl-lg">
       Start
@@ -29,7 +29,7 @@
 
     <% if @workflow %>
     <%# Content inside here %>
-      <div class="flex-grow flex justify-center px-2">
+      <div class="px-2">
         <div data-controller="task" data-workflow-id=<%= @workflow.id%> >
 
           <div data-task-target="list">
