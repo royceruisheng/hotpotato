@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     @task = Task.find(params[:task_id])
     respond_to do |format|
-      format.html
+      # format.html
       format.text { render partial: 'items/itemform', locals: { item: @item, task: @task }, formats: [:html] }
     end
   end
@@ -23,10 +23,11 @@ class ItemsController < ApplicationController
     @item = Item.new
     @item.title = item_params['title']
     @item.task = Task.find(item_params['taskId'])
+    @task = @item.task
 
     if @item.save
       respond_to do |format|
-        format.text { render partial: 'items/item',locals: { item: @item, workflow: @item.task.workflow }, formats: [:html] }
+        format.text { render partial: 'items/item', locals: { item: @item, task: @task, workflow: @item.task.workflow }, formats: [:html] }
       end
     else
       redirect_to dashboard_path
@@ -39,7 +40,7 @@ class ItemsController < ApplicationController
     redirect_to dashboard_path
   end
 
-  private
+  # private
 
   # def item_params
   #   params.require(:item).permit(:title, :task_id)
