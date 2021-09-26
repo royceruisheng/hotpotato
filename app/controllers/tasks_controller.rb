@@ -34,6 +34,7 @@ class TasksController < ApplicationController
   end
 
   def show
+    @workflow = Workflow.find(params['workflow_id'])
     @task = Task.find(params[:id])
 
     respond_to do |format|
