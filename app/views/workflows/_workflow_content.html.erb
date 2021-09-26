@@ -19,8 +19,8 @@
         <div data-task-target="newform">
         </div>
 
-        <% if !@workflow.activated %>
-          <%= render "tasks/taskadd" %>
+        <% unless @workflow.activated? %>
+          <%= render "tasks/taskadd", locals: {workflow: @workflow}%>
         <% end %>
 
       </div>
