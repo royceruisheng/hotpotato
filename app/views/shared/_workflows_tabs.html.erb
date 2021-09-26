@@ -1,24 +1,23 @@
 <% workflows.each do |workflow| %>
 
   <% if workflow == @workflow %>
-    <div data-controller="toggle-workflow" class="t-workflow-btn-active flex items-center justify-between">
+    <div data-workflow-id=<%= workflow.id %> data-controller="toggle-workflow" class="t-workflow-btn-active flex items-center justify-between">
   <% else %>
-    <div data-controller="toggle-workflow" class="t-workflow-btn flex items-center justify-between">
+    <div data-workflow-id=<%= workflow.id %> data-controller="toggle-workflow" class="t-workflow-btn flex items-center justify-between">
   <% end %>
 
-    <%= link_to workflow.title, workflow_path(workflow), id: 'workflow' %>
+    <%= link_to workflow_path(workflow), class: "flex-grow" do %>
+        <%= workflow.title %>
+    <% end %>
 
-    <label for="toggleBtn<%= workflow.id %>" class="cursor-pointer">
+    <label for="toggleBtn<%= workflow.id %>" data-action="change->toggle-workflow#activateToggle" class="cursor-pointer">
       <!-- toggle -->
       <div class="relative">
         <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden">
-        <!-- path -->
         <div class="toggle-path bg-gray-200 w-9 h-5 rounded-full shadow-inner"></div>
-        <!-- crcle -->
         <div class="toggle-circle absolute w-3.5 h-3.5 bg-white rounded-full shadow inset-y-.5 left-.5"></div>
       </div>
     </label>
-
   </div>
 
 <% end %>

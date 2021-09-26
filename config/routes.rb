@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :workflows, only: [:create, :show, :update] do
     resources :tasks, only: [:index]
   end
+  put '/activate', to: 'workflows#activate', as: :activate
+
   resources :tasks, only: [:index, :new, :create, :show] do
     resources :items, only: [:new]
   end

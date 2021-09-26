@@ -1,10 +1,16 @@
 import { Controller } from "stimulus";
+import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
   static targets = ["toggle"];
 
   activateToggle() {
-    this.hideTarget.classList.toggle('hidden')
+    let workflowId = this.element.dataset.workflowId
 
+    fetch('/activate', {
+      method: 'PUT',
+      headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
+      body: JSON.stringify({ workflowId: workflowId })
+    })
   }
 }
