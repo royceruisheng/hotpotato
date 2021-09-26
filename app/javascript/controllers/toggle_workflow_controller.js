@@ -12,5 +12,11 @@ export default class extends Controller {
       headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
       body: JSON.stringify({ workflowId: workflowId })
     })
+    .then(response => response.text())
+    .then(this.insertToWorkflowContent.bind(this))
+  }
+
+  insertToWorkflowContent(workflowContent) {
+    document.getElementById('workflow-content').innerHTML = workflowContent
   }
 }

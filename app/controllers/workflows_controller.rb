@@ -47,8 +47,8 @@ class WorkflowsController < ApplicationController
     end
 
     respond_to do |format|
-      format.text { render 'dashboard/index', formats: [:html] }
-      # format.text { render partial: 'workflows/workflow_content', locals: { workflow: @workflow }, formats: [:html] }
+      # format.text { render 'dashboard/index', formats: [:html] }
+      format.text { render partial: 'workflows/workflow_content', locals: { workflow: @workflow }, formats: [:html] }
     end
   end
 
