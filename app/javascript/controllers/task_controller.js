@@ -9,17 +9,26 @@ export default class extends Controller {
     const url = `/workflows/${this.element.dataset.workflowId}/tasks`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
-      .then((data) => this.listTarget.outerHTML = data );
+      .then((data) => this.listTarget.innerHTML = data );
   }
 
   new() {
-    const url = `/tasks/new`
-    fetch(url, { headers: { 'Accept': 'text/plain' } })
-      .then(response => response.text())
-      .then((data) => {
-        this.newformTarget.outerHTML = data;
-        this.newTarget.classList.toggle("hidden")
-      });
+    this.tasknameTarget.value = ''
+    this.newTarget.classList.toggle("hidden")
+    this.formTarget.classList.toggle("hidden")
+    this.tasknameTarget.focus();
+
+    // const url = `/tasks/new`
+    // fetch(url, { headers: { 'Accept': 'text/plain' } })
+    //   .then(response => response.text())
+    //   .then((data) => {
+    //     this.newformTarget.innerHTML = data;
+    //     this.newTarget.classList.toggle("hidden")
+    //   });
+  }
+  closeForm() {
+    this.newTarget.classList.toggle("hidden")
+    this.formTarget.classList.toggle("hidden")
   }
 
   submitForm(e) {
@@ -31,10 +40,12 @@ export default class extends Controller {
       headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
       body: JSON.stringify({ workflowId: workflowId, taskTitle: taskTitle })
     }).then( res => res.text() )
-      .then( newTask  => {
-        this.listTarget.insertAdjacentHTML('beforeend', newTask )
-        this.formTarget.classList.toggle("hidden")
-        this.newTarget.classList.toggle("hidden")
-    })
+      .then(this.insertIntoList.bind(this))
+  }
+
+  insertIntoList(newTask) {
+    this.listTarget.insertAdjacentHTML('beforeend', newTask)
+    this.formTarget.classList.toggle("hidden")
+    this.newTarget.classList.toggle("hidden")
   }
 }

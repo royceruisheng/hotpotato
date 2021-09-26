@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_074459) do
+ActiveRecord::Schema.define(version: 2021_09_26_035143) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,11 +109,12 @@ ActiveRecord::Schema.define(version: 2021_09_24_074459) do
   create_table "workflows", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.boolean "activated"
+    t.boolean "activated", default: false
     t.boolean "template"
     t.bigint "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "completed", default: false
     t.index ["creator_id"], name: "index_workflows_on_creator_id"
   end
 

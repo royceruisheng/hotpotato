@@ -12,7 +12,7 @@ export default class extends Controller {
 
   getItems() {
     if (!this.itemsDownloaded) {
-      fetch(`/tasks/${this.element.dataset.taskId}`,
+      fetch(`/workflows/${this.element.dataset.workflowId}/tasks/${this.element.dataset.taskId}`,
         { headers: { 'Accept': 'text/plain' } })
         .then(res => res.text())
         .then(this.storeAndRender.bind(this))
@@ -24,18 +24,26 @@ export default class extends Controller {
 
   storeAndRender(items) {
     this.itemsHTML = items;
-    this.listTarget.outerHTML = this.itemsHTML;
+    this.listTarget.innerHTML = items;
     this.itemsDownloaded = true;
   }
 
   new() {
-    const url = `/tasks/${ this.element.dataset.taskId }/items/new`
-    fetch(url, { headers: { 'Accept': 'text/plain' } })
-      .then(response => response.text())
-      .then((data) => {
-        this.newformTarget.outerHTML = data;
-        this.newTarget.classList.toggle("hidden")
-      });
+    this.itemtitleTarget.value = ''
+    this.newTarget.classList.toggle('hidden')
+    this.formTarget.classList.toggle('hidden')
+    this.itemtitleTarget.focus();
+    // const url = `/tasks/${ this.element.dataset.taskId }/items/new`
+    // fetch(url, { headers: { 'Accept': 'text/plain' } })
+    //   .then(response => response.text())
+    //   .then((data) => {
+    //     this.newformTarget.outerHTML = data;
+    //     this.newTarget.classList.toggle("hidden")
+    //   });
+  }
+  closeForm() {
+    this.newTarget.classList.toggle("hidden")
+    this.formTarget.classList.toggle("hidden")
   }
 
   submitForm(e){
@@ -52,7 +60,11 @@ export default class extends Controller {
 
   insertIntoList(newItem) {
     this.listTarget.insertAdjacentHTML('beforeend', newItem)
-  }  // onPostSuccess(e) {
+    this.formTarget.classList.toggle("hidden")
+    this.newTarget.classList.toggle("hidden")
+  }
+
+  // onPostSuccess(e) {
   //   let [data, status, xhr] = event.detail;
   //   this.commentListTarget.innerHTML += xhr.response;
   //   this.textTarget.value = "";

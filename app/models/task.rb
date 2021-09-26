@@ -1,5 +1,5 @@
 class Task < ApplicationRecord
-  # validates :title, presence: true
+  validates :title, presence: true
 
   belongs_to :workflow
   # has_many :task_members, dependent: :destroy

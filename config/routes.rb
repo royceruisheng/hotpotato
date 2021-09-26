@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 
   get '/dashboard', to: "dashboard#index", as: :dashboard
 
-  resources :workflows, only: [:create, :show] do
-    resources :tasks, only: [:index]
+  resources :workflows, only: [:create, :show, :update] do
+    resources :tasks, only: [:index, :show]
   end
-  resources :tasks, only: [:index, :new, :create, :show] do
+  put '/activate', to: 'workflows#activate', as: :activate
+
+  resources :tasks, only: [:index, :new, :create] do
     resources :items, only: [:new]
   end
   resources :items, only: [:index, :create, :show, :destroy]

@@ -1,6 +1,27 @@
-<button data-item-id=<%= @task.id%> class="flex p-2 rounded-md content-center	" data-action="click->item#new" data-item-target="new">
-  <div class="w-8 h-8 rounded-full shadow-md flex">
-    <p class="self-center mx-auto"><i class="fas fa-plus"></i></p>
+<div class="pt-2">
+  <button data-item-id=<%= task_id %> class="text-sm flex rounded-md items-center" data-action="click->item#new" data-item-target="new">
+    <div class="t-btn-round text-xs">
+      <i class="fas fa-plus"></i>
+    </div>
+    <span class="self-center text-gray-400 ml-2">Add an item</span>
+  </button>
+</div>
+
+<%= simple_form_for @item, remote: true, html: {'data-item-target': 'form', class: 'my-2 hidden'} do |f| %>
+  <%= f.input :title,
+              label: false,
+              input_html: {
+                placeholder: "Enter a title for this item",
+                class: "text-sm rounded-md bg-gray-100 p-4 w-full my-2 outline-none",
+                data: { 'item-target': 'itemtitle' }
+              } %>
+  <%= f.hidden_field :task_id, :value => task_id %>
+  <div class="flex items-center">
+    <%= f.button :submit,
+                class: "px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer",
+                value: "Add item",
+                data: { action: "click->item#submitForm"
+                } %>
+    <div data-action="click->item#closeForm" class="t-btn-square text-xs ml-2 fa fa-times cursor-pointer"></div>
   </div>
-  <span class="self-center ml-2">Add an item</span>
-</button>
+<% end %>

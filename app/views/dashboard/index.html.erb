@@ -1,13 +1,15 @@
-<div data-controller="world" class="flex h-screen justify-between">
+<div data-controller="world" class="flex">
 
-  <div class="w-72 p-5 shadow-lg">
+  <div class="w-72 p-5 shadow-lg fixed h-screen">
     <%= link_to '🅗Taskete', dashboard_path, class: 'font-medium pb-3' %>
     <%= render "shared/sidebar_l" %>
   </div>
+  <div class="w-72"></div> <%# ghost sidebar to push content %>
 
-  <div class="flex-grow pt-4 pl-10 overflow-scroll">
-    <div data-world-target="contentmain" data-controller = "workflow">
-      <%= render "workflows/workflow", locals: {workflow: @workflow} %>
+
+  <div class="flex-grow pt-4 pl-10">
+    <div id="workflow-content" data-world-target="contentmain" data-controller="workflow">
+      <%= render "workflows/workflow_content", locals: {workflow: @workflow} %>
     </div>
   </div>
 
