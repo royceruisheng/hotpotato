@@ -8,7 +8,7 @@ export default class extends Controller {
   }
 
   createBtnDropdown(event) {
-    this.dropdownTarget.classList.toggle('hidden');
+    this.dropdownCreateTarget.classList.toggle('hidden');
   }
 
 }
