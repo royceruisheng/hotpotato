@@ -53,19 +53,20 @@ export default class extends Controller {
   add(e) {
     // console.log(this.memberTarget);
     e.preventDefault();
-    const url = `/tasks/${ this.element.dataset.taskId }/task_members/`
+    const task_id = this.element.dataset.taskId
+    const url = `/tasks/${ task_id }/task_members/`
     // how to pass in the params of user??
+    debugger
     fetch(url, { 
-        method: 'POST', 
-        headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() }, 
-        body: JSON.stringify({ task_member_id: this.membernamesTarget.dataset.memberId })
+      method: 'POST',
+      headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() }, 
+      body: JSON.stringify({ task_id: task_id, task_member_id: this.membernamesTarget.dataset.memberId })
     })
     .then(response => response.text())
     .then(this.addMember.bind(this))
   }
-
+  
   addMember(member) {
-    console.log(member)
-    this.memberTarget.insertAdjacentHTML( 'afterbegin', member.first_name )
+    this.memberTarget.insertAdjacentHTML( 'afterbegin', User.find(task_member_id).first_name )
   }
 }

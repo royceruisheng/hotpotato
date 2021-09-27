@@ -14,7 +14,7 @@ class TaskMembersController < ApplicationController
     member = JSON.parse(request.body.read)
     @user = User.find(member['task_member_id'])
     @task = Task.find(params[:task_id])
-    @task_member = TaskMember.new(task: @task, user: @user )
+    @task_member = TaskMember.new(task: @task, user: @user)
     respond_to do |format|
       if @task_member.save
         format.html { redirect_to dashboard_path(@user) }
