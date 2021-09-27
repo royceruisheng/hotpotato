@@ -1,4 +1,5 @@
 class Task < ApplicationRecord
+  acts_as_list
   validates :title, presence: true
 
   belongs_to :workflow

@@ -41,7 +41,20 @@ export default class extends Controller {
     this.newTarget.classList.toggle("hidden")
   }
 
-  // action to add a member in a task (requires task_id)
+  markComplete(event){
+    event.preventDefault()
+    let taskId = event.target.dataset.taskId;
+    let url = `/tasks/${taskId}/completed`
+    console.log(url)
+    fetch(url, { headers: { 'Accept': 'text/plain' } })
+      .then(response => response.text())
+      .then(this.insertToWorkflowContent.bind(this))
+  }
+
+  insertToWorkflowContent(workflowContent) {
+    document.getElementById('workflow-content').innerHTML = workflowContent
+
+    // action to add a member in a task (requires task_id)
   addMember(e) {
     e.preventDefault();
     const task_id = this.taskIdTarget.dataset.taskId

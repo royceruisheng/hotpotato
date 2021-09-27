@@ -1,4 +1,4 @@
 
-<% @tasks.each do |t| %>
+<% @tasks.order(position: :asc).each do |t| %>
   <%= render partial: 'task', locals: { task: t, workflow: @workflow } %>
 <% end %>
