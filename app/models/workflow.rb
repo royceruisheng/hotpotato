@@ -1,4 +1,5 @@
 class Workflow < ApplicationRecord
+  # after_commit :async_update
   validates :title, presence: true
 
   belongs_to :creator, class_name: "User"
@@ -9,4 +10,8 @@ class Workflow < ApplicationRecord
   def activated?
     self.activated
   end
+
+  # def async_update
+  #   UpdateWorkflowJob.perform_later(self)
+  # end
 end
