@@ -5,10 +5,5 @@ export default class extends Controller {
 
   hide() {
     this.hideTarget.classList.toggle('hidden')
-    // if (this.hideTarget.classList.contains('hidden')) {
-    //   this.hideTarget.classList.remove('hidden')
-    // } else {
-    //   this.hideTarget.classList.add('hidden')
-    // }
   }
 }

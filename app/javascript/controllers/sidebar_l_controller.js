@@ -1,7 +1,7 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ['dropdown']
+  static targets = ['dropdownCreate']
 
   connect() {
     console.log('sidebar-l controller connected')

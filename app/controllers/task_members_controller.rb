@@ -1,34 +1,25 @@
 class TaskMembersController < ApplicationController
+  
   def new
-    @task_member = TaskMember.new
-    # member id required (get from dropdown selection)
-    @task = Task.find(params[:task_id])
+    @members = User.limit(10)
+
     respond_to do |format|
-      format.html
-      format.text { render partial: 'items/itemform', locals: { item: @item, task: @task }, formats: [:html] }
+      format.text { render partial: 'members/members_to_add', locals: { members: @members }, formats: [:html] }
     end
   end
 
   def create
-  
     member = JSON.parse(request.body.read)
-    @user = User.find(member['task_member_id'])
-    @task = Task.find(params[:task_id])
-    @task_member = TaskMember.new(task: @task, user: @user)
+    new_member = TaskMember.new(task_id: member['task_id'], user_id: member['member_id'])
+
     respond_to do |format|
-      if @task_member.save
-        format.html { redirect_to dashboard_path(@user) }
-        format.text 
+      if new_member.save
+        format.text { }
       else
-        format.html { render '/dashboard' }
-        format.text
+        format.text { redirect_to 'dashboard/index' }
       end
     end
   end
 
   private
-
-  def task_member_params
-    params.require(:task_member).permit(:user_id, :task_id)
-  end
 end

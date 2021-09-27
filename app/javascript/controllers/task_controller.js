@@ -2,7 +2,7 @@ import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list", 'taskname', "member", "membernames" ]
+  static targets = ["new", "newform", "form", "list", 'taskname', "member", "taskId" ]
 
   connect() {
     console.log("task controller connected")
@@ -17,14 +17,6 @@ export default class extends Controller {
     this.newTarget.classList.toggle("hidden")
     this.formTarget.classList.toggle("hidden")
     this.tasknameTarget.focus();
-
-    // const url = `/tasks/new`
-    // fetch(url, { headers: { 'Accept': 'text/plain' } })
-    //   .then(response => response.text())
-    //   .then((data) => {
-    //     this.newformTarget.innerHTML = data;
-    //     this.newTarget.classList.toggle("hidden")
-    //   });
   }
   closeForm() {
     this.newTarget.classList.toggle("hidden")
@@ -50,23 +42,22 @@ export default class extends Controller {
   }
 
   // action to add a member in a task (requires task_id)
-  add(e) {
-    // console.log(this.memberTarget);
+  addMember(e) {
     e.preventDefault();
-    const task_id = this.element.dataset.taskId
+    const task_id = this.taskIdTarget.dataset.taskId
+    const member_id = e.currentTarget.dataset.memberId
     const url = `/tasks/${ task_id }/task_members/`
-    // how to pass in the params of user??
-    debugger
+
     fetch(url, { 
       method: 'POST',
       headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() }, 
-      body: JSON.stringify({ task_id: task_id, task_member_id: this.membernamesTarget.dataset.memberId })
+      body: JSON.stringify({ task_id: task_id, member_id: member_id })
     })
-    .then(response => response.text())
-    .then(this.addMember.bind(this))
+    // .then(response => response.text())
+    // .then(this.addMember.bind(this))
   }
   
-  addMember(member) {
+  addMembertosomething(member) {
     this.memberTarget.insertAdjacentHTML( 'afterbegin', User.find(task_member_id).first_name )
   }
 }
