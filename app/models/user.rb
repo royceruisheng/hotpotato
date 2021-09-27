@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  after_create :send_welcome_email
+
   # validates :email, presence: true
   # validates :first_name, presence: true
   # validates :last_name, presence: true
@@ -16,4 +18,7 @@ class User < ApplicationRecord
   # has_many :item_members, dependent: :destroy
   # has_many :items, through: :item_members
 
+  def send_welcome_email
+    UserMailer.with(user: self).welcome.deliver_now
+  end
 end
