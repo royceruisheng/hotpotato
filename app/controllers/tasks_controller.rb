@@ -52,6 +52,16 @@ class TasksController < ApplicationController
       @next_task.update(completed: "current")
     end
 
+  def update
+    @workflow = Workflow.find(params['workflow_id'])
+    @task = Task.find(params[:id])
+    @task.update(task_params)
+
+    render 'dashboard/index'
+  end
+
+  private
+
     @workflow = @task.workflow
     @tasks = @workflow.tasks
     @item = Item.new

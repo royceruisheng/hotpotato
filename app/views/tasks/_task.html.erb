@@ -2,7 +2,8 @@
   <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 mb-2 mx-6">
     <div class="flex justify-between">
 
-      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#hide">
+      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#hide" data-task-target="taskTitle">
+
         <%= task.title %>
       </button>
       <% if task.completed == "completed" %>
