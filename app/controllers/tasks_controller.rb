@@ -38,13 +38,10 @@ class TasksController < ApplicationController
   def show
     @workflow = Workflow.find(params['workflow_id'])
 
-    @task_members = []
-    @task.task_members.each do |member|
-
-    end
+    @task_members = @task.users
 
     respond_to do |format|
-      format.text { render partial: 'items/task_content', locals: { items: @task.items, task: @task, workflow: @workflow, task_members: @task_members }, formats: [:html] }
+      format.text { render partial: 'tasks/task_content', locals: { items: @task.items, task: @task, workflow: @workflow, task_members: @task_members }, formats: [:html] }
     end
   end
 
