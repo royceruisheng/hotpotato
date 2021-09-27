@@ -51,8 +51,8 @@ export default class extends Controller {
       .then(this.insertToWorkflowContent.bind(this))
   }
 
-  insertToWorkflowContent(workflowContent) {
-    document.getElementById('workflow-content').innerHTML = workflowContent
+  insertToWorkflowContent(tasklist) {
+    document.getElementById('task-list').outerHTML = tasklist
   }
 
     // action to add a member in a task (requires task_id)
