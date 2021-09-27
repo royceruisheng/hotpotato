@@ -68,3 +68,4 @@ gem "pry-byebug", "~> 3.9"
 gem "acts_as_list", "~> 1.0"
 gem 'sidekiq'
 gem 'sidekiq-failures', '~> 1.0'
+gem 'letter_opener', group: :development
