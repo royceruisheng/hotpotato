@@ -5,20 +5,31 @@
         <%= task.title %>
       </button>
 
-      <%= render partial: 'members/add_member', locals: {task: task} %>
-
       <button data-action="click-> task#markComplete" class='inline-block text-indigo-500 text-sm'>
         Mark as complete
       </button>
     </div>
-    <div class="hidden" data-toggle-target="hide" >
+    <div class="flex hidden" data-toggle-target="hide" >
 
-      <ul data-item-target="list" >
-      </ul>
+      <%# Items section %>
+      <div class="flex-grow pr-2 border-r">
+        <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+        </ul>
 
-      <% if !workflow.activated? %>
-        <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
-      <% end %>
+        <% if !workflow.activated? %>
+          <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
+        <% end %>
+      </div>
+
+      <%# Members Section %>
+      <div class="w-40 flex flex-col">
+        <ul class="flex-grow">
+        </ul>
+
+        <% if !workflow.activated? %>
+          <%= render partial: 'members/add_member', locals: {task: task} %>
+        <% end %>
+      </div>
 
     </div>
 

@@ -1,11 +1,14 @@
 
-  <div class="shadow-md rounded-md bg-white px-4 py-2 my-2 flex justify-between items-center text-sm">
-    <%= item.title  %>
+  <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
+    <div class="shadow-md rounded-md bg-white px-4 py-2 my-2 flex justify-between items-center text-sm">
+      <%= item.title  %>
 
-    <% if !workflow.activated? %>
-      <button class="p-1 rounded-full"><i class="fas fa-minus-circle text-red-500"></i>
-        <%= link_to "Delete", item_path(item), method: :delete, remote: true %>
-      </button>
-    <% end %>
-
-  </div>
+      <% if !workflow.activated? %>
+          <%= link_to item_path(item), method: :delete, remote: true do %>
+            <svg class="fill-current text-gray-200" xmlns="http://www.w3.org/2000/svg" width="11.819" height="11.82" viewBox="0 0 11.819 11.82">
+              <path id="X_simple_1" d="M489.387,711.977l4.214-4.214a.993.993,0,0,0-1.4-1.405l-4.214,4.214-4.214-4.214a.993.993,0,1,0-1.4,1.405l4.214,4.214-4.214,4.214a.993.993,0,1,0,1.4,1.405l4.214-4.214L492.2,717.6a.993.993,0,0,0,1.4-1.405Z" transform="translate(-482.072 -706.067)"/>
+            </svg>
+          <% end %>
+      <% end %>
+    </div>
+  </li>

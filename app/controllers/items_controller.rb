@@ -31,8 +31,8 @@ class ItemsController < ApplicationController
       respond_to do |format|
         format.text { render partial: 'items/item', locals: { item: @item, task: @task, workflow: @item.task.workflow }, formats: [:html] }
       end
-    else
-      redirect_to dashboard_path
+    # else
+    #   redirect_to dashboard_path
     end
   end
 
