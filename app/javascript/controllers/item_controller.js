@@ -29,17 +29,10 @@ export default class extends Controller {
   }
 
   new() {
-    this.itemtitleTarget.value = ''
+    // this.itemtitleTarget.value = ''
     this.newTarget.classList.toggle('hidden')
     this.formTarget.classList.toggle('hidden')
-    this.itemtitleTarget.focus();
-    // const url = `/tasks/${ this.element.dataset.taskId }/items/new`
-    // fetch(url, { headers: { 'Accept': 'text/plain' } })
-    //   .then(response => response.text())
-    //   .then((data) => {
-    //     this.newformTarget.outerHTML = data;
-    //     this.newTarget.classList.toggle("hidden")
-    //   });
+    // this.itemtitleTarget.focus();
   }
   closeForm() {
     this.newTarget.classList.toggle("hidden")
@@ -79,15 +72,15 @@ export default class extends Controller {
     const url = `/tasks/${ task_id }/task_members/`
     // how to pass in the params of user??
     debugger
-    fetch(url, { 
+    fetch(url, {
       method: 'POST',
-      headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() }, 
+      headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() },
       body: JSON.stringify({ task_id: task_id, task_member_id: this.membernamesTarget.dataset.memberId })
     })
     .then(response => response.text())
     .then(this.addMember.bind(this))
   }
-  
+
   addMember(member) {
     this.memberTarget.insertAdjacentHTML( 'afterbegin', User.find(task_member_id).first_name )
   }

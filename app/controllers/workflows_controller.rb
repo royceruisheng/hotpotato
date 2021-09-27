@@ -37,11 +37,22 @@ class WorkflowsController < ApplicationController
       @workflow.update(activated: false)
     else
       @workflow.update(activated: true)
+      update_first_task_as_current(@workflow)
     end
 
     respond_to do |format|
       # format.text { render 'dashboard/index', formats: [:html] }
       format.text { render partial: 'workflows/workflow_content', locals: { workflow: @workflow }, formats: [:html] }
+    end
+  end
+
+  def update_first_task_as_current(workflow)
+    workflow.tasks.each do |task|
+      if task.first? && task.completed == "pending"
+        task.update(completed: "current")
+      elsif task.completed == "completed" && task.lower_item.completed == "pending"
+        task.lower_item.update(completed: "current")
+      end
     end
   end
 

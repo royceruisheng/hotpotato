@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show]
+  before_action :set_task, only: [:show, :completed]
+
   def index
     @workflow = Workflow.find(params[:workflow_id])
     @tasks = @workflow.tasks
@@ -43,11 +44,28 @@ class TasksController < ApplicationController
     end
   end
 
+  def completed
+    @task.update(completed: "completed")
+    unless @task.lower_item.nil?
+      @next_task = @task.lower_item
+      @next_task.update(completed: "current")
+    end
+
+    @workflow = @task.workflow
+    @tasks = @workflow.tasks
+    @item = Item.new
+
+    respond_to do |format|
+      format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
+    end
+  end
+
   private
 
-  def task_params
-    params.require(:task).permit(:title, :workflow_id, :content)
-  end
+  # AJAX no need strict params
+  # def task_params
+  #   params.require(:task).permit(:title, :workflow_id, :content)
+  # end
 
   def set_task
     @task = Task.find(params[:id])
