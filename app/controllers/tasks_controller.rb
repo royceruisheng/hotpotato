@@ -45,38 +45,41 @@ class TasksController < ApplicationController
     end
   end
 
+  def update
+    response = JSON.parse(request.body.read)
+    @workflow = Workflow.find(params['workflow_id'])
+    @task = Task.find(params[:id])
+    @task.update(title: response['task_title'])
+
+    respond_to do |format|
+      # format.html { redirect_to dashboard_path }
+      format.text { render partial: 'tasks/task', locals: { task: @task, workflow: @workflow }, formats: [:html] }
+    end
+  end
+
+  private
+
   def completed
     @task.update(completed: "completed")
     unless @task.lower_item.nil?
       @next_task = @task.lower_item
       @next_task.update(completed: "current")
     end
-
-  def update
-    @workflow = Workflow.find(params['workflow_id'])
-    @task = Task.find(params[:id])
-    @task.update(task_params)
-
-    render 'dashboard/index'
-  end
-
-  private
-
+    
     @workflow = @task.workflow
     @tasks = @workflow.tasks
     @item = Item.new
-
+    
     respond_to do |format|
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
   end
-
-  private
-
+  
   # AJAX no need strict params
   # def task_params
   #   params.require(:task).permit(:title, :workflow_id, :content)
   # end
+
 
   def set_task
     @task = Task.find(params[:id])

@@ -6,6 +6,15 @@
 
         <%= task.title %>
       </button>
+
+      <%# Task title edit form that replaces task title button above when edit task title button is pressed %>
+        <form data-toggle-target="editItemTitleForm" class="hidden">
+          <input type="text" data-toggle-target="changeTitleInput" placeholder=<%= task.title %>><br>
+          <input type="hidden" data-toggle-target="currentTaskId" value="<%= task.id %>">
+          <input type="hidden" data-toggle-target="currentWorkflowId" value="<%= workflow.id %>">
+          <input type="submit" data-action="click->toggle#updateTaskTitle">
+        </form>
+
       <% if task.completed == "completed" %>
         <button class='inline-block text-gray-500 text-sm disabled'>
           <i class="fas fa-check"></i> Completed
@@ -19,6 +28,20 @@
     </div>
 
     <div class="flex hidden" data-item-target="taskcontent" data-toggle-target="hide" >
+
+      <%# button to change task title %>
+      <button class="m-1 shadow-md" data-action="click->toggle#displayEditTitleForm">
+        <i class="fas fa-edit"></i>
+      </button>
+
+
+
+      <ul data-item-target="list" >
+      </ul>
+
+      <% if !workflow.activated? %>
+        <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
+      <% end %>
     </div>
 
   </div>

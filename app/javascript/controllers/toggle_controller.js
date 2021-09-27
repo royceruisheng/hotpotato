@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = ["hide", "taskId", "membersdropdown", "taskmemberslist"  ]
+  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId" ]
 
   connect() {
     console.log("toggle controller connected");
@@ -43,4 +43,30 @@ export default class extends Controller {
     this.hideTarget.classList.toggle('hidden')
   }
 
+  // shows the form to edit current task title
+  displayEditTitleForm() {
+    this.editItemTitleFormTarget.classList.toggle("hidden");
+    this.taskTitleTarget.classList.toggle("hidden");
+  }
+
+  updateTaskTitle(e) {
+    e.preventDefault();
+    // console.log(this.currentTaskIdTarget.value);
+    // console.log(this.currentWorkflowIdTarget.value);
+
+    const current_task_id = this.currentTaskIdTarget.value
+    const current_workflow_id = this.currentWorkflowIdTarget.value
+    const task_title = this.changeTitleInputTarget.value
+    const url = `/workflows/${current_workflow_id}/tasks/${current_task_id}`
+    
+    fetch(url, {
+      method: 'PUT',
+      headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
+      body: JSON.stringify({ task_title: task_title })
+    })
+    .then(response => response.text())
+    .then((data) => {
+      this.taskTitleTarget.outerHTML = data
+    })
+  }
 }
