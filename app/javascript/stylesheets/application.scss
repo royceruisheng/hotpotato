@@ -42,6 +42,9 @@
   .t-no-profile {
     @apply rounded-full h-8 w-8 flex items-center justify-center text-white text-sm ;
   }
+  .t-no-profile-sm {
+    @apply rounded-full h-6 w-6 flex items-center justify-center text-white text-xs ;
+  }
 
   // Cards
   .t-card {
