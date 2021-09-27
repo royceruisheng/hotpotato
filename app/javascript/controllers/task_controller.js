@@ -53,6 +53,7 @@ export default class extends Controller {
 
   insertToWorkflowContent(workflowContent) {
     document.getElementById('workflow-content').innerHTML = workflowContent
+  }
 
     // action to add a member in a task (requires task_id)
   addMember(e) {
@@ -61,15 +62,15 @@ export default class extends Controller {
     const member_id = e.currentTarget.dataset.memberId
     const url = `/tasks/${ task_id }/task_members/`
 
-    fetch(url, { 
+    fetch(url, {
       method: 'POST',
-      headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() }, 
+      headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() },
       body: JSON.stringify({ task_id: task_id, member_id: member_id })
     })
     // .then(response => response.text())
     // .then(this.addMember.bind(this))
   }
-  
+
   addMembertosomething(member) {
     this.memberTarget.insertAdjacentHTML( 'afterbegin', User.find(task_member_id).first_name )
   }
