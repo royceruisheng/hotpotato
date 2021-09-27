@@ -9,28 +9,8 @@
         Mark as complete
       </button>
     </div>
-    <div class="flex hidden" data-toggle-target="hide" >
 
-      <%# Items section %>
-      <div class="flex-grow pr-2 border-r">
-        <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
-        </ul>
-
-        <% if !workflow.activated? %>
-          <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
-        <% end %>
-      </div>
-
-      <%# Members Section %>
-      <div class="w-40 flex flex-col">
-        <ul class="flex-grow">
-        </ul>
-
-        <% if !workflow.activated? %>
-          <%= render partial: 'members/add_member', locals: {task: task} %>
-        <% end %>
-      </div>
-
+    <div class="flex hidden" data-item-target="list" data-toggle-target="hide" >
     </div>
 
   </div>
