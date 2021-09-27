@@ -48,4 +48,18 @@ export default class extends Controller {
     this.formTarget.classList.toggle("hidden")
     this.newTarget.classList.toggle("hidden")
   }
+
+  markComplete(event){
+    event.preventDefault()
+    let taskId = event.target.dataset.taskId;
+    let url = `/tasks/${taskId}/completed`
+    console.log(url)
+    fetch(url, { headers: { 'Accept': 'text/plain' } })
+      .then(response => response.text())
+      .then(this.insertToWorkflowContent.bind(this))
+  }
+
+  insertToWorkflowContent(workflowContent) {
+    document.getElementById('workflow-content').innerHTML = workflowContent
+  }
 }

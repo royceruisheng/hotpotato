@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:index, :new, :create] do
     resources :items, only: [:new]
-
+    member do
+      get :completed
+    end
   end
   resources :items, only: [:index, :create, :show, :destroy] do
     member do
