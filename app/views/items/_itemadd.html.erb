@@ -1,4 +1,4 @@
-<div class="py-2">
+<div class="pb-2 pt-4">
   <button data-item-id=<%= task_id %> class="text-sm flex rounded-md items-center" data-action="click->item#new" data-item-target="new">
     <div class="t-btn-round text-xs">
       <i class="fas fa-plus"></i>
@@ -8,28 +8,21 @@
 </div>
 
 <div data-item-target="form" class="pb-2 hidden">
-
-  <%= simple_form_for @item, remote: true do |f| %>
-    <input type="input"
-           name="title"
+  <form> <%# form tag not rendering, thus decoupling 'enter' from input %>
+    <input type="text"
            placeholder="Enter a title for this item"
            data-item-target="itemtitle"
            class="text-sm rounded-md bg-gray-100 p-4 w-full mb-2 outline-none">
-    <%# <%= f.input :title,
-                label: false,
-                placeholder: "Enter a title for this item",
-                class: "text-sm rounded-md bg-gray-100 p-4 w-full my-2 outline-none"
-                  # data: { 'item-target': 'itemtitle' }
-                %>
-    <%# <%= f.hidden_field :task_id, :value => task_id %>
-    <div class="flex items-center">
-      <%= f.button :submit,
-                  class: "px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer",
-                  value: "Add item",
-                  data: { action: "click->item#submitForm"
-                  } %>
-      <div data-action="click->item#closeForm" class="t-btn-square text-xs ml-2 fa fa-times cursor-pointer"></div>
-    </div>
-  <% end %>
 
+    <div class="flex items-center">
+
+      <input type="submit"
+             class="px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer"
+             value="Add item"
+             data-action="click->item#submitForm">
+
+      <div data-action="click->item#closeForm" class="t-btn-square text-xs ml-2 fa fa-times cursor-pointer"></div>
+
+    </div>
+  </form>
 </div>

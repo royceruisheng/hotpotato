@@ -2,14 +2,14 @@ import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list", 'taskname', "member", "taskId" ]
+  static targets = ["new", "newform", "form", "list", "taskslist", 'taskname', "member", "taskId" ]
 
   connect() {
     console.log("task controller connected")
     const url = `/workflows/${this.element.dataset.workflowId}/tasks`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
-      .then((data) => this.listTarget.innerHTML = data );
+      .then((data) => this.taskslistTarget.innerHTML = data );
   }
 
   new() {

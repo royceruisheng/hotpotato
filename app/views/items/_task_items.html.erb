@@ -1,16 +1,25 @@
-<%# <% if items.length >= 1 %>
-  <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move">
+<%# Items section %>
+<div class="flex-grow pr-2 border-r">
+  <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
     <% items.order(position: :asc).each do |item| %>
-      <li data-item-id="<%= item.id %>" data-task-id="<%= @task.id %>"> <%# NEED TO THINK HOW TO SET NEW TASK ID  %>
-        <%= render partial: 'items/item', locals: { item: item, workflow: @workflow } %>
+      <li data-item-id="<%= item.id %>" data-task-id="<%= @task.id %>">
+        <%= render partial: 'items/item', locals: { item: item, workflow: @workflow, task: @task  } %>
       </li>
     <% end %>
   </ul>
-  <%# <div data-item-target="newform">
-  </div>
-  <%= render "items/itemadd", locals: { task: task } %>
-<%# <% else %>
-  <%# <div data-item-target="newform">
-  </div>
-  <%= render "items/itemadd", locals: { task: task } %>
-<%# <% end  %>
+
+  <% if !workflow.activated? %>
+    <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
+  <% end %>
+</div>
+
+<%# Members Section %>
+<div class="w-40 flex flex-col">
+  <ul class="flex-grow">
+    <%= render partial: 'tasks/task_members', locals: {task_members: @task_members} %>
+  </ul>
+
+  <% if !workflow.activated? %>
+    <%= render partial: 'members/add_member', locals: {task: task} %>
+  <% end %>
+</div>
