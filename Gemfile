@@ -64,3 +64,5 @@ gem 'simple_form'
 gem 'simple_form-tailwind'
 
 gem "pry-byebug", "~> 3.9"
+
+gem "acts_as_list", "~> 1.0"

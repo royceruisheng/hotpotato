@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :set_task, only: [:show]
   def index
     @workflow = Workflow.find(params[:workflow_id])
     @tasks = @workflow.tasks
@@ -35,7 +36,6 @@ class TasksController < ApplicationController
 
   def show
     @workflow = Workflow.find(params['workflow_id'])
-    @task = Task.find(params[:id])
 
     respond_to do |format|
       format.text { render partial: 'items/task_items', locals: { items: @task.items, task: @task, workflow: @workflow }, formats: [:html] }
@@ -46,5 +46,9 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :workflow_id, :content)
+  end
+
+  def set_task
+    @task = Task.find(params[:id])
   end
 end
