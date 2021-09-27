@@ -1,5 +1,5 @@
 
-<div data-controller="toggle">
+<div class="relative">
 
   <%# button to add member %>
   <div data-action="click->toggle#dropdownAddMembers" class="gap-2 flex items-center text-sm text-gray-400 pb-1 pt-3 cursor-pointer">
@@ -12,7 +12,7 @@
   </div>
 
     <%# Dropdown menu, show/hide based on menu state. %>
-  <form data-task-Id="<%= task.id %>" data-task-target="taskId" data-toggle-target="dropdown" class="fixed bg-white w-48 shadow-lg rounded-lg hidden">
+  <form data-task-Id="<%= task.id %>" data-task-target="taskId" data-toggle-target="membersdropdown" class="t-dropdown hidden">
     <%#  serach bar for users goes here %>
     <%# trying to work with 1 user as a submit button at first %>
 </div>
