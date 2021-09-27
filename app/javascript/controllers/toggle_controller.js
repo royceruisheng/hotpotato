@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId" ]
+  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId", "currentWorkflowId", "editItemButton" ]
 
   connect() {
     console.log("toggle controller connected");
@@ -40,7 +40,8 @@ export default class extends Controller {
 
   // generic hider
   hide() {
-    this.hideTarget.classList.toggle('hidden')
+    this.hideTarget.classList.toggle('hidden');
+    this.editItemButtonTarget.classList.toggle('hidden');
   }
 
   // shows the form to edit current task title
@@ -66,7 +67,10 @@ export default class extends Controller {
     })
     .then(response => response.text())
     .then((data) => {
-      this.taskTitleTarget.outerHTML = data
+      // console.log(data);
+      this.taskTitleTarget.innerHTML = task_title
+      this.editItemTitleFormTarget.classList.add("hidden");
+      this.taskTitleTarget.classList.remove("hidden");
     })
   }
 }
