@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :completed, :show_mytask]
+  before_action :set_task, only: [:show, :complete_task, :show_mytask]
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
@@ -51,12 +51,18 @@ class TasksController < ApplicationController
     next_task_position = @task.position + 1
     @next_task = @task.workflow.tasks.find_by(position: next_task_position)
 
-    respond_to do |format|
-      format.text { render partial: 'my_tasks/my_task_content', locals: { task: @task, next_task: @next_task }, formats: [:html] }
+    if @task.completed?
+      respond_to do |format|
+        format.text { render partial: 'my_tasks/completed_content', locals: { task: @task, next_task: @next_task }, formats: [:html] }
+      end
+    else
+      respond_to do |format|
+        format.text { render partial: 'my_tasks/my_task_content', locals: { task: @task, next_task: @next_task }, formats: [:html] }
+      end
     end
   end
 
-  def completed # should change to complete_task (many complete funcs arnd)
+  def complete_task # should change to complete_task (many complete funcs arnd)
     @workflow = @task.workflow
     @tasks = @workflow.tasks
     @item = Item.new

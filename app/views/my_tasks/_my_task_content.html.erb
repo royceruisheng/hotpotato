@@ -1,9 +1,12 @@
+
 <%= render partial: 'my_tasks/my_task_header', locals: { task: task } %>
 
 <%# My Tasks content %>
 <% if task.workflow.activated? %>
 <%# Content inside here %>
-  <div data-controller="toggle" class="p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg">
+  <div data-controller="toggle" class="p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg"
+       data-task-id=<%= task.id %> data-workflow-id=<%= task.workflow.id %>
+  >
 
     <div class="flex pb-4">
 
@@ -27,9 +30,10 @@
 
     </div>
 
-    <button class="t-btn-outline text-sm justify-center">
+    <button data-action="click->toggle#markMyTaskComplete" class="t-btn-outline text-sm justify-center">
       Complete Task
     </button>
+
   </div>
 
   <%# dotted line connector %>
@@ -41,18 +45,18 @@
   <% if next_task %>
     <%= render partial: 'my_tasks/next_task_header', locals: { task: next_task } %>
 
-    <div class="p-4 flex shadow-lg rounded-lg border">
+    <div data-controller="toggle" class="p-4 flex shadow-lg rounded-lg border">
     <%# nexttask - Items section %>
       <div class="flex-grow pr-4 flex flex-col">
         <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
           <% next_task.items.order(position: :asc).each do |item| %>
             <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
-              <%= render partial: 'items/item', locals: { item: item, workflow: @workflow, task: @task  } %>
+              <%= render partial: 'items/item', locals: { item: item, workflow: next_task.workflow, task: next_task  } %>
             </li>
           <% end %>
         </ul>
 
-        <%= render partial: 'items/itemadd', locals: {task_id: task.id} %>
+        <%= render partial: 'items/itemadd', locals: {task_id: next_task.id} %>
       </div>
 
       <%# nexttask - Members Section %>
@@ -62,7 +66,7 @@
           <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users} %>
         </ul>
 
-        <%= render partial: 'members/add_member', locals: {task: task} %>
+        <%= render partial: 'members/add_member', locals: {task: next_task} %>
       </div>
     <%# flex end %>
     </div>

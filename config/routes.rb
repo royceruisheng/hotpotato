@@ -24,10 +24,10 @@ Rails.application.routes.draw do
     resources :items, only: [:new]
     resources :task_members, only: [:create]
     member do
-      get :completed
+      get :complete_task
+      get :show_mytask
     end
   end
-  get '/current/task/:id', to: 'tasks#show_mytask'
 
   resources :task_members, only: [:new]
 

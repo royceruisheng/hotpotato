@@ -1,4 +1,4 @@
-<% my_tasks.each do |task| %>
+<% tasks.each do |task| %>
 
   <% if task == @task %>
     <div data-controller="sidetabs" data-task-id=<%= task.id %> class="t-sidetab-btn-active flex items-center justify-between shadow-md">

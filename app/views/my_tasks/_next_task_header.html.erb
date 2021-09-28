@@ -1,11 +1,18 @@
 <%# Title %>
 
-<div class="flex items-center gap-2 mb-3">
+<div class="flex flex-wrap items-center gap-2 mb-3">
 
-  <div class="shadow-md rounded-md py-1 px-2 text-sm">
-    <i class="fas fa-circle text-xs text-gray-200"></i>
-    &nbsp;Next task
-  </div>
+  <% unless task.completed? %>
+    <div class="shadow-md rounded-md py-1 px-2 text-sm">
+      <i class="fas fa-circle text-xs text-gray-200"></i>
+      &nbsp;Next task
+    </div>
+  <% else %>
+   <div class="shadow-md rounded-md py-1 px-2 text-sm">
+      <i class="fas fa-circle text-xs text-green-400"></i>
+      &nbsp;Completed
+    </div>
+  <% end %>
 
   <div class="text-sm rounded-xl bg-gray-100 py-2 px-4">
     <%= task.title %>

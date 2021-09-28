@@ -1,0 +1,63 @@
+
+<%= render partial: 'my_tasks/my_task_header', locals: { task: task } %>
+
+<%# Content inside here %>
+<div class="p-4 flex flex-col justify-between border shadow-lg rounded-lg">
+
+  <div class="flex">
+
+    <%# Items Section %>
+    <div class="flex-grow pr-4">
+      <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+        <% task.items.order(position: :asc).each do |item| %>
+          <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
+            <%= render partial: 'items/item', locals: { item: item, workflow: task.workflow, task: task  } %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%# Members Section %>
+    <div class="border-l w-40 px-3 pt-2">
+      <ul>
+        <%= render partial: 'tasks/task_members', locals: {task_members: task.users} %>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+<%# dotted line connector %>
+<div class="t-connector h-14"></div>
+
+
+
+<%# next task %>
+<% if next_task %>
+  <%= render partial: 'my_tasks/next_task_header', locals: { task: next_task } %>
+
+  <div class="p-4 flex shadow-lg rounded-lg border">
+  <%# nexttask - Items section %>
+    <div class="flex-grow pr-4 flex flex-col">
+      <ul class="flex-grow" >
+        <% next_task.items.order(position: :asc).each do |item| %>
+          <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
+            <%= render partial: 'items/item', locals: { item: item, workflow: next_task.workflow, task: next_task  } %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <%# nexttask - Members Section %>
+    <div class="border-l w-40 px-3 pt-2">
+      <ul>
+        <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users} %>
+      </ul>
+    </div>
+  <%# flex end %>
+  </div>
+
+<% else %>
+  <div>Workflow Completed - hidden(show when complete task)</div>
+<% end %>
