@@ -12,7 +12,11 @@ Rails.application.routes.draw do
 
   resources :workflows, only: [:create, :show, :update] do
     resources :tasks, only: [:index, :show]
+    member do
+      get :completion
+    end
   end
+
   put '/activate', to: 'workflows#activate', as: :activate
 
   resources :tasks, only: [:index, :new, :create] do

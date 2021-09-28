@@ -3,21 +3,18 @@
   <div data-item-id=<%= @workflow.id%> >
     <div class="flex items-center gap-2 mb-3">
 
-      <% if @workflow.activated %>
-        <div class="text-sm rounded-xl bg-purple-100 py-2 px-4">
+      <% if @workflow.activated? %>
+        <div class="text-sm rounded-xl bg-indigo-100 py-2 px-4">
           <%= @workflow.title %>
         </div>
-        <div class="shadow-md rounded-md py-1 px-2 text-sm">
-          <i class="fas fa-circle text-xs text-green-400"></i>
-          &nbsp;Running
-        </div>
+        <%= render partial: 'workflows/workflow_status', locals: {workflow: @workflow} %>
 
       <% else %>
 
         <%= simple_form_for @workflow, method: 'PUT' do |f| %>
         <%= f.input :title,
                     label: false,
-                    input_html: {class: "text-sm rounded-xl bg-purple-100 py-2 px-4 outline-none focus:bg-purple-300",
+                    input_html: {class: "text-sm rounded-xl bg-indigo-100 py-2 px-4 outline-none focus:bg-white focus:ring-1 focus:ring-indigo-600",
                                  autocomplete: "off"
                     },
                     autofocus: true,

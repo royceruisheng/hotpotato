@@ -14,4 +14,28 @@ class Task < ApplicationRecord
   # def async_update
   #   UpdateWorkflowJob.perform_later(self)
   # end
+
+  def completed?
+    self.completed == "completed"
+  end
+
+  def pending?
+    self.completed == "pending"
+  end
+
+  def current?
+    self.completed == "current"
+  end
+
+  def set_current
+    self.update(completed: "current")
+  end
+
+  def set_pending
+    self.update(completed: "pending")
+  end
+
+  def set_completed
+    self.update(completed: "completed")
+  end
 end

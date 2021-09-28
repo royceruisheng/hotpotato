@@ -1,0 +1,9 @@
+<div class="shadow-md rounded-md py-1 px-2 text-sm" id="workflow-status">
+  <% if @workflow.completed? %>
+    <i class="fas fa-circle text-xs text-green-600"></i>
+    &nbsp;Completed
+  <% else %>
+    <i class="fas fa-circle text-xs text-indigo-600"></i>
+    &nbsp;Running
+  <% end %>
+</div>
