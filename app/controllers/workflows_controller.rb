@@ -68,18 +68,23 @@ class WorkflowsController < ApplicationController
   end
 
   def update_first_task_as_current(workflow)
-    workflow.tasks.each do |task|
-      if task.completed? && task.lower_item.nil?
-        workflow.complete
-      elsif task.first? && !task.completed?
-        task.set_current
-        workflow.uncomplete
-      elsif !task.completed?
-        workflow.uncomplete
-        unless task.higher_item.nil?
-          task.set_current if task.higher_item.completed?
-        end
-      end
+    first_task = workflow.tasks.first
+    if first_task.completed == 'pending' # setting workflow.uncomplete in tasks#create instead
+      first_task.set_current # waiting to set completion check when deleting task
     end
+
+    # workflow.tasks.each do |task|
+    #   if task.completed? && task.lower_item.nil?
+    #     workflow.complete
+    #   elsif task.first? && !task.completed?
+    #     task.set_current
+    #     workflow.uncomplete
+    #   elsif !task.completed?
+    #     workflow.uncomplete
+    #     unless task.higher_item.nil?
+    #       task.set_current if task.higher_item.completed?
+    #     end
+    #   end
+    # end
   end
 end

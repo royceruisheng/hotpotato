@@ -1,14 +1,14 @@
 <% my_tasks.each do |task| %>
 
   <% if task == @task %>
-    <div data-controller="tabs" class="t-sidetab-btn-active flex items-center justify-between">
+    <div data-controller="sidetabs" data-task-id=<%= task.id %> class="t-sidetab-btn-active flex items-center justify-between shadow-md">
   <% else %>
-    <div data-controller="tabs" class="t-sidetab-btn flex items-center justify-between">
+    <div data-controller="sidetabs" data-task-id=<%= task.id %> class="t-sidetab-btn flex items-center justify-between border">
   <% end %>
 
-    <div class="flex-grow" data-action="">
+    <a class="flex-grow cursor-pointer" data-action="click->sidetabs#selectMyTask">
       <%= task.title %>
-    </div>
+    </a>
 
   </div>
 

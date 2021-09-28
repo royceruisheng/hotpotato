@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       get :completed
     end
   end
-  get '/current/task', to: 'tasks#show_mytask'
+  get '/current/task/:id', to: 'tasks#show_mytask'
 
   resources :task_members, only: [:new]
 
