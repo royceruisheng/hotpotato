@@ -1,5 +1,6 @@
 class WorkflowsController < ApplicationController
   before_action :set_workflows_and_task, only:[:create, :show, :update, :activate]
+  before_action :set_workflow, only: [:show, :update]
 
   def create
     title_check = Workflow.where(title: 'New Workflow')
@@ -16,15 +17,12 @@ class WorkflowsController < ApplicationController
   end
 
   def show
-    @workflow = Workflow.find(params[:id])
-
     respond_to do |format|
       format.html { render 'dashboard/index' }
     end
   end
 
   def update
-    @workflow = Workflow.find(params[:id])
     @workflow.update(workflow_params) # updates title
 
     render 'dashboard/index'
@@ -34,9 +32,9 @@ class WorkflowsController < ApplicationController
     workflow_params = JSON.parse(request.body.read)
     @workflow = Workflow.find(workflow_params['workflowId'])
     if @workflow.activated?
-      @workflow.update(activated: false)
+      @workflow.deactivate
     else
-      @workflow.update(activated: true)
+      @workflow.activate
       update_first_task_as_current(@workflow)
     end
 
@@ -46,24 +44,32 @@ class WorkflowsController < ApplicationController
     end
   end
 
-  def update_first_task_as_current(workflow)
-    workflow.tasks.each do |task|
-      if task.first? && task.completed == "pending"
-        task.update(completed: "current")
-      elsif task.completed == "completed" && task.lower_item.completed == "pending"
-        task.lower_item.update(completed: "current")
-      end
-    end
-  end
-
   private
 
   def workflow_params
     params.require(:workflow).permit(:title)
   end
 
+  def set_workflow
+    @workflow = Workflow.find(params[:id])
+  end
+
   def set_workflows_and_task
     @workflows = Workflow.where(creator_id: current_user.id).reverse_order
     @task = Task.new
+  end
+
+  def update_first_task_as_current(workflow)
+    workflow.tasks.each do |task|
+      if task.completed? && task.lower_item.nil?
+        workflow.complete
+      elsif task.first? && task.pending?
+        task.set_current
+        workflow.uncomplete
+      elsif task.completed? && task.lower_item.pending?
+        task.set_current
+        workflow.uncomplete
+      end
+    end
   end
 end
