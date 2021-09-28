@@ -70,12 +70,14 @@ class WorkflowsController < ApplicationController
     workflow.tasks.each do |task|
       if task.completed? && task.lower_item.nil?
         workflow.complete
-      elsif task.first? && task.pending?
+      elsif task.first? && !task.completed?
         task.set_current
         workflow.uncomplete
-      elsif task.completed? && task.lower_item.pending?
-        task.set_current
+      elsif !task.completed?
         workflow.uncomplete
+        unless task.higher_item.nil?
+          task.set_current if task.higher_item.completed?
+        end
       end
     end
   end
