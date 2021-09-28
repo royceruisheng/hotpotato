@@ -1,5 +1,9 @@
 class TasksController < ApplicationController
+<<<<<<< HEAD
   before_action :set_task, only: [:show, :update, :completed]
+=======
+  before_action :set_task, only: [:show, :completed, :show_mytask]
+>>>>>>> 5877c07 (displays next task)
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
@@ -20,6 +24,8 @@ class TasksController < ApplicationController
     @item = Item.new
 
     if @task.save
+      @task.worflow.uncompleted
+
       respond_to do |format|
         format.html
         format.text { render partial: 'tasks/task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
@@ -59,11 +65,20 @@ class TasksController < ApplicationController
 
 =======
   def show_mytask # my individual task
+    next_task_position = @task.position + 1
+    @next_task = @task.workflow.tasks.find_by(position: next_task_position)
 
+    respond_to do |format|
+      format.text { render partial: 'my_tasks/my_task_content', locals: { task: @task, next_task: @next_task }, formats: [:html] }
+    end
   end
 
+<<<<<<< HEAD
 >>>>>>> 0cad269 (no click selected tabs again)
   def completed
+=======
+  def completed # should change to complete_task (many complete funcs arnd)
+>>>>>>> 5877c07 (displays next task)
     @workflow = @task.workflow
     @tasks = @workflow.tasks
     @item = Item.new

@@ -57,6 +57,11 @@
     @apply w-full shadow-lg rounded-full ;
   }
 
+  // Card connector line
+  .t-connector {
+    @apply border-r-2 border-dashed w-1/2 ;
+  }
+
   // Forms
   .t-input-invis {
     @apply text-sm focus:outline-none focus:ring-0 ;

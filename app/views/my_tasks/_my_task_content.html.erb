@@ -1,0 +1,76 @@
+<%= render partial: 'my_tasks/my_task_header', locals: { task: task } %>
+
+<%# My Tasks content %>
+<% if task.workflow.activated? %>
+<%# Content inside here %>
+  <div data-controller="toggle" class="p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg">
+
+    <div class="flex pb-4">
+
+      <%# Items Section %>
+      <div class="flex-grow pr-4">
+        <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+          <% task.items.order(position: :asc).each do |item| %>
+            <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
+              <%= render partial: 'items/item', locals: { item: item, workflow: task.workflow, task: task  } %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <%# Members Section %>
+      <div class="border-l w-40 px-3 pt-2">
+        <ul data-toggle-target="taskmemberslist" class="flex-grow">
+          <%= render partial: 'tasks/task_members', locals: {task_members: task.users} %>
+        </ul>
+      </div>
+
+    </div>
+
+    <button class="t-btn-outline text-sm justify-center">
+      Complete Task
+    </button>
+  </div>
+
+  <%# dotted line connector %>
+  <div class="t-connector h-14"></div>
+
+
+
+  <%# next task %>
+  <% if next_task %>
+    <%= render partial: 'my_tasks/next_task_header', locals: { task: next_task } %>
+
+    <div class="p-4 flex shadow-lg rounded-lg border">
+    <%# nexttask - Items section %>
+      <div class="flex-grow pr-4 flex flex-col">
+        <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+          <% next_task.items.order(position: :asc).each do |item| %>
+            <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
+              <%= render partial: 'items/item', locals: { item: item, workflow: @workflow, task: @task  } %>
+            </li>
+          <% end %>
+        </ul>
+
+        <%= render partial: 'items/itemadd', locals: {task_id: task.id} %>
+      </div>
+
+      <%# nexttask - Members Section %>
+      <div class="border-l w-40 px-3 pt-2 flex flex-col">
+
+        <ul data-toggle-target="taskmemberslist" class="flex-grow">
+          <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users} %>
+        </ul>
+
+        <%= render partial: 'members/add_member', locals: {task: task} %>
+      </div>
+    <%# flex end %>
+    </div>
+
+  <% else %>
+    <div>Workflow Completed - hidden(show when complete task)</div>
+  <% end %>
+
+<% else %>
+  This task is currently not active.
+<% end %>
