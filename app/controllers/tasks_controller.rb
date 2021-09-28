@@ -24,11 +24,11 @@ class TasksController < ApplicationController
     @item = Item.new
 
     if @task.save
-      @task.worflow.uncompleted
+      @task.workflow.uncomplete
 
       respond_to do |format|
         format.html
-        format.text { render partial: 'tasks/task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
+        format.text { render partial: 'tasks/new_task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
       end
     end
   end

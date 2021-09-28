@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="toggle">
   <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
 
+=======
+<div data-controller="toggle">
+  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 my-1 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
+>>>>>>> eb6f0d3 (line connector added)
     <div class="flex justify-between">
 
       <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#toggleHideTitleForm" data-toggle-target="taskTitle">
@@ -46,3 +51,7 @@
 
   </div>
 </div>
+
+<% unless tasks.last == task %>
+  <div class="t-connector h-5"></div>
+<% end %>
