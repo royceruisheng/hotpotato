@@ -1,3 +1,5 @@
+<div class="t-connector h-5"></div>
+
 <div data-controller="toggle">
   <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 my-1 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
     <div class="flex justify-between">
@@ -23,7 +25,3 @@
 
   </div>
 </div>
-
-<% unless tasks.last == task %>
-  <div class="t-connector h-5"></div>
-<% end %>
