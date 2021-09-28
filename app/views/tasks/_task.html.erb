@@ -8,14 +8,14 @@
       </button>
 
       <%# Task title edit form that replaces task title button above when edit task title button is pressed %>
-      <form data-toggle-target="editItemTitleForm" class="hidden">
+      <form data-toggle-target="editItemTitleForm" class="hidden" id="task-edit>
         <input type="text" data-toggle-target="changeTitleInput" placeholder=<%= task.title %>><br>
         <input type="hidden" data-toggle-target="currentTaskId" value="<%= task.id %>">
         <input type="hidden" data-toggle-target="currentWorkflowId" value="<%= workflow.id %>">
         <input type="submit" data-action="click->toggle#updateTaskTitle">
       </form>
 
-      <%#button to change task title (does not appear if ) %>
+      <%#button to change task title %>
       <% unless workflow.activated? %>
         <button class="m-1 shadow-md hidden" data-action="click->toggle#displayEditTitleForm" data-toggle-target="editItemButton">
           <i class="fas fa-edit"></i>
@@ -42,7 +42,10 @@
         <i class="fas fa-edit"></i>
       </button>
 
+      <%# task description / task desc input (delongs to form) %>
+      <h4 class="" data-toggle-target="taskDescription"><%= task.description %></h4>
 
+      <input class="hidden" form="task-edit" type="text" data-toggle-target="changeDescriptionInput" placeholder=<%= task.description %>><br>
 
       <ul data-item-target="list" >
       </ul>

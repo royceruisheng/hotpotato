@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId", "currentWorkflowId", "editItemButton" ]
+  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId", "currentWorkflowId", "editItemButton", "changeDescriptionInput" ]
 
   connect() {
     console.log("toggle controller connected");
@@ -48,6 +48,8 @@ export default class extends Controller {
   displayEditTitleForm() {
     this.editItemTitleFormTarget.classList.toggle("hidden");
     this.taskTitleTarget.classList.toggle("hidden");
+    this.
+    this.
   }
 
   updateTaskTitle(e) {
@@ -58,17 +60,19 @@ export default class extends Controller {
     const current_task_id = this.currentTaskIdTarget.value
     const current_workflow_id = this.currentWorkflowIdTarget.value
     const task_title = this.changeTitleInputTarget.value
+    const task_description = this.changeDescriptionInputTarget.value
     const url = `/workflows/${current_workflow_id}/tasks/${current_task_id}`
     
     fetch(url, {
       method: 'PUT',
       headers: { 'Accept': 'text/plain', 'X-CSRF-Token': csrfToken() },
-      body: JSON.stringify({ task_title: task_title })
+      body: JSON.stringify({ task_title: task_title, task_description: task_description })
     })
     .then(response => response.text())
     .then((data) => {
       // console.log(data);
       this.taskTitleTarget.innerHTML = task_title
+      this.changeDescriptionInputTarget.innerHTML = task_description
       this.editItemTitleFormTarget.classList.add("hidden");
       this.taskTitleTarget.classList.remove("hidden");
     })
