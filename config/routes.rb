@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   end
 
   put '/activate', to: 'workflows#activate', as: :activate
-  # post '/workflows_tabs', to: 'workflows#tabs', as: :workflow_tabs
 
   resources :tasks, only: [:index, :new, :create] do
     resources :items, only: [:new]
