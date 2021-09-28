@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId", "currentWorkflowId", "editItemButton", "changeDescriptionInput" ]
+  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId", "editItemButton", "changeDescriptionInput", "taskDescription" ]
 
   connect() {
     console.log("toggle controller connected");
@@ -48,8 +48,8 @@ export default class extends Controller {
   displayEditTitleForm() {
     this.editItemTitleFormTarget.classList.toggle("hidden");
     this.taskTitleTarget.classList.toggle("hidden");
-    this.
-    this.
+    this.taskDescriptionTarget.classList.toggle("hidden");
+    this.changeDescriptionInputTarget.classList.toggle("hidden");
   }
 
   updateTaskTitle(e) {
