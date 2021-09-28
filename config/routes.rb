@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   get '/dashboard', to: "dashboard#index", as: :dashboard
-  get '/my_tasks', to: 'dashboard#my_tasks', as: :my_tasks
+  get '/current', to: 'dashboard#my_tasks', as: :current
 
   resources :workflows, only: [:create, :show, :update] do
     resources :tasks, only: [:index, :show]
