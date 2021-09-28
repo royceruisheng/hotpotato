@@ -7,21 +7,13 @@
       </button>
       <% if task.completed == "completed" %>
         <button class='inline-block text-gray-500 text-sm disabled'>
-          Completed
+          <i class="fas fa-check"></i> Completed
         </button>
-      <% elsif task.completed == "current"%>
+      <% elsif task.completed == "current" %>
         <button data-action="click-> task#markComplete" class='inline-block text-indigo-500 text-sm' data-task-id=<%= task.id %>>
-          Mark as complete
-        </button>
-      <% else %>
-        <button data-action="click-> task#markComplete" class='inline-block text-indigo-500 text-sm hidden' data-task-id=<%= task.id %>>
-          Mark as complete
+          <i class="far fa-check-square"></i> Mark as complete
         </button>
       <% end %>
-
-      <button data-action="click-> task#markComplete" class='inline-block text-indigo-500 text-sm'>
-        Mark as complete
-      </button>
 
     </div>
 
