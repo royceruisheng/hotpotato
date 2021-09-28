@@ -1,13 +1,13 @@
 <% my_tasks.each do |task| %>
 
-  <% if workflow == @workflow %>
-    <div data-workflow-id=<%= workflow.id %> data-controller="tabs" class="t-workflow-btn-active flex items-center justify-between">
+  <% if task == @task %>
+    <div data-controller="tabs" class="t-workflow-btn-active flex items-center justify-between">
   <% else %>
-    <div data-workflow-id=<%= workflow.id %> data-controller="tabs" class="t-workflow-btn flex items-center justify-between">
+    <div data-controller="tabs" class="t-workflow-btn flex items-center justify-between">
   <% end %>
 
-    <%= link_to workflow_path(workflow), class: "flex-grow" do %>
-        <%= workflow.title %>
+    <%= link_to class: "flex-grow" do %>
+        <%= task.title %>
     <% end %>
   </div>
 
