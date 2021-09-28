@@ -2,7 +2,7 @@ import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list", "itemtitle"]
+  static targets = ["new", "newform", "form", "taskcontent", "list", "itemtitle"]
 
   connect() {
     this.itemsDownloaded = false;
@@ -24,15 +24,15 @@ export default class extends Controller {
 
   storeAndRender(items) {
     this.itemsHTML = items;
-    this.listTarget.innerHTML = items;
+    this.taskcontentTarget.innerHTML = items;
     this.itemsDownloaded = true;
   }
 
   new() {
-    // this.itemtitleTarget.value = ''
+    this.itemtitleTarget.value = ''
     this.newTarget.classList.toggle('hidden')
     this.formTarget.classList.toggle('hidden')
-    // this.itemtitleTarget.focus();
+    this.itemtitleTarget.focus();
   }
   closeForm() {
     this.newTarget.classList.toggle("hidden")

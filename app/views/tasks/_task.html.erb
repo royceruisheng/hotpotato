@@ -1,6 +1,7 @@
 <div data-controller="toggle">
-  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border py-2 px-4 mb-2 mx-6">
+  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 mb-2 mx-6">
     <div class="flex justify-between">
+
       <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#hide">
         <%= task.title %>
       </button>
@@ -21,9 +22,10 @@
       <button data-action="click-> task#markComplete" class='inline-block text-indigo-500 text-sm'>
         Mark as complete
       </button>
+
     </div>
 
-    <div class="flex hidden" data-item-target="list" data-toggle-target="hide" >
+    <div class="flex hidden" data-item-target="taskcontent" data-toggle-target="hide" >
     </div>
 
   </div>

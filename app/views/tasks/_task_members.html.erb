@@ -1,6 +1,4 @@
 
-  <% task_members.each do |member| %>
-    <li>
-      <%= member.user_id %>
-    </li>
-  <% end %>
+<% task_members.each do |member| %>
+  <%= render partial: 'tasks/task_member', locals: {member: member} %>
+<% end %>

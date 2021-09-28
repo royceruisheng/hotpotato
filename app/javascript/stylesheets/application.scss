@@ -32,7 +32,7 @@
 
   // Dropdown
   .t-dropdown {
-    @apply py-2 mt-1 bg-white rounded-md shadow-xl fixed ;
+    @apply py-2 mt-1 bg-white rounded-md shadow-xl z-10 absolute ;
   }
   .t-dropdown-btn {
     @apply block w-full flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ;
@@ -41,6 +41,9 @@
   // Profiles
   .t-no-profile {
     @apply rounded-full h-8 w-8 flex items-center justify-center text-white text-sm ;
+  }
+  .t-no-profile-sm {
+    @apply rounded-full h-7 w-7 flex items-center justify-center text-white text-xs ;
   }
 
   // Cards

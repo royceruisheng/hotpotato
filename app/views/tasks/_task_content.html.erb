@@ -1,6 +1,6 @@
 <%# Items section %>
-<div class="flex-grow pr-2 border-r">
-  <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+<div class="flex-grow pr-4 flex flex-col">
+  <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
     <% items.order(position: :asc).each do |item| %>
       <li data-item-id="<%= item.id %>" data-task-id="<%= @task.id %>">
         <%= render partial: 'items/item', locals: { item: item, workflow: @workflow, task: @task  } %>
@@ -14,8 +14,8 @@
 </div>
 
 <%# Members Section %>
-<div class="w-40 flex flex-col">
-  <ul class="flex-grow">
+<div class="border-l w-40 px-3 pt-2 flex flex-col">
+  <ul data-toggle-target="taskmemberslist" class="flex-grow">
     <%= render partial: 'tasks/task_members', locals: {task_members: @task_members} %>
   </ul>
 
