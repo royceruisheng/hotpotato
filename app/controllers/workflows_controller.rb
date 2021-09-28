@@ -23,7 +23,8 @@ class WorkflowsController < ApplicationController
   end
 
   def update
-    @workflow.update(workflow_params) # updates title
+    @workflow = Workflow.find(params[:id])
+    @workflow.update(restful_workflow_params) # updates title
 
     render 'dashboard/index'
   end
@@ -53,9 +54,9 @@ class WorkflowsController < ApplicationController
 
   private
 
-  # def workflow_params
-  #   params.require(:workflow).permit(:title)
-  # end
+  def restful_workflow_params
+    params.require(:workflow).permit(:title)
+  end
 
   def set_workflow
     @workflow = Workflow.find(params[:id])

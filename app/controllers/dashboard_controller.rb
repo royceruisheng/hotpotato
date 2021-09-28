@@ -7,7 +7,7 @@ class DashboardController < ApplicationController
   end
 
   def my_tasks
-    @my_tasks = current_user.tasks
+    @my_tasks = current_user.tasks.where(completed: 'current')
 
     render 'my_tasks/index'
   end

@@ -17,7 +17,7 @@
     </button>
   </div>
 
-  <%# tab %>
+  <%# nav tab %>
   <div class="flex gap-4 my-5">
     <%= link_to 'My Workflows', dashboard_path, class: 't-tab-active' %>
     <%= link_to 'My Tasks', my_tasks_path, class: 't-tab' %>
@@ -36,7 +36,7 @@
     <input type="search" placeholder="Workflows" class="t-input-invis flex-grow">
   </form>
 
-  <%# workflows list %>
+  <%# workflows tabs list %>
   <%= render 'shared/workflows_tabs', workflows: @workflows %>
 
 </div>
