@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "membersdropdown", "hide" ]
+  static targets = ["hide", "taskId", "membersdropdown", "taskmemberslist"  ]
 
   connect() {
     console.log("toggle controller connected");
@@ -14,11 +14,28 @@ export default class extends Controller {
       .then(response => response.text())
       .then(this.updateAndHide.bind(this))
   }
-
   updateAndHide(members) {
     this.membersdropdownTarget.classList.toggle("hidden");
     this.membersdropdownTarget.innerHTML = ""
     this.membersdropdownTarget.insertAdjacentHTML('afterbegin', members )
+  }
+
+  addMember(e) {
+    e.preventDefault();
+    const task_id = this.taskIdTarget.dataset.taskId
+    const member_id = e.currentTarget.dataset.memberId
+    const url = `/tasks/${task_id}/task_members/`
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Accept': 'text/plain', 'X-CSRF-token': csrfToken() },
+      body: JSON.stringify({ task_id: task_id, member_id: member_id })
+    })
+    .then(response => response.text())
+    .then(this.addMemberToTaskmembers.bind(this))
+  }
+  addMemberToTaskmembers(member) {
+    this.taskmemberslistTarget.insertAdjacentHTML('beforeend', member)
   }
 
   // generic hider
