@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def show
+  def show # my_tasks
     @workflow = Workflow.find(params['workflow_id'])
 
     @task_members = @task.users
@@ -37,6 +37,7 @@ class TasksController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
   def update
     @workflow = @task.workflow
     @workflows = @workflow.creator.workflows
@@ -56,6 +57,12 @@ class TasksController < ApplicationController
 
   private
 
+=======
+  def show_mytask # my individual task
+
+  end
+
+>>>>>>> 0cad269 (no click selected tabs again)
   def completed
     @workflow = @task.workflow
     @tasks = @workflow.tasks

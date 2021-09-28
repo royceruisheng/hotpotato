@@ -8,19 +8,22 @@
 @layer components {
 
   // Buttons
-  .t-btn-outline {
+  .t-btn-outline { // create workflow btn
     @apply w-full border border-indigo-400 rounded-lg p-2 flex items-center hover:bg-indigo-400 hover:text-white duration-100 ;
   }
-  .t-workflow-btn-active {
-    @apply px-4 py-2 my-1 text-sm rounded-lg bg-indigo-100 duration-100 ;
+  .t-sidetab-btn-active {
+    @apply px-4 py-2 my-1 text-sm rounded-lg bg-indigo-100 ;
   }
-  .t-workflow-btn {
+  .t-sidetab-btn-active a {
+    @apply pointer-events-none ;
+  }
+  .t-sidetab-btn {
     @apply px-4 py-2 my-1 text-sm rounded-lg hover:bg-gray-100 duration-100 ;
   }
-  .t-tab-active {
+  .t-tab-active { // MyTask & Worflows
     @apply text-sm font-medium text-indigo-600 pb-1 border-b-2 border-indigo-600 ;
   }
-  .t-tab {
+  .t-tab { // MyTask & Worflows
     @apply text-sm font-medium text-gray-400 pb-1 border-b-2 border-white ;
   }
   .t-btn-round {
