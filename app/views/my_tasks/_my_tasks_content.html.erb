@@ -1,0 +1,34 @@
+<%= render partial: 'workflows/workflow_header' %>
+<%# Workflow content %>
+
+<div class="t-workflow-content flex-grow flex flex-col justify-between border rounded-lg">
+
+  <div class="px-4 py-1 bg-gray-100 text-xs text-gray-400 rounded-t-lg">
+    Start
+  </div>
+
+
+  <% if @workflow %>
+  <%# Content inside here %>
+    <div class="flex-grow px-1">
+      <div data-controller="task" data-workflow-id=<%= @workflow.id%> class="my-5 flex flex-col justify-center">
+
+        <div data-task-target="taskslist">
+        </div>
+
+        <div data-task-target="newform">
+        </div>
+
+        <% unless @workflow.activated? %>
+          <%= render "tasks/taskadd", locals: {workflow: @workflow}%>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+
+  <div class="px-4 py-1 bg-gray-100 text-xs text-gray-400 rounded-b-lg">
+    End
+  </div>
+
+</div>

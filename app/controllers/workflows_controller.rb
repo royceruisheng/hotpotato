@@ -53,9 +53,9 @@ class WorkflowsController < ApplicationController
 
   private
 
-  def workflow_params
-    params.require(:workflow).permit(:title)
-  end
+  # def workflow_params
+  #   params.require(:workflow).permit(:title)
+  # end
 
   def set_workflow
     @workflow = Workflow.find(params[:id])
