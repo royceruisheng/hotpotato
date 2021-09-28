@@ -1,5 +1,5 @@
 <div data-controller="toggle">
-  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 mb-2 mx-6">
+  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 mb-2 mx-6" data-toggle-target="taskCard">
     <div class="flex justify-between">
 
       <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#hide" data-toggle-target="taskTitle">
@@ -14,10 +14,15 @@
         <input type="submit" data-action="click->toggle#updateTaskTitle" class="mx-1 bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-1 px-1.5 border border-indigo-500 hover:border-transparent rounded">
       </form>
 
-      <%#button to change task title %>
       <% unless workflow.activated? %>
-        <button class="m-1 shadow-md hidden" data-action="click->toggle#displayEditTitleForm" data-toggle-target="editItemButton">
+        <%#button to edit task %>
+        <button class="p-2 shadow-md rounded-full hidden" data-action="click->toggle#displayEditTitleForm" data-toggle-target="editItemButton">
           <i class="fas fa-edit"></i>
+        </button>
+
+        <%# button to delete task %>
+        <button class="p-2 shadow-md rounded-full hidden" data-action="click->toggle#deleteTask" data-toggle-target="deleteItemButton">
+          <i class="fas fa-trash"></i>
         </button>
       <% end %>
 

@@ -57,6 +57,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    respond_to do |format|
+      format.json { head :ok }
+    end
+  end
+
   private
 
   def completed

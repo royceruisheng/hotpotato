@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId", "editItemButton", "changeDescriptionInput", "taskDescription" ]
+  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "editItemTitleForm", "changeTitleInput", "currentTaskId", "currentWorkflowId", "editItemButton", "changeDescriptionInput", "taskDescription", "deleteItemButton", "taskCard" ]
 
   connect() {
     console.log("toggle controller connected");
@@ -42,6 +42,7 @@ export default class extends Controller {
   hide() {
     this.hideTarget.classList.toggle('hidden');
     this.editItemButtonTarget.classList.toggle('hidden');
+    this.deleteItemButtonTarget.classList.toggle('hidden');
   }
 
   // shows the form to edit current task title
@@ -78,5 +79,18 @@ export default class extends Controller {
       this.taskDescriptionTarget.classList.remove("hidden");
       this.changeDescriptionInputTarget.classList.add("hidden");
     })
+  }
+
+  deleteTask(e) {
+    e.preventDefault();
+    const task_id = this.currentTaskIdTarget.value
+    const url = `/tasks/${task_id}`
+
+    fetch(url, {
+      method: 'DELETE',
+      headers: { 'X-CSRF-token': csrfToken() }
+    })
+    .then(response => response.json())
+    .then(this.element.parentElement.removeChild(this.element))
   }
 }
