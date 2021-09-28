@@ -75,6 +75,8 @@ export default class extends Controller {
       this.changeDescriptionInputTarget.innerHTML = task_description
       this.editItemTitleFormTarget.classList.add("hidden");
       this.taskTitleTarget.classList.remove("hidden");
+      this.taskDescriptionTarget.classList.remove("hidden");
+      this.changeDescriptionInputTarget.classList.add("hidden");
     })
   }
 }

@@ -2,13 +2,12 @@
   <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 mb-2 mx-6">
     <div class="flex justify-between">
 
-      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#hide" data-task-target="taskTitle">
-
+      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#hide" data-toggle-target="taskTitle">
         <%= task.title %>
       </button>
 
       <%# Task title edit form that replaces task title button above when edit task title button is pressed %>
-      <form data-toggle-target="editItemTitleForm" class="hidden" id="task-edit>
+      <form class="hidden" id="task-edit data-toggle-target="editItemTitleForm" >
         <input type="text" data-toggle-target="changeTitleInput" placeholder=<%= task.title %>><br>
         <input type="hidden" data-toggle-target="currentTaskId" value="<%= task.id %>">
         <input type="hidden" data-toggle-target="currentWorkflowId" value="<%= workflow.id %>">
@@ -35,17 +34,12 @@
 
     </div>
 
-    <div class="flex hidden" data-item-target="taskcontent" data-toggle-target="hide" >
-
-      <%# button to change task title %>
-      <button class="m-1 shadow-md" data-action="click->toggle#displayEditTitleForm">
-        <i class="fas fa-edit"></i>
-      </button>
+    <div class="hidden flex" data-item-target="taskcontent" data-toggle-target="hide" >
 
       <%# task description / task desc input (delongs to title edit form) %>
-      <h4 class="" data-toggle-target="taskDescription"><%= task.description %></h4>
+      <h4 class="w-full" data-toggle-target="taskDescription"><%= task.description %></h4>
 
-      <input class="hidden" form="task-edit" type="text" data-toggle-target="changeDescriptionInput" placeholder=<%= task.description %>><br>
+      <input class="hidden" form="task-edit" type="text" data-toggle-target="changeDescriptionInput"><br>
 
       <ul data-item-target="list" >
       </ul>
@@ -53,6 +47,7 @@
       <% if !workflow.activated? %>
         <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
       <% end %>
+
     </div>
 
   </div>
