@@ -19,8 +19,8 @@
 
   <%# tab %>
   <div class="flex gap-4 my-5">
-    <button class="t-tab-active" >My Workflows</button>
-    <button class="t-tab" >My Tasks</button>
+    <button class="t-tab" >My Workflows</button>
+    <button class="t-tab-active" >My Tasks</button>
   </div>
 
   <%# search bar form to search within tab %>
@@ -37,6 +37,8 @@
   </form>
 
   <%# workflows list %>
-  <%= render 'shared/workflows_tabs', workflows: @workflows %>
+  <div class="mt-4 h-96 overflow-scroll">
+    <%= render 'my_tasks/task_tabs', my_tasks: @my_tasks %>
+  </div>
 
 </div>
