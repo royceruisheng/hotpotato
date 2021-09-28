@@ -2,9 +2,9 @@
   <% workflows.each do |workflow| %>
 
     <% if workflow == @workflow %>
-      <div data-workflow-id=<%= workflow.id %> data-controller="sidetabs" class="t-workflow-btn-active flex items-center justify-between">
+      <div data-workflow-id=<%= workflow.id %> data-controller="sidetabs" class="t-sidetab-btn-active flex items-center justify-between">
     <% else %>
-      <div data-workflow-id=<%= workflow.id %> data-controller="sidetabs" class="t-workflow-btn flex items-center justify-between">
+      <div data-workflow-id=<%= workflow.id %> data-controller="sidetabs" class="t-sidetab-btn flex items-center justify-between">
     <% end %>
 
       <%= link_to workflow_path(workflow), class: "flex-grow" do %>

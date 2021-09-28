@@ -15,11 +15,11 @@ export default class extends Controller {
     .then(response => response.text())
     .then(this.insertToWorkflowContent.bind(this))
 
-    let prevSelected = document.querySelector('.t-workflow-btn-active')
-    prevSelected.classList.remove('t-workflow-btn-active')
-    prevSelected.classList.add('t-workflow-btn')
-    this.element.classList.remove('t-workflow-btn')
-    this.element.classList.add('t-workflow-btn-active')
+    let prevSelected = document.querySelector('.t-sidetab-btn-active')
+    prevSelected.classList.remove('t-sidetab-btn-active')
+    prevSelected.classList.add('t-sidetab-btn')
+    this.element.classList.remove('t-sidetab-btn')
+    this.element.classList.add('t-sidetab-btn-active')
   }
 
   insertToWorkflowContent(workflowContent) {

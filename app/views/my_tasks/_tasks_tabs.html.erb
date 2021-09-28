@@ -1,14 +1,15 @@
 <% my_tasks.each do |task| %>
 
   <% if task == @task %>
-    <div data-controller="tabs" class="t-workflow-btn-active flex items-center justify-between">
+    <div data-controller="tabs" class="t-sidetab-btn-active flex items-center justify-between">
   <% else %>
-    <div data-controller="tabs" class="t-workflow-btn flex items-center justify-between">
+    <div data-controller="tabs" class="t-sidetab-btn flex items-center justify-between">
   <% end %>
 
-    <%= link_to class: "flex-grow" do %>
-        <%= task.title %>
-    <% end %>
+    <div class="flex-grow" data-action="">
+      <%= task.title %>
+    </div>
+
   </div>
 
 <% end %>
