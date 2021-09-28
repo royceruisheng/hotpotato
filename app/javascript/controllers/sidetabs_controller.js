@@ -29,7 +29,7 @@ export default class extends Controller {
 
   // My Tasks
   selectMyTask() {
-    fetch(`current/task/${this.element.dataset.taskId}`, {
+    fetch(`tasks/${this.element.dataset.taskId}/show_mytask`, {
       headers: { 'Accept': 'text/plain' }
     })
       .then(response => response.text())
@@ -49,4 +49,5 @@ export default class extends Controller {
     holder.innerHTML = ''
     holder.innerHTML = mytasksContent
   }
+
 }

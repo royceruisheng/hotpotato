@@ -39,7 +39,7 @@
           <i class="fas fa-check"></i> Completed
         </button>
       <% elsif task.completed == "current" %>
-        <button data-action="click-> task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-sm' data-task-id=<%= task.id %>>
+        <button data-action="click->task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-sm' data-task-id=<%= task.id %>>
           <i class="far fa-check-square"></i> Mark as complete
         </button>
       <% end %>

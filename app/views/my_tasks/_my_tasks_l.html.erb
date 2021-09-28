@@ -38,7 +38,12 @@
 
   <%# task tabs list %>
   <div class="mt-4 h-96 overflow-scroll">
-    <%= render 'my_tasks/tasks_tabs', my_tasks: @my_tasks %>
+
+    <div>To do</div>
+    <%= render 'my_tasks/tasks_tabs', tasks: @my_tasks %>
+
+    <div class="pt-6">Completed</div>
+    <%= render 'my_tasks/tasks_tabs', tasks: @completed_tasks %>
   </div>
 
 </div>

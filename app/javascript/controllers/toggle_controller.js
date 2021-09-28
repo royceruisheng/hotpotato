@@ -55,6 +55,7 @@ export default class extends Controller {
     const task_id = this.element.dataset.taskId
     const url = `/tasks/${task_id}`
 
+<<<<<<< HEAD
     fetch(url, {
       method: 'DELETE',
       headers: { 'X-CSRF-token': csrfToken() }
@@ -62,4 +63,18 @@ export default class extends Controller {
     .then(response => response.json())
     .then(this.element.parentElement.removeChild(this.element))
   }
+=======
+  // MY TASKS
+  markMyTaskComplete(event) {
+    event.preventDefault()
+    let taskId = this.element.dataset.taskId
+    let workflowId = this.element.dataset.workflowId
+    let url = `/tasks/${taskId}/complete_task`
+    fetch(url, { headers: { 'Accept': 'text/plain' } })
+      .then(response => response.text())
+      // .then(this.insertToWorkflowContent.bind(this))
+      // .then(this.checkWorkflowCompletion(workflowId))
+  }
+
+>>>>>>> 64f9a7b (trying to move complete task to mytasks)
 }
