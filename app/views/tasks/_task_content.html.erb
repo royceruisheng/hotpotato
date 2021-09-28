@@ -1,6 +1,9 @@
-<div class="flex">
-  <%# Description xection %>
+<%# Description section %>
+<h4 class="w-full mt-1" data-toggle-target="taskDescription"><%= task.description %></h4>
 
+<input class="mt-1 w-full hidden bg-indigo-100 rounded-xl" form="task-edit" type="text" data-toggle-target="changeDescriptionInput" placeholder=<%= task.description %>><br>
+
+<div class="flex">
   <%# Items section %>
   <div class="flex-grow pr-4 flex flex-col">
     <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >

@@ -49,7 +49,7 @@ class TasksController < ApplicationController
     response = JSON.parse(request.body.read)
     @workflow = Workflow.find(params['workflow_id'])
     @task = Task.find(params[:id])
-    @task.update(title: response['task_title'])
+    @task.update(title: response['task_title'], description: response['task_description'])
 
     respond_to do |format|
       # format.html { redirect_to dashboard_path }

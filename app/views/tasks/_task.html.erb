@@ -7,11 +7,11 @@
       </button>
 
       <%# Task title edit form that replaces task title button above when edit task title button is pressed %>
-      <form class="hidden" id="task-edit data-toggle-target="editItemTitleForm" >
-        <input type="text" data-toggle-target="changeTitleInput" placeholder=<%= task.title %>><br>
+      <form class="hidden flex" id="task-edit" data-toggle-target="editItemTitleForm" >
+        <input type="text" data-toggle-target="changeTitleInput" placeholder=<%= task.title %> class=" mr-1 bg-indigo-100 rounded-xl"><br>
         <input type="hidden" data-toggle-target="currentTaskId" value="<%= task.id %>">
         <input type="hidden" data-toggle-target="currentWorkflowId" value="<%= workflow.id %>">
-        <input type="submit" data-action="click->toggle#updateTaskTitle">
+        <input type="submit" data-action="click->toggle#updateTaskTitle" class="mx-1 bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-1 px-1.5 border border-indigo-500 hover:border-transparent rounded">
       </form>
 
       <%#button to change task title %>
@@ -33,20 +33,7 @@
 
     </div>
 
-    <div class="hidden flex" data-item-target="taskcontent" data-toggle-target="hide" >
-
-      <%# task description / task desc input (delongs to title edit form) %>
-      <h4 class="w-full" data-toggle-target="taskDescription"><%= task.description %></h4>
-
-      <input class="hidden" form="task-edit" type="text" data-toggle-target="changeDescriptionInput"><br>
-
-      <ul data-item-target="list" >
-      </ul>
-
-      <% if !workflow.activated? %>
-        <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
-      <% end %>
-
+    <div class="hidden" data-item-target="taskcontent" data-toggle-target="hide" >
     </div>
 
   </div>

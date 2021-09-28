@@ -72,7 +72,7 @@ export default class extends Controller {
     .then((data) => {
       // console.log(data);
       this.taskTitleTarget.innerHTML = task_title
-      this.changeDescriptionInputTarget.innerHTML = task_description
+      this.taskDescriptionTarget.innerHTML = task_description
       this.editItemTitleFormTarget.classList.add("hidden");
       this.taskTitleTarget.classList.remove("hidden");
       this.taskDescriptionTarget.classList.remove("hidden");
