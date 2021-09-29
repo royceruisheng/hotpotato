@@ -2,8 +2,7 @@
   <div class="t-connector h-5"></div>
 <% end %>
 
-<div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="toggle">
-  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item toggle" class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
+  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item toggle notification" class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
 
     <div class="flex justify-between">
 
@@ -46,7 +45,7 @@
     </div>
 
     <%# this holds/inserts task_content %>
-    <div class="hidden" data-item-target="taskcontent" data-toggle-target="hide" >
+    <div class="relative hidden" data-item-target="taskcontent" data-toggle-target="hide" >
     </div>
 
   </div>
