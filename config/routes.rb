@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get :complete_mytask
       get :show_mytask
     end
+    get :email_notification, to: "notifications#email_notification"
   end
 
   resources :task_members, only: [:new]

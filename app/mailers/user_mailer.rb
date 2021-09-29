@@ -10,4 +10,10 @@ class UserMailer < ApplicationMailer
     @user = params[:user] # Instance variable => available in view
     mail(to: @user.email, subject: 'Welcome to Taskete')
   end
+
+  def email_notification
+    @user = params[:user]
+    @task = params[:task]
+    mail(to: @user.email, subject: 'You have new task!', body: "#{@task.title}")
+  end
 end
