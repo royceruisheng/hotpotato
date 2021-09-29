@@ -42,7 +42,7 @@ export default class extends Controller {
   hide() {
     this.hideTarget.classList.toggle('hidden')
   }
-  
+
   toggleHideTitleForm() {
     this.hideTarget.classList.toggle('hidden')
     this.taskTitleTarget.classList.toggle('hidden')
@@ -54,12 +54,11 @@ export default class extends Controller {
     e.preventDefault();
     const task_id = this.element.dataset.taskId
     const url = `/tasks/${task_id}`
-    
+
     fetch(url, {
       method: 'DELETE',
       headers: { 'X-CSRF-token': csrfToken() }
     })
-    .then(response => response.json())
     .then(this.element.parentElement.removeChild(this.element))
   }
 
