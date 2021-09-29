@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :complete_task, :show_mytask, :complete_mytask]
+  before_action :set_task, only: [:show, :update, :complete_task, :show_mytask, :complete_mytask]
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
@@ -119,7 +119,6 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :description)
   end
-
 
   def set_task
     @task = Task.find(params[:id])
