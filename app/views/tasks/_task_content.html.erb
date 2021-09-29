@@ -1,25 +1,39 @@
-<%# Items section %>
-<div class="flex-grow pr-4 flex flex-col">
-  <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
-    <% items.order(position: :asc).each do |item| %>
-      <li data-item-id="<%= item.id %>" data-task-id="<%= @task.id %>">
-        <%= render partial: 'items/item', locals: { item: item, workflow: @workflow, task: @task  } %>
-      </li>
+<%# Description section %>
+<%= simple_form_for task, method: 'POST' do |f| %>
+  <%= f.input :description,
+              label: false,
+              input_html: {class: "w-full text-sm rounded-xl bg-purple-100 mt-2 py-2 px-4 outline-none focus:bg-purple-300",
+                            autocomplete: "off"
+              },
+              autofocus: true %>
+  <%= f.button :submit, class: 'mb-2 px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer' %>
+<% end %>
+
+<div class="flex">
+  <%# Items section %>
+  <div class="flex-grow pr-4 flex flex-col">
+    <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+      <% items.order(position: :asc).each do |item| %>
+        <li data-item-id="<%= item.id %>" data-task-id="<%= @task.id %>">
+          <%= render partial: 'items/item', locals: { item: item, workflow: @workflow, task: @task  } %>
+        </li>
+      <% end %>
+    </ul>
+
+    <% if !workflow.activated? %>
+      <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
     <% end %>
-  </ul>
+  </div>
 
-  <% if !workflow.activated? %>
-    <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
-  <% end %>
+  <%# Members Section %>
+  <div class="border-l w-40 px-3 pt-2 flex flex-col">
+    <ul data-toggle-target="taskmemberslist" class="flex-grow">
+      <%= render partial: 'tasks/task_members', locals: {task_members: @task_members} %>
+    </ul>
+
+    <% if !workflow.activated? %>
+      <%= render partial: 'members/add_member', locals: {task: task} %>
+    <% end %>
+  </div>
 </div>
 
-<%# Members Section %>
-<div class="border-l w-40 px-3 pt-2 flex flex-col">
-  <ul data-toggle-target="taskmemberslist" class="flex-grow">
-    <%= render partial: 'tasks/task_members', locals: {task_members: @task_members} %>
-  </ul>
-
-  <% if !workflow.activated? %>
-    <%= render partial: 'members/add_member', locals: {task: task} %>
-  <% end %>
-</div>

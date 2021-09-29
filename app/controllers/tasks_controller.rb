@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :completed]
+  before_action :set_task, only: [:show, :update, :completed]
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
@@ -11,14 +11,6 @@ class TasksController < ApplicationController
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
   end
-
-  # def new
-  #   @task = Task.new
-  #   respond_to do |format|
-  #     format.html
-  #     format.text { render partial: 'tasks/taskform',locals: { task: @task }, formats: [:html] }
-  #   end
-  # end
 
   def create
     task_params = JSON.parse(request.body.read)
@@ -35,7 +27,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def show
+  def show # my_tasks
     @workflow = Workflow.find(params['workflow_id'])
 
     @task_members = @task.users
@@ -44,6 +36,25 @@ class TasksController < ApplicationController
       format.text { render partial: 'tasks/task_content', locals: { items: @task.items, task: @task, workflow: @workflow, task_members: @task_members }, formats: [:html] }
     end
   end
+
+  def update
+    @workflow = @task.workflow
+    @workflows = @workflow.creator.workflows
+
+    if @task.update(task_params)
+      render 'dashboard/index'
+    end
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    respond_to do |format|
+      format.json { head :ok }
+    end
+  end
+
+  private
 
   def completed
     @workflow = @task.workflow
@@ -65,12 +76,11 @@ class TasksController < ApplicationController
     end
   end
 
-  private
 
-  # AJAX no need strict params
-  # def task_params
-  #   params.require(:task).permit(:title, :workflow_id, :content)
-  # end
+  def task_params
+    params.require(:task).permit(:title, :description)
+  end
+
 
   def set_task
     @task = Task.find(params[:id])

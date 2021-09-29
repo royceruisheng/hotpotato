@@ -2,7 +2,7 @@ import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list", "taskslist", 'taskname', "member", "taskId" ]
+  static targets = ["new", "form", "list", "taskslist", 'taskname' ]
 
   connect() {
     console.log("task controller connected")
@@ -45,7 +45,7 @@ export default class extends Controller {
     event.preventDefault()
     let taskId = event.target.dataset.taskId;
     let workflowId = this.element.dataset.workflowId
-    let url = `/tasks/${taskId}/completed`
+    let url = `/tasks/${taskId}/complete_task`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
       .then(this.insertToWorkflowContent.bind(this))
