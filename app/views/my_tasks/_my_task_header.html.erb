@@ -1,0 +1,24 @@
+<%# Title %>
+
+<div class="flex flex-wrap items-center gap-2 mb-3">
+
+  <% unless task.completed? %>
+    <div class="shadow-md rounded-md py-1 px-2 text-sm">
+      <i class="fas fa-circle text-xs text-indigo-400"></i>
+      &nbsp;Current
+    </div>
+  <% else %>
+   <div class="shadow-md rounded-md py-1 px-2 text-sm">
+      <i class="fas fa-circle text-xs text-green-400"></i>
+      &nbsp;Completed
+    </div>
+  <% end %>
+
+  <div class="text-sm rounded-xl bg-indigo-100 py-2 px-4">
+    <%= task.title %>
+  </div>
+  <div class="text-sm rounded-xl border py-2 px-4">
+    <%= task.workflow.title %>
+  </div>
+
+</div>

@@ -1,27 +1,29 @@
-<% workflows.each do |workflow| %>
+<div id="workflow-tabs" class="mt-4 h-96 overflow-scroll">
+  <% workflows.each do |workflow| %>
 
-  <% if workflow == @workflow %>
-    <div data-workflow-id=<%= workflow.id %> data-controller="toggle-workflow" class="t-workflow-btn-active flex items-center justify-between">
-  <% else %>
-    <div data-workflow-id=<%= workflow.id %> data-controller="toggle-workflow" class="t-workflow-btn flex items-center justify-between">
-  <% end %>
-
-    <%= link_to workflow_path(workflow), class: "flex-grow" do %>
-        <%= workflow.title %>
+    <% if workflow == @workflow %>
+      <div data-workflow-id=<%= workflow.id %> data-controller="sidetabs" class="t-sidetab-btn-active flex items-center justify-between">
+    <% else %>
+      <div data-workflow-id=<%= workflow.id %> data-controller="sidetabs" class="t-sidetab-btn flex items-center justify-between">
     <% end %>
 
-    <label for="toggleBtn<%= workflow.id %>" data-action="change->toggle-workflow#activateToggle" class="cursor-pointer">
-      <!-- toggle -->
-      <div class="relative">
-        <% if workflow.activated? %>
-          <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden" checked="true">
-        <% else %>
-          <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden">
-        <% end %>
-        <div class="toggle-path bg-gray-200 w-9 h-5 rounded-full shadow-inner"></div>
-        <div class="toggle-circle absolute w-3.5 h-3.5 bg-white rounded-full shadow inset-y-.5 left-.5"></div>
-      </div>
-    </label>
-  </div>
+      <%= link_to workflow_path(workflow), class: "flex-grow" do %>
+          <%= workflow.title %>
+      <% end %>
 
-<% end %>
+      <label for="toggleBtn<%= workflow.id %>" data-action="change->sidetabs#activateWorkflowToggle" class="cursor-pointer">
+        <!-- toggle -->
+        <div class="relative">
+          <% if workflow.activated? %>
+            <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden" checked="true">
+          <% else %>
+            <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden">
+          <% end %>
+          <div class="toggle-path bg-gray-200 w-9 h-5 rounded-full shadow-inner"></div>
+          <div class="toggle-circle absolute w-3.5 h-3.5 bg-white rounded-full shadow inset-y-.5 left-.5"></div>
+        </div>
+      </label>
+    </div>
+
+  <% end %>
+</div>
