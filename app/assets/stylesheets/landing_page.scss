@@ -1,0 +1,18 @@
+#landing-page-footer {
+  display: block;
+  box-sizing: border-box;
+  height: 40vh;
+  width: auto;
+  background-color: rgb(79, 70, 229);
+  clip-path: ellipse(102% 100% at 81.2% 100%);
+}
+
+button {
+  &:hover .t-hover-white {
+    fill: white;
+    transition: 100ms;
+  }
+}
+.t-workflow-content {
+  min-height: 87vh;
+}
