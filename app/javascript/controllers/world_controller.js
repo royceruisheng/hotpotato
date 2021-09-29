@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs"
 
 export default class extends Controller {
-  static targets = ['contentmain']
+  static targets = ['contentmain', 'workflowslist']
 
   connect() {
     console.log('world controller connected')
