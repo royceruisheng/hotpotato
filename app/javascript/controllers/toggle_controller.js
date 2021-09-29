@@ -2,14 +2,14 @@ import { Controller } from "stimulus"
 import { csrfToken } from "@rails/ujs";
 
 export default class extends Controller {
-  static targets = [ "dropdown", "taskId", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "taskTitleForm" ]
+  static targets = [ "dropdown", "membersdropdown", "taskmemberslist", "hide", "taskTitle", "taskTitleForm" ]
 
   connect() {
     console.log("toggle controller connected");
   }
   //  TSK MEMBERS
   dropdownAddMembers() {
-    const url = "/task_members/new"
+    const url = `/tasks/${this.element.dataset.taskId}/task_members/new`
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
       .then(this.updateAndHide.bind(this))
@@ -22,7 +22,7 @@ export default class extends Controller {
 
   addMember(e) {
     e.preventDefault();
-    const task_id = this.taskIdTarget.dataset.taskId
+    const task_id = this.element.dataset.taskId
     const member_id = e.currentTarget.dataset.memberId
     const url = `/tasks/${task_id}/task_members/`
 
@@ -36,6 +36,7 @@ export default class extends Controller {
   }
   addMemberToTaskmembers(member) {
     this.taskmemberslistTarget.insertAdjacentHTML('beforeend', member)
+    e.currentTarget.parentElement.removeChild(e.currentTarget)
   }
 
   // generic hider
@@ -60,17 +61,5 @@ export default class extends Controller {
       headers: { 'X-CSRF-token': csrfToken() }
     })
     .then(this.element.parentElement.removeChild(this.element))
-  }
-
-  // MY TASKS
-  markMyTaskComplete(event) {
-    event.preventDefault()
-    let taskId = this.element.dataset.taskId
-    let workflowId = this.element.dataset.workflowId
-    let url = `/tasks/${taskId}/complete_mytask`
-    fetch(url)
-      // .then(response => response.text())
-      // .then(this.insertToWorkflowContent.bind(this))
-      // .then(this.checkWorkflowCompletion(workflowId))
   }
 }
