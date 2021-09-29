@@ -12,14 +12,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # def new
-  #   @task = Task.new
-  #   respond_to do |format|
-  #     format.html
-  #     format.text { render partial: 'tasks/taskform',locals: { task: @task }, formats: [:html] }
-  #   end
-  # end
-
   def create
     task_params = JSON.parse(request.body.read)
     @task = Task.new
@@ -61,6 +53,24 @@ class TasksController < ApplicationController
     end
   end
 
+    
+  def update
+    @workflow = @task.workflow
+    @workflows = @workflow.creator.workflows
+
+    if @task.update(task_params)
+      render 'dashboard/index'
+    end
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    respond_to do |format|
+      format.json { head :ok }
+    end
+  end
+
   def complete_task # should change to complete_task (many complete funcs arnd)
     @workflow = @task.workflow
     @tasks = @workflow.tasks
@@ -80,7 +90,7 @@ class TasksController < ApplicationController
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
   end
-
+  
   def complete_mytask
     @workflow = @task.workflow
     @tasks = @workflow.tasks
@@ -104,10 +114,10 @@ class TasksController < ApplicationController
 
   private
 
-  # AJAX no need strict params
-  # def task_params
-  #   params.require(:task).permit(:title, :workflow_id, :content)
-  # end
+  def task_params
+    params.require(:task).permit(:title, :description)
+  end
+
 
   def set_task
     @task = Task.find(params[:id])
