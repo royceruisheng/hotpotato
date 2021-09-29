@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   put '/activate', to: 'workflows#activate', as: :activate
 
-  resources :tasks, only: [:index, :new, :create] do
+  resources :tasks, only: [:index, :new, :create, :destroy, :update] do
     resources :items, only: [:new]
     resources :task_members, only: [:create]
     member do
