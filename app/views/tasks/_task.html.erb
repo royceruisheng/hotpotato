@@ -1,6 +1,6 @@
 
 <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="toggle">
-  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item toggle" class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
+  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item toggle notification" class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
 
     <div class="flex justify-between">
 
@@ -19,12 +19,11 @@
                       },
                       autofocus: true %>
         <% end %>
-        
+
         <%# button to delete task %>
         <% unless workflow.activated? %>
           <button class="text-xs text-gray-400" data-action="click->toggle#deleteTask">
             <i class="fas fa-trash"></i>
-            Delete task
           </button>
         <% end %>
 
@@ -35,7 +34,13 @@
           <i class="fas fa-check"></i> Completed
         </button>
       <% elsif task.completed == "current" %>
-        <button data-action="click->task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-sm' data-task-id=<%= task.id %>>
+        <% unless workflow.activated?%>
+            <button class="text-xs text-gray-400" data-action="click->notification#sendemail">
+              <i class="far fa-envelope"></i>
+            </button>
+        <% end %>
+
+        <button data-action="click->task#markComplete" class='inline-block px-2 <%= task.current? ? "text-white" : "text-indigo-600" %> text-sm' data-task-id=<%= task.id %>>
           <i class="far fa-check-square"></i> Mark as complete
         </button>
       <% end %>
