@@ -43,16 +43,16 @@ export default class extends Controller {
     this.hideTarget.classList.toggle('hidden')
   }
 
-  // MY TASKS
-  markMyTaskComplete(event) {
-    event.preventDefault()
-    let taskId = this.element.dataset.taskId
-    let workflowId = this.element.dataset.workflowId
-    let url = `/tasks/${taskId}/complete_task`
-    fetch(url, { headers: { 'Accept': 'text/plain' } })
-      .then(response => response.text())
-      // .then(this.insertToWorkflowContent.bind(this))
-      // .then(this.checkWorkflowCompletion(workflowId))
-  }
+  // // MY TASKS
+  // markMyTaskComplete(event) {
+  //   event.preventDefault()
+  //   let taskId = this.element.dataset.taskId
+  //   let workflowId = this.element.dataset.workflowId
+  //   let url = `/tasks/${taskId}/complete_task`
+  //   fetch(url, { headers: { 'Accept': 'text/plain' } })
+  //     .then(response => response.text())
+  //     // .then(this.insertToWorkflowContent.bind(this))
+  //     // .then(this.checkWorkflowCompletion(workflowId))
+  // }
 
 }
