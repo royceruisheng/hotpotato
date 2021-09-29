@@ -1,30 +1,32 @@
-<div data-controller="toggle">
+<div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="toggle">
   <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item" class="t-card border p-4 mb-2 mx-6" data-toggle-target="taskCard">
     <div class="flex justify-between">
 
-      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#hide" data-toggle-target="taskTitle">
+      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#toggleHideTitleForm" data-toggle-target="taskTitle">
         <%= task.title %>
       </button>
 
-      <%# Task title edit form that replaces task title button above when edit task title button is pressed %>
-      <form class="hidden flex" id="task-edit" data-toggle-target="editItemTitleForm" >
-        <input type="text" data-toggle-target="changeTitleInput" placeholder=<%= task.title %> class=" mr-1 bg-indigo-100 rounded-xl"><br>
-        <input type="hidden" data-toggle-target="currentTaskId" value="<%= task.id %>">
-        <input type="hidden" data-toggle-target="currentWorkflowId" value="<%= workflow.id %>">
-        <input type="submit" data-action="click->toggle#updateTaskTitle" class="mx-1 bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-1 px-1.5 border border-indigo-500 hover:border-transparent rounded">
-      </form>
+      <%# Task title form %>
+      <div class="flex-grow flex justify-between items-center hidden" data-toggle-target="taskTitleForm">
 
-      <% unless workflow.activated? %>
-        <%#button to edit task %>
-        <button class="p-2 shadow-md rounded-full hidden" data-action="click->toggle#displayEditTitleForm" data-toggle-target="editItemButton">
-          <i class="fas fa-edit"></i>
-        </button>
-
+        <%= simple_form_for task, method: 'PATCH' do |f| %>
+          <%= f.input :title,
+                      label: false,
+                      input_html: {class: "w-full text-sm rounded-xl bg-purple-100 py-2 px-4 outline-none focus:bg-purple-300",
+                                  autocomplete: "off"
+                      },
+                      autofocus: true %>
+        <% end %>
+        
         <%# button to delete task %>
-        <button class="p-2 shadow-md rounded-full hidden" data-action="click->toggle#deleteTask" data-toggle-target="deleteItemButton">
-          <i class="fas fa-trash"></i>
-        </button>
-      <% end %>
+        <% unless workflow.activated? %>
+          <button class="text-xs text-gray-400" data-action="click->toggle#deleteTask">
+            <i class="fas fa-trash"></i>
+            Delete task
+          </button>
+        <% end %>
+
+      </div>
 
       <% if task.completed == "completed" %>
         <button class='inline-block text-gray-500 text-sm disabled'>

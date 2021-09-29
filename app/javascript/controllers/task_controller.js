@@ -2,7 +2,7 @@ import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "list", "taskslist", 'taskname', "member", "taskId", "taskTitle", "changeTitleInput" ]
+  static targets = ["new", "form", "list", "taskslist", 'taskname' ]
 
   connect() {
     console.log("task controller connected")
@@ -54,5 +54,4 @@ export default class extends Controller {
   insertToWorkflowContent(tasklist) {
     document.getElementById('task-list').outerHTML = tasklist
   }
-
 }

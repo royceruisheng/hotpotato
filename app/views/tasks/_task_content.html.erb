@@ -1,7 +1,13 @@
 <%# Description section %>
-<h4 class="w-full mt-1" data-toggle-target="taskDescription"><%= task.description %></h4>
-
-<input class="mt-1 w-full hidden bg-indigo-100 rounded-xl" form="task-edit" type="text" data-toggle-target="changeDescriptionInput" placeholder=<%= task.description %>><br>
+<%= simple_form_for task, method: 'POST' do |f| %>
+  <%= f.input :description,
+              label: false,
+              input_html: {class: "w-full text-sm rounded-xl bg-purple-100 mt-2 py-2 px-4 outline-none focus:bg-purple-300",
+                            autocomplete: "off"
+              },
+              autofocus: true %>
+  <%= f.button :submit, class: 'mb-2 px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer' %>
+<% end %>
 
 <div class="flex">
   <%# Items section %>
