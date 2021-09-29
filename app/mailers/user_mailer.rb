@@ -11,14 +11,14 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome to Taskete')
   end
 
-  def email_notification
-    @user = params[:user]
-    @task = params[:task]
-    mail(to: @user.email, subject: 'You have new task!', body: "#{@task.title}")
-  end
+  # def email_notification
+  #   @user = params[:user]
+  #   @task = params[:task]
+  #   mail(to: @user.email, subject: 'You have new task!', body: "#{@task.title}")
+  # end
 
   def task_notification
-    @user = params[:recipient]
+    @user = params[:recipient].user
     @task = params[:task]
     mail(to: @user.email, subject: 'You have new task!', body: "#{@task.title}")
   end

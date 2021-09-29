@@ -8,5 +8,4 @@ class NotificationsController < ApplicationController
       format.text { head :ok }
     end
   end
-
 end
