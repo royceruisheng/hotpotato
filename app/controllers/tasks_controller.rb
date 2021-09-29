@@ -57,16 +57,20 @@ class TasksController < ApplicationController
   private
 
   def completed
-    @task.update(completed: "completed")
-    unless @task.lower_item.nil?
-      @next_task = @task.lower_item
-      @next_task.update(completed: "current")
-    end
-    
     @workflow = @task.workflow
     @tasks = @workflow.tasks
     @item = Item.new
-    
+
+    @task.set_completed
+
+    if @task.lower_item.nil?
+      @workflow.complete
+    else
+      @workflow.uncomplete
+      @next_task = @task.lower_item
+      @next_task.set_current
+    end
+
     respond_to do |format|
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end

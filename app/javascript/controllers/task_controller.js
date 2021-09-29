@@ -44,14 +44,28 @@ export default class extends Controller {
   markComplete(event){
     event.preventDefault()
     let taskId = event.target.dataset.taskId;
+    let workflowId = this.element.dataset.workflowId
     let url = `/tasks/${taskId}/completed`
-    console.log(url)
     fetch(url, { headers: { 'Accept': 'text/plain' } })
       .then(response => response.text())
       .then(this.insertToWorkflowContent.bind(this))
+      .then(this.checkWorkflowCompletion(workflowId))
   }
 
   insertToWorkflowContent(tasklist) {
     document.getElementById('task-list').outerHTML = tasklist
+  }
+
+  checkWorkflowCompletion(workflowId) {
+    let url = `/workflows/${workflowId}/completion`
+    fetch(url, { headers: { 'Accept': 'text/plain' } })
+      // .then(res => console.log(res))
+      .then(response => response.text())
+      .then(this.insertToWorkflowStatus.bind(this))
+  }
+
+  insertToWorkflowStatus(workflowstatus) {
+    console.log(workflowstatus)
+    document.getElementById('workflow-status').outerHTML = workflowstatus
   }
 }

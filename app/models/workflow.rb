@@ -11,6 +11,26 @@ class Workflow < ApplicationRecord
     self.activated
   end
 
+  def activate
+    self.update(activated: true)
+  end
+
+  def deactivate
+    self.update(activated: false)
+  end
+
+  def completed?
+    self.completed
+  end
+
+  def complete
+    self.update(completed: true)
+  end
+
+  def uncomplete
+    self.update(completed: false)
+  end
+
   # def async_update
   #   UpdateWorkflowJob.perform_later(self)
   # end
