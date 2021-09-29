@@ -4,4 +4,10 @@ class PagesController < ApplicationController
       redirect_to dashboard_path
     end
   end
+
+  def product
+  end
+
+  def company
+  end
 end
