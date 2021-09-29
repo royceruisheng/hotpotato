@@ -48,8 +48,7 @@ class TasksController < ApplicationController
   end
 
   def show_mytask # my individual task
-    next_task_position = @task.position + 1
-    @next_task = @task.workflow.tasks.find_by(position: next_task_position)
+    @next_task = @task.lower_item
 
     if @task.completed?
       respond_to do |format|
