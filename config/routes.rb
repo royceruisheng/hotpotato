@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :task_members, only: [:create]
     member do
       get :complete_task
+      get :complete_mytask
       get :show_mytask
     end
   end
