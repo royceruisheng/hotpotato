@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def index
-    @workflows = Workflow.limit(20).reverse_order
+    @workflows = current_user.workflows.limit(20).reverse_order
     @workflow = false # For workflow-content to display empty
 
     render 'dashboard/index'
