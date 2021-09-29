@@ -4,7 +4,7 @@
 <%# My Tasks content %>
 <% if task.workflow.activated? %>
 <%# Content inside here %>
-  <div data-controller="toggle mytask" class="p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg"
+  <div data-controller="toggle" class="p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg"
        data-task-id=<%= task.id %> data-workflow-id=<%= task.workflow.id %>
   >
 
@@ -30,7 +30,7 @@
 
     </div>
 
-    <button data-action="click->mytask#markMyTaskComplete" class="t-btn-outline text-sm justify-center">
+    <button data-action="click->toggle#markMyTaskComplete" class="t-btn-outline text-sm justify-center">
       Complete Task
     </button>
 
