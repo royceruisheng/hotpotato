@@ -34,8 +34,8 @@
           <i class="fas fa-check"></i> Completed
         </button>
       <% elsif task.completed == "current" %>
-        <% unless workflow.activated?%>
-            <button class="text-xs text-gray-400" data-action="click->notification#sendemail">
+        <% if workflow.activated?%>
+            <button class="text-xs text-gray-400 bg-white rounded-full w-6 h-6" data-action="click->notification#sendemail">
               <i class="far fa-envelope"></i>
             </button>
         <% end %>
