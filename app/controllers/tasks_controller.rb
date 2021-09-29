@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :complete_task, :show_mytask]
+  before_action :set_task, only: [:show, :complete_task, :show_mytask, :complete_mytask]
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
@@ -79,6 +79,27 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
+  end
+
+  def complete_mytask
+    @workflow = @task.workflow
+    @tasks = @workflow.tasks
+    @item = Item.new
+
+    @task.set_completed
+
+    if @task.lower_item.nil?
+      @workflow.complete
+    else
+      @workflow.uncomplete
+      @next_task = @task.lower_item
+      @next_task.set_current
+    end
+
+    @my_tasks = current_user.tasks.where(completed: 'current')
+    @completed_tasks = current_user.tasks.where(completed: 'completed')
+
+    redirect_to current_path
   end
 
   private
