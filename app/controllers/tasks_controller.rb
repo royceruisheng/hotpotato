@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.text { render partial: 'tasks/new_task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
+        format.text { render partial: 'tasks/task', locals: { task: @task, tasks: @task.workflow.tasks, workflow: @task.workflow }, formats: [:html] }
       end
     end
   end

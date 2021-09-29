@@ -1,5 +1,5 @@
 <%# Description section %>
-<%= simple_form_for task, method: 'POST' do |f| %>
+<%= simple_form_for task, method: 'PATCH' do |f| %>
   <%= f.input :description, as: :string, placeholder: 'Description',
               label: false,
               input_html: {class: "w-full h-16 text-sm rounded-xl bg-purple-100 my-2 py-2 px-4 outline-none focus:bg-purple-300",

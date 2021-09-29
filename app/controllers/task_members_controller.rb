@@ -18,8 +18,8 @@ class TaskMembersController < ApplicationController
       respond_to do |format|
         format.text { render partial: 'tasks/task_member', locals: { member: user }, formats: [:html] }
       end
-    # will not return if save is false(thus preventing errors)
     end
+    # will not return if save is false(thus preventing errors)
   end
 
   private
