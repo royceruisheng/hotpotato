@@ -18,7 +18,7 @@ class UserMailer < ApplicationMailer
   # end
 
   def task_notification
-    @user = User.find(params[:recipient].user_id)
+    @user = params[:recipient]
     @task = params[:task]
     mail(to: @user.email, subject: 'You have new task!', body: "#{@task.title}")
   end
