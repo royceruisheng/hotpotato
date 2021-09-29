@@ -1,4 +1,4 @@
-<% unless task.first? %>
+<% unless task.workflow.tasks.length == 1 %>
   <div class="t-connector h-5"></div>
 <% end %>
 

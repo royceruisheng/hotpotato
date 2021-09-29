@@ -53,7 +53,7 @@ class TasksController < ApplicationController
     end
   end
 
-    
+
   def update
     @workflow = @task.workflow
     @workflows = @workflow.creator.workflows
@@ -90,7 +90,7 @@ class TasksController < ApplicationController
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
   end
-  
+
   def complete_mytask
     @workflow = @task.workflow
     @tasks = @workflow.tasks
@@ -109,7 +109,9 @@ class TasksController < ApplicationController
     @my_tasks = current_user.tasks.where(completed: 'current')
     @completed_tasks = current_user.tasks.where(completed: 'completed')
 
-    redirect_to current_path
+    respond_to do |format|
+      format.html { render 'my_tasks/index' }
+    end
   end
 
   private

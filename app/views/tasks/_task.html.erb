@@ -1,53 +1,53 @@
 
-<div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="toggle">
-  <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item toggle" class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
 
-    <div class="flex justify-between">
+<div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item toggle" class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>" >
 
-      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#toggleHideTitleForm" data-toggle-target="taskTitle">
-        <%= task.title %>
-      </button>
+  <div class="flex justify-between">
 
-      <%# Task title form %>
-      <div class="flex-grow flex justify-between items-center hidden" data-toggle-target="taskTitleForm">
+    <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#toggleHideTitleForm" data-toggle-target="taskTitle">
+      <%= task.title %>
+    </button>
 
-        <%= simple_form_for task, method: 'PATCH' do |f| %>
-          <%= f.input :title,
-                      label: false,
-                      input_html: {class: "w-full text-sm rounded-xl bg-purple-100 py-2 px-4 outline-none focus:bg-purple-300",
-                                  autocomplete: "off"
-                      },
-                      autofocus: true %>
-        <% end %>
-        
-        <%# button to delete task %>
-        <% unless workflow.activated? %>
-          <button class="text-xs text-gray-400" data-action="click->toggle#deleteTask">
-            <i class="fas fa-trash"></i>
-            Delete task
-          </button>
-        <% end %>
+    <%# Task title form %>
+    <div class="flex-grow flex justify-between items-center hidden" data-toggle-target="taskTitleForm">
 
-      </div>
+      <%= simple_form_for task, method: 'PATCH', namespace: task.id do |f| %>
+        <%= f.input :title,
+                    label: false,
+                    input_html: {class: "w-full text-sm rounded-xl bg-purple-100 py-2 px-4 outline-none focus:bg-purple-300",
+                                autocomplete: "off"
+                    },
+                    autofocus: true %>
+      <% end %>
 
-      <% if task.completed == "completed" %>
-        <button class='inline-block text-gray-500 text-sm disabled'>
-          <i class="fas fa-check"></i> Completed
-        </button>
-      <% elsif task.completed == "current" %>
-        <button data-action="click->task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-sm' data-task-id=<%= task.id %>>
-          <i class="far fa-check-square"></i> Mark as complete
+      <%# button to delete task %>
+      <% unless workflow.activated? %>
+        <button class="text-xs text-gray-400" data-action="click->toggle#deleteTask">
+          <i class="fas fa-trash"></i>
+          Delete task
         </button>
       <% end %>
 
     </div>
 
-    <%# this holds/inserts task_content %>
-    <div class="hidden" data-item-target="taskcontent" data-toggle-target="hide" >
-    </div>
+    <% if task.completed == "completed" %>
+      <button class='inline-block text-gray-500 text-sm disabled'>
+        <i class="fas fa-check"></i> Completed
+      </button>
+    <% elsif task.completed == "current" %>
+      <button data-action="click->task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-sm' data-task-id=<%= task.id %>>
+        <i class="far fa-check-square"></i> Mark as complete
+      </button>
+    <% end %>
 
   </div>
+
+  <%# this holds/inserts task_content %>
+  <div class="hidden" data-item-target="taskcontent" data-toggle-target="hide" >
+  </div>
+
 </div>
+
 
 <% unless tasks.last == task %>
   <div class="t-connector h-5"></div>
