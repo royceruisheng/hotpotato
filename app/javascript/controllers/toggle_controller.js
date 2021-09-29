@@ -23,7 +23,8 @@ export default class extends Controller {
   addMember(e) {
     e.preventDefault();
     const task_id = this.element.dataset.taskId
-    const member_id = e.currentTarget.dataset.memberId
+    const member_btn = e.currentTarget
+    const member_id = member_btn.dataset.memberId
     const url = `/tasks/${task_id}/task_members/`
 
     fetch(url, {
@@ -32,11 +33,14 @@ export default class extends Controller {
       body: JSON.stringify({ task_id: task_id, member_id: member_id })
     })
     .then(response => response.text())
-    .then(this.addMemberToTaskmembers.bind(this))
+    .then(data => {
+      this.addMemberToTaskmembers(data)
+      member_btn.parentElement.removeChild(member_btn)
+    })
   }
+
   addMemberToTaskmembers(member) {
     this.taskmemberslistTarget.insertAdjacentHTML('beforeend', member)
-    e.currentTarget.parentElement.removeChild(e.currentTarget)
   }
 
   // generic hider
