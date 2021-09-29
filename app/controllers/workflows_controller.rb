@@ -23,7 +23,8 @@ class WorkflowsController < ApplicationController
   end
 
   def update
-    @workflow.update(workflow_params) # updates title
+    @workflow = Workflow.find(params[:id])
+    @workflow.update(restful_workflow_params) # updates title
 
     render 'dashboard/index'
   end
@@ -53,7 +54,7 @@ class WorkflowsController < ApplicationController
 
   private
 
-  def workflow_params
+  def restful_workflow_params
     params.require(:workflow).permit(:title)
   end
 
@@ -67,6 +68,11 @@ class WorkflowsController < ApplicationController
   end
 
   def update_first_task_as_current(workflow)
+    # first_task = workflow.tasks.first
+    # if first_task.pending? # setting workflow.uncomplete in tasks#create instead
+    #   first_task.set_current # waiting to set completion check when deleting task
+    # end
+
     workflow.tasks.each do |task|
       if task.completed? && task.lower_item.nil?
         workflow.complete
