@@ -3,7 +3,7 @@ class TasksController < ApplicationController
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
-    @tasks = @workflow.tasks
+    @tasks = @workflow.tasks.order(position: :asc)
     @item = Item.new
     #change it to include task_id when task is connected
 

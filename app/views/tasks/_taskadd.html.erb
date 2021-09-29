@@ -1,11 +1,11 @@
 <div class="flex justify-center">
-  <button class="mx-6 my-5 flex items-center p-2 text-sm rounded-lg shadow-md" data-action="click->task#new" data-task-target="new">
+  <button class="mx-6 my-2 flex items-center p-2 text-sm rounded-lg shadow-md" data-action="click->task#new" data-task-target="new">
     <i class="fas fa-plus text-xs mx-2"></i>
     <span class="text-gray-400">Add a new task</span>
   </button>
 </div>
 
-<%= simple_form_for @task, remote: true, html: {'data-task-target': 'form', class:"my-4 px-6 hidden"} do |f| %>
+<%= simple_form_for @task, remote: true, html: {'data-task-target': 'form', class:"my-2 px-6 hidden"} do |f| %>
   <%= f.input :title,
               label: false,
               input_html: {
