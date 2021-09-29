@@ -17,10 +17,10 @@
     </button>
   </div>
 
-  <%# nav tab %>
+  <%# tab %>
   <div class="flex gap-4 my-5">
-    <%= link_to 'My Tasks', current_path, class: 't-tab' %>
-    <%= link_to 'Workflows', dashboard_path, class: 't-tab-active' %>
+    <button class="t-tab-active" >My Workflows</button>
+    <button class="t-tab" >My Tasks</button>
   </div>
 
   <%# search bar form to search within tab %>
@@ -36,7 +36,9 @@
     <input type="search" placeholder="Workflows" class="t-input-invis flex-grow">
   </form>
 
-  <%# workflows tabs list %>
-  <%= render 'shared/workflows_tabs', workflows: @workflows %>
+  <%# workflows list %>
+  <div data-world-target="workflowslist" class="mt-4 h-96 overflow-scroll">
+    <%= render 'shared/workflows_tabs', workflows: @workflows %>
+  </div>
 
 </div>

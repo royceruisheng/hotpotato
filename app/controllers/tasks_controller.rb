@@ -27,7 +27,7 @@ class TasksController < ApplicationController
     end
   end
 
-  def show # my_tasks
+  def show
     @workflow = Workflow.find(params['workflow_id'])
 
     @task_members = @task.users
@@ -75,7 +75,7 @@ class TasksController < ApplicationController
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
   end
-
+  
 
   def task_params
     params.require(:task).permit(:title, :description)

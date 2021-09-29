@@ -18,7 +18,7 @@
                       },
                       autofocus: true %>
         <% end %>
-
+        
         <%# button to delete task %>
         <% unless workflow.activated? %>
           <button class="text-xs text-gray-400" data-action="click->toggle#deleteTask">
@@ -46,7 +46,3 @@
 
   </div>
 </div>
-
-<% unless tasks.last == task %>
-  <div class="t-connector h-5"></div>
-<% end %>
