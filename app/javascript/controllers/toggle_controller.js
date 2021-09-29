@@ -42,7 +42,7 @@ export default class extends Controller {
   hide() {
     this.hideTarget.classList.toggle('hidden')
   }
-  
+
   toggleHideTitleForm() {
     this.hideTarget.classList.toggle('hidden')
     this.taskTitleTarget.classList.toggle('hidden')
@@ -55,7 +55,6 @@ export default class extends Controller {
     const task_id = this.element.dataset.taskId
     const url = `/tasks/${task_id}`
 
-<<<<<<< HEAD
     fetch(url, {
       method: 'DELETE',
       headers: { 'X-CSRF-token': csrfToken() }
@@ -63,7 +62,6 @@ export default class extends Controller {
     .then(response => response.json())
     .then(this.element.parentElement.removeChild(this.element))
   }
-=======
   // MY TASKS
   markMyTaskComplete(event) {
     event.preventDefault()
@@ -76,5 +74,4 @@ export default class extends Controller {
       // .then(this.checkWorkflowCompletion(workflowId))
   }
 
->>>>>>> 64f9a7b (trying to move complete task to mytasks)
 }

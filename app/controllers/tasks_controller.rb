@@ -1,13 +1,5 @@
 class TasksController < ApplicationController
-<<<<<<< HEAD
-<<<<<<< HEAD
   before_action :set_task, only: [:show, :update, :completed]
-=======
-  before_action :set_task, only: [:show, :completed, :show_mytask]
->>>>>>> 5877c07 (displays next task)
-=======
-  before_action :set_task, only: [:show, :complete_task, :show_mytask]
->>>>>>> 64f9a7b (trying to move complete task to mytasks)
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
@@ -28,11 +20,9 @@ class TasksController < ApplicationController
     @item = Item.new
 
     if @task.save
-      @task.workflow.uncomplete
-
       respond_to do |format|
         format.html
-        format.text { render partial: 'tasks/new_task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
+        format.text { render partial: 'tasks/task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
       end
     end
   end
@@ -47,7 +37,6 @@ class TasksController < ApplicationController
     end
   end
 
-<<<<<<< HEAD
   def update
     @workflow = @task.workflow
     @workflows = @workflow.creator.workflows
@@ -67,32 +56,7 @@ class TasksController < ApplicationController
 
   private
 
-=======
-  def show_mytask # my individual task
-    next_task_position = @task.position + 1
-    @next_task = @task.workflow.tasks.find_by(position: next_task_position)
-
-    if @task.completed?
-      respond_to do |format|
-        format.text { render partial: 'my_tasks/completed_content', locals: { task: @task, next_task: @next_task }, formats: [:html] }
-      end
-    else
-      respond_to do |format|
-        format.text { render partial: 'my_tasks/my_task_content', locals: { task: @task, next_task: @next_task }, formats: [:html] }
-      end
-    end
-  end
-
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 0cad269 (no click selected tabs again)
   def completed
-=======
-  def completed # should change to complete_task (many complete funcs arnd)
->>>>>>> 5877c07 (displays next task)
-=======
-  def complete_task # should change to complete_task (many complete funcs arnd)
->>>>>>> 64f9a7b (trying to move complete task to mytasks)
     @workflow = @task.workflow
     @tasks = @workflow.tasks
     @item = Item.new
@@ -111,7 +75,7 @@ class TasksController < ApplicationController
       format.text { render partial: 'tasks', locals: { tasks: @tasks, workflow: @workflow }, formats: [:html] }
     end
   end
-  
+
 
   def task_params
     params.require(:task).permit(:title, :description)
