@@ -1,6 +1,6 @@
 class WorkflowsController < ApplicationController
   before_action :set_workflows_and_task, only:[:create, :show, :update, :activate]
-  before_action :set_workflow, only: [:show, :update, :completion]
+  before_action :set_workflow, only: [:show, :update, :completion, :destroy]
 
   def create
     title_check = Workflow.where(title: 'New Workflow')
@@ -50,6 +50,12 @@ class WorkflowsController < ApplicationController
       format.text { render partial: 'workflows/workflow_status', locals: { workflow: @workflow }, formats: [:html] }
     end
     # not returning the correct status
+  end
+
+  def destroy
+    @workflow.destroy unless @workflow.activated?
+
+    redirect_to dashboard_path
   end
 
   private
