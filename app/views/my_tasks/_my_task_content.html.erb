@@ -17,9 +17,8 @@
         <ul class="shadow-inner t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= task.id %>>
           <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
 
-          <% task.items.order(position: :asc).each do |item| %>
-            <%= render partial: 'items/items', locals: { items: task.items, workflow: @workflow, task: @task  } %>
-          <% end %>
+          <%= render partial: 'items/items', locals: { items: task.items, workflow: @workflow, task: @task  } %>
+
         </ul>
       </div>
 

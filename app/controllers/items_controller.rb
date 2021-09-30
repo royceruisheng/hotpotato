@@ -46,9 +46,13 @@ class ItemsController < ApplicationController
   end
 
   def move
+    user_item = @item.user_items.find_by(user_id: current_user.id)
     @item.insert_at(params[:position].to_i)
-    if @item.update(move_item_params) && @item.user_items.find_by(user_id: current_user.id).destroy
+    if @item.update(move_item_params)
       head :ok
+    end
+    if user_item
+      @item.user_items.find_by(user_id: current_user.id).destroy
     end
   end
 

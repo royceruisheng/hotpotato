@@ -1,5 +1,5 @@
 <div data-task-target="list" id="task-list">
-  <% @tasks.each do |t| %> <!-- order done in tasks#index -->
+  <% @tasks.order(position: :asc).each do |t| %> <!-- order done in tasks#index -->
     <%= render partial: 'task', locals: { tasks: @tasks, task: t, workflow: @workflow } %>
   <% end %>
 </div>
