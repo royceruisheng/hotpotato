@@ -14,12 +14,11 @@
 
       <%# Items Section %>
       <div class="flex-grow pr-4">
-        <ul class="t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+        <ul class="t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= task.id %>>
+          <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
+
           <% task.items.order(position: :asc).each do |item| %>
-
-            <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
             <%= render partial: 'items/items', locals: { items: task.items, workflow: @workflow, task: @task  } %>
-
           <% end %>
         </ul>
       </div>
@@ -51,7 +50,7 @@
     <div class="text-sm pb-4"><%= next_task.description %></div>
     <%# nexttask - Items section %>
       <div class="flex-grow pr-4 flex flex-col">
-        <ul class="t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
+        <ul class="t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= next_task.id %>>
 
           <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
           <%= render partial: 'items/items', locals: { items: next_task.items, workflow: next_task.workflow, task: next_task  } %>
