@@ -39,10 +39,10 @@
   <%# task tabs list %>
   <div class="mt-4 h-96 overflow-scroll">
 
-    <div class="text-gray-100 border-b border-indigo-400">To do</div>
+    <div class="text-gray-100 border-b border-indigo-400 pb-1 mb-3">To do</div>
     <%= render 'my_tasks/tasks_tabs', tasks: @my_tasks %>
 
-    <div class="text-gray-100 border-b border-indigo-400">Completed</div>
+    <div class="text-gray-100 border-b border-indigo-400 pb-1 mt-6 mb-3">Completed</div>
     <%= render 'my_tasks/tasks_tabs', tasks: @completed_tasks %>
   </div>
 

@@ -38,7 +38,10 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :create, :show, :destroy] do
     member do
       patch :move
+      patch :move_repo
     end
   end
+
+
 
 end
