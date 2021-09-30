@@ -39,10 +39,6 @@ export default class extends Controller {
     })
   }
 
-  closeMembersDropdown() {
-    this.membersdropdownTarget.classList.add('hidden')
-  }
-
   addMemberToTaskmembers(member) {
     this.taskmemberslistTarget.insertAdjacentHTML('beforeend', member)
   }

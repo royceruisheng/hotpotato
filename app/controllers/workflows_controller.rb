@@ -28,7 +28,12 @@ class WorkflowsController < ApplicationController
         "
         # OR workflows.user.first_name @@ :query \
         # OR workflows.user.last_name @@ :query \
-    @workflows = Workflow.where(sql_query, query: "%#{params[:query]}%")
+
+    if params[:query] == ''
+      @workflows = Workflow.all
+    else
+      @workflows = Workflow.where(sql_query, query: "%#{params[:query]}%")
+    end
 
     render 'dashboard/index'
   end

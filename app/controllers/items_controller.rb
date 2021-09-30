@@ -37,8 +37,12 @@ class ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
     @item.destroy
-    redirect_to dashboard_path
+
+    respond_to do |format|
+      format.json { head :ok }
+    end
   end
 
   def move

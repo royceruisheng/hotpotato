@@ -2,7 +2,7 @@ import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["new", "newform", "form", "taskcontent", "list", "itemtitle"]
+  static targets = ["new", "newform", "form", "taskcontent", "list", "itemtitle", "itemCard"]
 
   connect() {
     this.itemsDownloaded = false;
@@ -80,5 +80,20 @@ export default class extends Controller {
 
   addMember(member) {
     this.memberTarget.insertAdjacentHTML( 'afterbegin', User.find(task_member_id).first_name )
+  }
+
+  deleteItem(e) {
+    e.preventDefault();
+    // console.log("delete item connected");
+    const item_id = this.itemCardTarget.dataset.itemId
+    const url = `/items/${item_id}`
+    debugger
+    
+    fetch(url, {
+      method: 'DELETE',
+      headers: { 'X-CSRF-token': csrfToken() }
+    })
+    .then(this.itemCardTarget.remove()
+    )
   }
 }
