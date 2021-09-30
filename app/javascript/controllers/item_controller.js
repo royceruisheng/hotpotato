@@ -49,7 +49,6 @@ export default class extends Controller {
   }
 
   insertIntoList(newItem) {
-    this.listTarget.innerHTML = ''
     this.listTarget.insertAdjacentHTML('beforeend', newItem)
     this.formTarget.classList.toggle("hidden")
     this.newTarget.classList.toggle("hidden")

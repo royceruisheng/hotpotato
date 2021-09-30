@@ -9,11 +9,9 @@
     <%# Items Section %>
     <div class="flex-grow pr-4">
       <ul data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
-        <% task.items.order(position: :asc).each do |item| %>
-          <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
-            <%= render partial: 'items/item', locals: { item: item, workflow: task.workflow, task: task  } %>
-          </li>
-        <% end %>
+
+        <%= render partial: 'items/items', locals: { items: task.items, workflow: task.workflow, task: task  } %>
+
       </ul>
     </div>
 
@@ -41,11 +39,9 @@
   <%# nexttask - Items section %>
     <div class="flex-grow pr-4 flex flex-col">
       <ul class="flex-grow" >
-        <% next_task.items.order(position: :asc).each do |item| %>
-          <li data-item-id="<%= item.id %>" data-task-id="<%= task.id %>">
-            <%= render partial: 'items/item', locals: { item: item, workflow: next_task.workflow, task: next_task  } %>
-          </li>
-        <% end %>
+
+        <%= render partial: 'items/items', locals: { items: next_task.items, workflow: next_task.workflow, task: next_task  } %>
+
       </ul>
     </div>
 

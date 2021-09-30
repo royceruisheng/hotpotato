@@ -17,7 +17,7 @@ export default class extends Controller {
   end(event){
     let itemId = event.item.dataset.itemId
     // let taskId = event.to.children[0].dataset.taskId
-    let taskId = event.to.children[0].dataset
+    let taskId = event.to.children[0].dataset.taskId
     // let data = new FormData()
     console.log('item' + itemId)
     console.log('task' + taskId)
