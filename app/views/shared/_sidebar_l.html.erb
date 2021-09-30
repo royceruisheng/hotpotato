@@ -24,17 +24,17 @@
   </div>
 
   <%# search bar form to search within tab %>
-  <form action="" class="flex gap-2 justify-center py-2 border-b">
-    <button type="submit">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 20 20">
-          <path id="ic24-search" d="M11,2a9,9,0,0,1,7.032,14.617l3.675,3.676a1,1,0,0,1-1.32,1.5l-.094-.083-3.676-3.675A9,9,0,1,1,11,2Zm0,2a7,7,0,1,0,7,7A7,7,0,0,0,11,4Z" transform="translate(-2 -2)" fill-rule="evenodd"/>
-        </svg>
-      </div>
-    </button>
+  <%= form_with url: workflows_path, class: "text-light border-b", method: :get do |f| %>
 
-    <input type="search" placeholder="Workflows" class="t-input-invis flex-grow">
-  </form>
+    <div class="search-bar">
+      <button type="submit" class="input-l">
+        <i class="fas fa-search"></i>
+      </button>
+
+      <%= f.text_field :query, class: "t-input-invis flex-grow", placeholder: "Workflows" %>
+    </div>
+
+  <% end %>
 
   <%# workflows tabs list %>
   <%= render 'shared/workflows_tabs', workflows: @workflows %>
