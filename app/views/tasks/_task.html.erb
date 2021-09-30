@@ -19,19 +19,11 @@
                       autofocus: true %>
         <% end %>
 
-        <%# button to delete task %>
-        <% unless workflow.activated? %>
-          <button class="text-xs text-gray-400" data-action="click->toggle#deleteTask">
-            <i class="fas fa-trash"></i>
-            Delete task
-          </button>
-        <% end %>
-
       </div>
 
       <% if task.completed == "completed" %>
-        <button class='inline-block text-gray-500 text-sm disabled'>
-          <i class="fas fa-check"></i> Completed
+        <button class='inline-block text-xs text-green-400 text-xs cursor-default'>
+          <i class="fas fa-check text-xs"></i>&nbsp;Completed
         </button>
       <% elsif task.completed == "current" %>
         <% if workflow.activated?%>
@@ -39,8 +31,8 @@
             <i class="far fa-envelope"></i>
           </button>
         <% end %>
-        <button data-action="click->task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-sm' data-task-id=<%= task.id %>>
-          <i class="far fa-check-square"></i> Mark as complete
+        <button data-action="click->task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-xs' data-task-id=<%= task.id %>>
+          <i class="far fa-check-square"></i>&nbsp;Mark as complete
         </button>
       <% end %>
     </div>

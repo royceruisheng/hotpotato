@@ -17,6 +17,9 @@ class User < ApplicationRecord
   has_many :task_members, dependent: :destroy
   has_many :tasks, through: :task_members
 
+  has_many :user_items, dependent: :destroy
+  has_many :items, through: :user_items
+
   # has_many :item_members, dependent: :destroy
   # has_many :items, through: :item_members
 
