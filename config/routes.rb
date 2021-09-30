@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: "dashboard#index", as: :dashboard
   get '/current', to: 'dashboard#my_tasks', as: :current
 
-  resources :workflows, only: [:create, :show, :update] do
+  resources :workflows, only: [:create, :show, :update, :destroy] do
     resources :tasks, only: [:index, :show]
     member do
       get :completion
