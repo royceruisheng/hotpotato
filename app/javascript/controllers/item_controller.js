@@ -16,9 +16,6 @@ export default class extends Controller {
         { headers: { 'Accept': 'text/plain' } })
         .then(res => res.text())
         .then(this.storeAndRender.bind(this))
-        // .then((data) => {
-        //   this.listTarget.outerHTML = data
-        // })
     }
   }
 
@@ -52,6 +49,7 @@ export default class extends Controller {
   }
 
   insertIntoList(newItem) {
+    this.listTarget.innerHTML = ''
     this.listTarget.insertAdjacentHTML('beforeend', newItem)
     this.formTarget.classList.toggle("hidden")
     this.newTarget.classList.toggle("hidden")
