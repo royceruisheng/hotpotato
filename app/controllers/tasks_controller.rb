@@ -114,6 +114,19 @@ class TasksController < ApplicationController
     end
   end
 
+  def search
+    @my_tasks = current_user.tasks.where(completed: 'current')
+    @completed_tasks = current_user.tasks.where(completed: 'completed')
+    
+    sql_query = " \
+        tasks.title @@ :query \
+        "
+    @my_tasks = @my_tasks.where(sql_query, query: "%#{params[:query]}%")
+    @completed_tasks = @completed_tasks.where(sql_query, query: "%#{params[:query]}%")
+
+    render 'my_tasks/index'
+  end
+
   private
 
   def task_params

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   put '/activate', to: 'workflows#activate', as: :activate
 
+  get '/tasks', to: 'tasks#search', as: :tasks
+
   resources :tasks, only: [:index, :new, :create, :destroy, :update] do
     resources :items, only: [:new]
     resources :task_members, only: [:create, :new]
