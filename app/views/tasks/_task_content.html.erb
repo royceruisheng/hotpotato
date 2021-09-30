@@ -6,18 +6,17 @@
                             autocomplete: "off"
               },
               autofocus: true %>
-  <%# <%= f.button :submit, class: 'mb-2 px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer' %>
 <% end %>
 
 <div class="flex">
   <%# Items section %>
   <div class="flex-grow pr-4 flex flex-col">
-    <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >
-      <% items.order(position: :asc).each do |item| %>
-        <li data-item-id="<%= item.id %>" data-task-id="<%= @task.id %>">
-          <%= render partial: 'items/item', locals: { item: item, workflow: @workflow, task: @task  } %>
-        </li>
-      <% end %>
+    <ul class="t-item-box flex-grow bg-gray-100 rounded-lg px-2" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= task.id %> >
+
+      <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
+
+      <%= render partial: 'items/items', locals: { items: items, workflow: @workflow, task: @task  } %>
+
     </ul>
 
     <%= render partial: 'items/itemadd', locals: {task: task, workflow: workflow} %>

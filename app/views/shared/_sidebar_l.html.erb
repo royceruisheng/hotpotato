@@ -24,14 +24,14 @@
   </div>
 
   <%# search bar form to search within tab %>
-  <%= form_with url: workflows_path, class: "text-light border-b", method: :get do |f| %>
+  <%= form_with url: workflows_path, class: "text-light", method: :get do |f| %>
 
-    <div class="search-bar">
+    <div class="search-bar rounded-t-lg">
       <button type="submit" class="input-l">
         <i class="fas fa-search"></i>
       </button>
 
-      <%= f.text_field :query, class: "t-input-invis flex-grow pl-3", placeholder: "Workflows" %>
+      <%= f.text_field :query, class: "t-input-invis flex-grow pl-3 bg-gray-700", placeholder: "Workflows" %>
     </div>
 
   <% end %>

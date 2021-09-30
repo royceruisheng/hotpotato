@@ -16,8 +16,9 @@ export default class extends Controller {
 
   end(event){
     let itemId = event.item.dataset.itemId
-    let taskId = event.to.children[0].dataset.taskId
+    let taskId = event.to.dataset.taskId
     let data = new FormData()
+
     data.append("position", event.newIndex + 1)
     data.append("task_id", taskId )
     fetch(this.data.get("url").replace(":id", itemId), {

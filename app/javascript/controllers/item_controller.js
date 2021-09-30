@@ -16,9 +16,6 @@ export default class extends Controller {
         { headers: { 'Accept': 'text/plain' } })
         .then(res => res.text())
         .then(this.storeAndRender.bind(this))
-        // .then((data) => {
-        //   this.listTarget.outerHTML = data
-        // })
     }
   }
 
