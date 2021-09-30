@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_060130) do
+ActiveRecord::Schema.define(version: 2021_09_30_045301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,15 @@ ActiveRecord::Schema.define(version: 2021_09_27_060130) do
     t.index ["workflow_id"], name: "index_tasks_on_workflow_id"
   end
 
+  create_table "user_items", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_user_items_on_item_id"
+    t.index ["user_id"], name: "index_user_items_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -127,5 +136,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_060130) do
   add_foreign_key "task_members", "tasks"
   add_foreign_key "task_members", "users"
   add_foreign_key "tasks", "workflows"
+  add_foreign_key "user_items", "items"
+  add_foreign_key "user_items", "users"
   add_foreign_key "workflows", "users", column: "creator_id"
 end

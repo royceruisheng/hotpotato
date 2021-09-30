@@ -1,7 +1,7 @@
 <%# Title %>
 <% if @workflow %>
-  <div data-item-id=<%= @workflow.id%> class="flex justify-between items-center">
-    <div class="flex items-center gap-2 mb-3">
+  <div data-item-id=<%= @workflow.id%> class="flex justify-between items-center mb-3">
+    <div class="flex items-center gap-2">
 
       <% if @workflow.activated? %>
         <div class="text-sm rounded-xl bg-indigo-100 py-2 px-4">
@@ -29,7 +29,7 @@
 
     <% unless @workflow.activated? %>
       <%= link_to workflow_path(@workflow), method: 'DELETE' do %>
-        <svg class="fill-current text-gray-300 mr-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+        <svg class="fill-current text-gray-300 mr-4 hover:text-indigo-600 duration-100" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
           <path id="delete_1" d="M47,547H43a3,3,0,0,0-6,0H33a1,1,0,0,0,0,2h1v9a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2v-9h1a1,1,0,0,0,0-2Zm-7-1a1,1,0,0,1,1,1H39A1,1,0,0,1,40,546Zm4,12H36v-9h8Z" transform="translate(-32 -544)"/>
         </svg>
       <% end %>

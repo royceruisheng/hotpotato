@@ -1,6 +1,7 @@
-<div class="pb-2 pt-4">
+<div class="pb-1 pt-4">
 
-  <button data-item-id=<%= task_id %> class="text-sm flex rounded-md items-center" data-action="click->item#new" data-item-target="new">
+  <button data-item-id=<%= task.id %> class="text-sm flex rounded-md items-center <%= 'hidden' if task.completed? || task.current? %>"
+          data-action="click->item#new" data-item-target="new">
     <div class="t-btn-round text-xs bg-white text-black">
       <i class="fas fa-plus"></i>
     </div>
