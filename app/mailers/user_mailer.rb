@@ -20,6 +20,6 @@ class UserMailer < ApplicationMailer
   def task_notification
     @user = params[:recipient]
     @task = params[:task]
-    mail(to: @user.email, subject: 'You have new task!', locals: { task: @task }, template_path: 'app/views/devise/mailer/new_task_notification.html.erb')
+    mail(to: @user.email, subject: 'You have new task!', locals: { task: @task })
   end
 end
