@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :tasks, only: [:index, :show]
     member do
       get :completion
+      get :reset
     end
   end
 

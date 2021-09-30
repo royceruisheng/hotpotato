@@ -1,6 +1,6 @@
 class WorkflowsController < ApplicationController
-  before_action :set_workflows_and_task, only:[:create, :show, :update, :activate]
-  before_action :set_workflow, only: [:show, :update, :completion, :destroy]
+  before_action :set_workflows_and_task, only:[:create, :show, :update, :activate, :reset]
+  before_action :set_workflow, only: [:show, :update, :completion, :destroy, :reset]
 
   def create
     title_check = Workflow.where(title: 'New Workflow')
@@ -74,6 +74,14 @@ class WorkflowsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def reset
+    @workflow.tasks.each do |task|
+      task.update(completed: "pending")
+    end
+
+    render 'dashboard/index'
+  end
+
   private
 
   def restful_workflow_params
@@ -90,10 +98,6 @@ class WorkflowsController < ApplicationController
   end
 
   def update_first_task_as_current(workflow)
-    # first_task = workflow.tasks.first
-    # if first_task.pending? # setting workflow.uncomplete in tasks#create instead
-    #   first_task.set_current # waiting to set completion check when deleting task
-    # end
 
     workflow.tasks.each do |task|
       if task.completed? && task.lower_item.nil?
