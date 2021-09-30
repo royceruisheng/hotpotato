@@ -24,14 +24,14 @@
   </div>
 
   <%# search bar form to search within tab %>
-  <%= form_with url: tasks_path, class: "text-light border-b", method: :get do |f| %>
+  <%= form_with url: tasks_path, class: "text-light", method: :get do |f| %>
 
-    <div class="search-bar">
+    <div class="search-bar rounded-t-lg">
       <button type="submit" class="input-l">
         <i class="fas fa-search"></i>
       </button>
 
-      <%= f.text_field :query, class: "t-input-invis flex-grow pl-3", placeholder: "Tasks" %>
+      <%= f.text_field :query, class: "t-input-invis flex-grow pl-3 bg-gray-700", placeholder: "Tasks" %>
     </div>
 
   <% end %>
@@ -39,10 +39,10 @@
   <%# task tabs list %>
   <div class="mt-4 h-96 overflow-scroll">
 
-    <div>To do</div>
+    <div class="text-gray-100 border-b border-indigo-400">To do</div>
     <%= render 'my_tasks/tasks_tabs', tasks: @my_tasks %>
 
-    <div class="pt-6">Completed</div>
+    <div class="text-gray-100 border-b border-indigo-400">Completed</div>
     <%= render 'my_tasks/tasks_tabs', tasks: @completed_tasks %>
   </div>
 

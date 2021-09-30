@@ -3,7 +3,7 @@
   <% if task == @task %>
     <div data-controller="sidetabs" data-task-id=<%= task.id %> class="t-sidetab-btn-active flex items-center justify-between shadow-md">
   <% else %>
-    <div data-controller="sidetabs" data-task-id=<%= task.id %> class="t-sidetab-btn flex items-center justify-between border">
+    <div data-controller="sidetabs" data-task-id=<%= task.id %> class="t-sidetab-btn flex items-center justify-between">
   <% end %>
 
     <a class="flex-grow cursor-pointer" data-action="click->sidetabs#selectMyTask">
