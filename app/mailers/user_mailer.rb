@@ -20,6 +20,6 @@ class UserMailer < ApplicationMailer
   def task_notification
     @user = params[:recipient]
     @task = params[:task]
-    mail(to: @user.email, subject: 'You have new task!', locals: { task: @task })
+    mail(to: @user.email, subject: 'You have new task!', locals: { user: @user, task: @task })
   end
 end

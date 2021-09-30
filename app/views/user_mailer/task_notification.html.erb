@@ -195,7 +195,7 @@
           <table class="w-600 sm:w-full" cellpadding="0" cellspacing="0" role="presentation">
             <tr>
               <td class="text-center pb-24 sm:pb-12">
-                <h1 class="font-semibold text-black text-2xl"><%#= @task.first_name %> You have new task assigned</h1>
+                <h1 class="font-semibold text-black text-2xl"><%= @user.first_name.capitalize %>, You have new task assigned</h1>
               </td>
             </tr>
             <tr>
@@ -203,10 +203,10 @@
                 <table class="w-3/4 sm:w-full" cellpadding="0" cellspacing="0" role="presentation">
                   <tr>
                     <td class="bg-white p-48 sm:px-24 text-center">
-                      <p class="text-lg font-semibold m-0"><%#= @task.title %></p>
-                      <p class="text-gray-700 text-base">Follow this link to view your assigned task:</p>
+                      <p class="text-lg font-semibold m-0">Your task:</p>
+                      <p class="text-gray-700 text-base"><%= @task.title %></p>
                       <div class="leading-24 sm:h-32">&zwnj;</div>
-                      <%#= "View now ",dashboard_path, class: "inline-block py-20 px-24 text-sm leading-none no-underline text-white font-semibold uppercase rounded bg-indigo-600 hover:bg-indigo-700" %>
+                      <%= "View task now", dashboard_path, class: "inline-block py-20 px-24 text-sm leading-none no-underline text-white font-semibold uppercase rounded bg-indigo-600 hover:bg-indigo-700" %>
                     </td>
                   </tr>
                   <tr>
