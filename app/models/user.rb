@@ -23,4 +23,8 @@ class User < ApplicationRecord
   def send_welcome_email
     UserMailer.with(user: self).welcome.deliver_now
   end
+
+  def my_tasks
+    self.tasks.where(completed: 'current')
+  end
 end

@@ -19,7 +19,7 @@
 
   <%# nav tab %>
   <div class="flex gap-4 my-5">
-    <%= link_to 'My Tasks', current_path, class: 't-tab' %>
+    <%= link_to "My Tasks #{ "(#{current_user.my_tasks.length})" unless current_user.my_tasks.empty?}", current_path, class: 't-tab' %>
     <%= link_to 'Workflows', dashboard_path, class: 't-tab-active' %>
   </div>
 

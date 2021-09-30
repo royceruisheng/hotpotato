@@ -4,7 +4,7 @@
 <%# My Tasks content %>
 <% if task.workflow.activated? %>
 <%# Content inside here %>
-  <div data-controller="toggle" class="container p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg"
+  <div data-controller="toggle" class="container p-4 flex flex-col justify-between border border-l-8 border-indigo-400 shadow-lg rounded-lg"
        data-task-id=<%= task.id %> data-workflow-id=<%= task.workflow.id %>>
 
     <%# Description %>
@@ -45,7 +45,7 @@
   <% if next_task %>
     <%= render partial: 'my_tasks/next_task_header', locals: { task: next_task } %>
 
-    <div data-controller="toggle" data-task-id=<%= next_task.id %> class="p-4 flex shadow-lg rounded-lg border">
+    <div data-controller="toggle item" data-task-id=<%= next_task.id %> class="p-4 flex shadow-lg rounded-lg border">
 
     <div class="text-sm pb-4"><%= next_task.description %></div>
     <%# nexttask - Items section %>
@@ -58,7 +58,7 @@
           <% end %>
         </ul>
 
-        <%= render partial: 'items/itemadd', locals: {task_id: next_task.id} %>
+        <%= render partial: 'items/itemadd', locals: {task: next_task} %>
       </div>
 
       <%# nexttask - Members Section %>

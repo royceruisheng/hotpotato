@@ -20,9 +20,7 @@
       <% end %>
     </ul>
 
-    <% if !workflow.activated? %>
-      <%= render partial: 'items/itemadd', locals: {task_id: task.id, workflow: workflow} %>
-    <% end %>
+    <%= render partial: 'items/itemadd', locals: {task: task, workflow: workflow} %>
   </div>
 
   <%# Members Section %>
@@ -31,9 +29,7 @@
       <%= render partial: 'tasks/task_members', locals: {task_members: @task_members} %>
     </ul>
 
-    <% if !workflow.activated? %>
-      <%= render partial: 'members/add_member', locals: {task: task} %>
-    <% end %>
+    <%= render partial: 'members/add_member', locals: {task: task} %>
   </div>
 </div>
 
