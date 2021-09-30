@@ -22,6 +22,17 @@ class WorkflowsController < ApplicationController
     end
   end
 
+  def search
+    sql_query = " \
+        workflows.title @@ :query \
+        "
+        # OR workflows.user.first_name @@ :query \
+        # OR workflows.user.last_name @@ :query \
+    @workflows = Workflow.where(sql_query, query: "%#{params[:query]}%")
+
+    render 'dashboard/index'
+  end
+
   def update
     @workflow = Workflow.find(params[:id])
     @workflow.update(restful_workflow_params) # updates title

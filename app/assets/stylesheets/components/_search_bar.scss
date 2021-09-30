@@ -1,0 +1,25 @@
+.search-bar {
+  display: flex;
+  align-items: center;
+  &:hover > .search-text {
+    flex-grow: 1;
+  }
+}
+
+.search-text {
+  padding: 5px;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  &:focus {
+    flex-grow: 1;
+  }
+}
+
+.search-bar button {
+  background-color: #fff;
+  padding: 5px 0 5px 14px;
+  color: #000;
+  border: none;
+  margin: 5px 0;
+}
