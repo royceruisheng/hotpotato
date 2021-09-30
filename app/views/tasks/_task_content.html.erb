@@ -1,12 +1,12 @@
 <%# Description section %>
-<%= simple_form_for task, method: 'POST' do |f| %>
-  <%= f.input :description,
+<%= simple_form_for task, method: 'PATCH' do |f| %>
+  <%= f.input :description, as: :string, placeholder: 'Description',
               label: false,
-              input_html: {class: "w-full text-sm rounded-xl bg-purple-100 mt-2 py-2 px-4 outline-none focus:bg-purple-300",
+              input_html: {class: "w-full h-16 text-sm rounded-xl bg-purple-100 my-2 py-2 px-4 outline-none focus:bg-purple-300",
                             autocomplete: "off"
               },
               autofocus: true %>
-  <%= f.button :submit, class: 'mb-2 px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer' %>
+  <%# <%= f.button :submit, class: 'mb-2 px-2 py-1 rounded-md text-sm bg-white shadow-md cursor-pointer' %>
 <% end %>
 
 <div class="flex">
@@ -37,3 +37,7 @@
   </div>
 </div>
 
+<button data-action="click->toggle#toggleHideTitleForm" class="t-btn-square border absolute bottom-1 -right-8 bg-white flex items-center justify-center">
+  <svg xmlns="http://www.w3.org/2000/svg" width="9.919" height="5.857" viewBox="0 0 9.919 5.857"><path d="M450.818,765.835a.966.966,0,0,1,.29-.69,1,1,0,0,1,1.4,0l3.266,3.214,3.267-3.214a1,1,0,0,1,1.4,0,.964.964,0,0,1,0,1.38l-3.967,3.9a1,1,0,0,1-1.4,0l-3.968-3.9A.967.967,0,0,1,450.818,765.835Z" transform="translate(460.737 770.716) rotate(180)"/>
+  </svg>
+</butto>

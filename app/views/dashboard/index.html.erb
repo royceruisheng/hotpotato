@@ -6,10 +6,10 @@
     <% end %>
     <%= render "shared/sidebar_l" %>
   </div>
-  <div class="w-72"></div> <%# ghost sidebar to push content %>
+  <%# <div class="w-72"></div> ghost sidebar to push content %>
 
 
-  <div class="flex-grow pt-4 pl-10">
+  <div class="main-content w-full pt-4 pl-10">
     <div id="workflow-content" data-world-target="contentmain" data-controller="workflow">
       <%= render "workflows/workflow_content", locals: {workflow: @workflow} %>
     </div>

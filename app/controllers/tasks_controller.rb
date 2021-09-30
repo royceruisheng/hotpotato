@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :complete_task, :show_mytask, :complete_mytask]
+  before_action :set_task, only: [:show, :update, :complete_task, :show_mytask, :complete_mytask]
 
   def index
     @workflow = Workflow.find(params[:workflow_id])
-    @tasks = @workflow.tasks
+    @tasks = @workflow.tasks.order(position: :asc)
     @item = Item.new
     #change it to include task_id when task is connected
 
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
 
       respond_to do |format|
         format.html
-        format.text { render partial: 'tasks/new_task', locals: { task: @task, workflow: @task.workflow }, formats: [:html] }
+        format.text { render partial: 'tasks/task', locals: { task: @task, tasks: @task.workflow.tasks, workflow: @task.workflow }, formats: [:html] }
       end
     end
   end
@@ -119,7 +119,6 @@ class TasksController < ApplicationController
   def task_params
     params.require(:task).permit(:title, :description)
   end
-
 
   def set_task
     @task = Task.find(params[:id])

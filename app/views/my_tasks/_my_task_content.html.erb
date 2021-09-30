@@ -1,12 +1,14 @@
-
+<%# Title and status %>
 <%= render partial: 'my_tasks/my_task_header', locals: { task: task } %>
 
 <%# My Tasks content %>
 <% if task.workflow.activated? %>
 <%# Content inside here %>
-  <div data-controller="toggle" class="p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg"
-       data-task-id=<%= task.id %> data-workflow-id=<%= task.workflow.id %>
-  >
+  <div data-controller="toggle" class="container p-4 flex flex-col justify-between border-l-8 border-indigo-400 shadow-lg rounded-lg"
+       data-task-id=<%= task.id %> data-workflow-id=<%= task.workflow.id %>>
+
+    <%# Description %>
+    <div class="text-sm pb-4"><%= task.description %></div>
 
     <div class="flex pb-4">
 
@@ -44,6 +46,8 @@
     <%= render partial: 'my_tasks/next_task_header', locals: { task: next_task } %>
 
     <div data-controller="toggle" data-task-id=<%= next_task.id %> class="p-4 flex shadow-lg rounded-lg border">
+
+    <div class="text-sm pb-4"><%= next_task.description %></div>
     <%# nexttask - Items section %>
       <div class="flex-grow pr-4 flex flex-col">
         <ul class="flex-grow" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" >

@@ -1,9 +1,9 @@
 class Task < ApplicationRecord
   # after_commit :async_update
-  acts_as_list
   validates :title, presence: true
 
   belongs_to :workflow
+  acts_as_list scope: :workflow
 
   has_many :task_members, dependent: :destroy
   has_many :users, through: :task_members
