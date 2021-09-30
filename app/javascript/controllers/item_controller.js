@@ -87,7 +87,6 @@ export default class extends Controller {
     // console.log("delete item connected");
     const item_id = this.itemCardTarget.dataset.itemId
     const url = `/items/${item_id}`
-    debugger
     
     fetch(url, {
       method: 'DELETE',
