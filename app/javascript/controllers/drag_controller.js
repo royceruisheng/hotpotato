@@ -18,6 +18,7 @@ export default class extends Controller {
     let itemId = event.item.dataset.itemId
     let taskId = event.to.dataset.taskId
     let data = new FormData()
+    console.log(itemId)
 
     data.append("position", event.newIndex + 1)
     data.append("task_id", taskId )

@@ -32,10 +32,15 @@
   </div>
 </div>
 
+<% if task.current? %>
+  <button class="t-btn-square border absolute bottom-10 -right-8 bg-white flex items-center justify-center" data-action="click->notification#sendemail">
+    <i class="far fa-envelope text-sm text-black"></i>
+  </button>
+<% end %>
 
 <% unless workflow.activated? %>
   <button data-action="click->toggle#deleteTask" class="t-btn-square border absolute bottom-10 -right-8 bg-white flex items-center justify-center">
-    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16 16">
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 16 16">
       <path id="delete_1" d="M47,547H43a3,3,0,0,0-6,0H33a1,1,0,0,0,0,2h1v9a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2v-9h1a1,1,0,0,0,0-2Zm-7-1a1,1,0,0,1,1,1H39A1,1,0,0,1,40,546Zm4,12H36v-9h8Z" transform="translate(-32 -544)"/>
     </svg>
   </button>
@@ -44,4 +49,4 @@
 <button data-action="click->toggle#toggleHideTitleForm" class="t-btn-square border absolute bottom-1 -right-8 bg-white flex items-center justify-center">
   <svg xmlns="http://www.w3.org/2000/svg" width="9.919" height="5.857" viewBox="0 0 9.919 5.857"><path d="M450.818,765.835a.966.966,0,0,1,.29-.69,1,1,0,0,1,1.4,0l3.266,3.214,3.267-3.214a1,1,0,0,1,1.4,0,.964.964,0,0,1,0,1.38l-3.967,3.9a1,1,0,0,1-1.4,0l-3.968-3.9A.967.967,0,0,1,450.818,765.835Z" transform="translate(460.737 770.716) rotate(180)"/>
   </svg>
-</butto>
+</button>
