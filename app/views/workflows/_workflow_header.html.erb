@@ -26,14 +26,24 @@
       <% end %>
 
     </div>
+    <div class="flex items-center gap-4">
 
-    <% unless @workflow.activated? %>
-      <%= link_to workflow_path(@workflow), method: 'DELETE' do %>
-        <svg class="fill-current text-gray-300 mr-4 hover:text-indigo-600 duration-100" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-          <path id="delete_1" d="M47,547H43a3,3,0,0,0-6,0H33a1,1,0,0,0,0,2h1v9a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2v-9h1a1,1,0,0,0,0-2Zm-7-1a1,1,0,0,1,1,1H39A1,1,0,0,1,40,546Zm4,12H36v-9h8Z" transform="translate(-32 -544)"/>
-        </svg>
+      <% unless @workflow.activated? %>
+        <%= link_to reset_workflow_path(@workflow) do %>
+          <svg class="fill-current text-gray-300 hover:text-indigo-600 duration-100" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 16.019 15.984">
+            <path id="refresh_2" d="M362,709.012a1,1,0,0,0,1,1h4a1.006,1.006,0,0,0,1-1v-4a1,1,0,0,0-2,0v1.718a7.982,7.982,0,1,0,1.921,6.411,1,1,0,0,0-1-1.136,1,1,0,0,0-.984.857,6.016,6.016,0,1,1-1.48-4.853H363A1,1,0,0,0,362,709.012Z" transform="translate(-351.989 -704.017)"/>
+          </svg>
+        <% end %>
       <% end %>
-    <% end %>
+
+      <% unless @workflow.activated? %>
+        <%= link_to workflow_path(@workflow), method: 'DELETE' do %>
+          <svg class="fill-current text-gray-300 mr-4 hover:text-indigo-600 duration-100" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+            <path id="delete_1" d="M47,547H43a3,3,0,0,0-6,0H33a1,1,0,0,0,0,2h1v9a2,2,0,0,0,2,2h8a2,2,0,0,0,2-2v-9h1a1,1,0,0,0,0-2Zm-7-1a1,1,0,0,1,1,1H39A1,1,0,0,1,40,546Zm4,12H36v-9h8Z" transform="translate(-32 -544)"/>
+          </svg>
+        <% end %>
+      <% end %>
+    </div>
 
   </div>
 <% else %>

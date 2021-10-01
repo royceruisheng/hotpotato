@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:destroy, :move]
+  before_action :set_item, only: [:destroy, :move, :move_repo]
 
   # def index
   #   @items = Item.all
@@ -46,9 +46,22 @@ class ItemsController < ApplicationController
   end
 
   def move
+    user_item = @item.user_items.find_by(user_id: current_user.id)
     @item.insert_at(params[:position].to_i)
-    @item.update(move_item_params)
-    head :ok
+    if @item.update(move_item_params)
+      head :ok
+    end
+    if user_item
+      @item.user_items.find_by(user_id: current_user.id).destroy
+    end
+  end
+
+  def move_repo
+    @item.task_id = nil
+    if @item.save
+      @item.insert_at(params[:position].to_i)
+      head :ok if UserItem.create(user_id: current_user.id, item_id: params[:id])
+    end
   end
 
   private

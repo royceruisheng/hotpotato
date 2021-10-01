@@ -21,20 +21,17 @@
 
       </div>
 
-      <% if task.completed == "completed" %>
-        <button class='inline-block text-xs text-green-400 text-xs cursor-default'>
-          <i class="fas fa-check text-xs"></i>&nbsp;Completed
-        </button>
-      <% elsif task.completed == "current" %>
-        <% if workflow.activated?%>
-          <button class="text-xs text-gray-400 bg-white rounded-full w-6 h-6" data-action="click->notification#sendemail">
-            <i class="far fa-envelope"></i>
-          </button>
-        <% end %>
-        <button data-action="click->task#markComplete" class='inline-block <%= task.current? ? "text-white" : "text-indigo-600" %> text-xs' data-task-id=<%= task.id %>>
+
+      <button class='inline-block text-xs text-green-400 text-xs cursor-default <%= 'hidden' unless task.completed? %>'>
+        <i class="fas fa-check text-xs"></i>&nbsp;Completed
+      </button>
+
+      <% if task.current? %>
+        <button data-action="click->task#markComplete" class='<%= 'hidden' unless task.workflow.activated? %> inline-block text-white text-xs' data-task-id=<%= task.id %>>
           <i class="far fa-check-square"></i>&nbsp;Mark as complete
         </button>
       <% end %>
+
     </div>
 
 
@@ -45,9 +42,3 @@
   </div>
   <div class="t-connector h-5"></div>
 </div>
-
-
-
-<%# unless tasks.first == task %>
-  <%# <div class="t-connector h-5"></div> %>
-<%# end %>

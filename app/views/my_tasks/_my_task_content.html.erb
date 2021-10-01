@@ -4,7 +4,7 @@
 <%# My Tasks content %>
 <% if task.workflow.activated? %>
 <%# Content inside here %>
-  <div data-controller="toggle" class="container p-4 flex flex-col justify-between border border-l-8 border-indigo-400 shadow-lg rounded-lg"
+  <div data-controller="toggle" class="relative container p-4 flex flex-col justify-between border border-l-8 border-indigo-400 shadow-lg rounded-lg"
        data-task-id=<%= task.id %> data-workflow-id=<%= task.workflow.id %>>
 
     <%# Description %>
@@ -14,17 +14,16 @@
 
       <%# Items Section %>
       <div class="flex-grow pr-4">
-        <ul class="t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= task.id %>>
+        <ul class="shadow-inner t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= task.id %>>
           <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
 
-          <% task.items.order(position: :asc).each do |item| %>
-            <%= render partial: 'items/items', locals: { items: task.items, workflow: @workflow, task: @task  } %>
-          <% end %>
+          <%= render partial: 'items/items', locals: { items: task.items, workflow: @workflow, task: @task  } %>
+
         </ul>
       </div>
 
       <%# Members Section %>
-      <div class="border-l w-40 px-3 pt-2">
+      <div class="border-l w-40 px-3">
         <ul data-toggle-target="taskmemberslist" class="flex-grow">
           <%= render partial: 'tasks/task_members', locals: {task_members: task.users} %>
         </ul>
@@ -34,6 +33,11 @@
 
     <%= link_to 'Complete Task', complete_mytask_task_path(task), class: "t-btn-outline text-sm justify-center" %>
 
+    <% if task.current? %>
+      <button class="t-btn-square border absolute top-3 -right-3 bg-white flex items-center justify-center" data-action="click->notification#sendemail">
+        <i class="far fa-envelope text-sm text-black"></i>
+      </button>
+    <% end %>
   </div>
 
   <%# dotted line connector %>
@@ -50,7 +54,7 @@
     <div class="text-sm pb-4"><%= next_task.description %></div>
     <%# nexttask - Items section %>
       <div class="flex-grow pr-4 flex flex-col">
-        <ul class="t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= next_task.id %>>
+        <ul class="shadow-inner t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= next_task.id %>>
 
           <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
           <%= render partial: 'items/items', locals: { items: next_task.items, workflow: next_task.workflow, task: next_task  } %>
@@ -61,7 +65,7 @@
       </div>
 
       <%# nexttask - Members Section %>
-      <div class="border-l w-40 px-3 pt-2 flex flex-col">
+      <div class="border-l w-40 px-3 flex flex-col">
 
         <ul data-toggle-target="taskmemberslist" class="flex-grow">
           <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users} %>

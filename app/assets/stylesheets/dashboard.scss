@@ -1,11 +1,19 @@
 // Place all the styles related to the dashboard controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
-button {
-  &:hover .t-hover-white {
-    fill: white;
-    transition: 100ms;
-  }
+
+body {
+  background-color: rgb(255, 255, 255);
+}
+// button {
+//   &:hover .t-hover-white {
+//     fill: white;
+//     transition: 100ms;
+//   }
+// }
+
+.t-bgc {
+  background-color: rgb(14, 13, 22);
 }
 
 .main-content {

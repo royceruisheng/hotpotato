@@ -1,15 +1,15 @@
 <div class="flex">
 
-  <div class="w-72 p-5 shadow-lg fixed h-screen bg-gray-900 rounded-r-xl">
+  <div class="w-72 p-5 shadow-lg fixed h-screen t-bgc rounded-r-xl">
     <%= link_to current_path, class: 'h-6' do %>
-      <%= image_tag 'Taskete_logo.png', class: 'h-6' %>
+      <%= image_tag 'Taskete_logo_white.png', class: 'h-6' %>
     <% end %>
     <%= render "my_tasks/my_tasks_l" %>
   </div>
   <%# <div class="w-72"></div> ghost sidebar to push content %>
 
 
-  <div class="main-content w-full pt-4 pl-10">
+  <div class="main-content w-full pt-4 pl-10 pr-5">
     <div id="mytask-content">
       <%# inject here  %>
     </div>

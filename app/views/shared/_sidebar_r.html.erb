@@ -1,9 +1,23 @@
 <%= render 'shared/nav_account' %>
 
-<div class="rounded-lg bg-gray-100 py-2 px-4 mt-10">
-  <h1 class="text-sm">Item folder</h1>
-</div>
+<div class="fixed w-44">
 
-<div class="p-5 mt-2 t-card">
-  <p class="text-sm text-gray-400">Drop items here</p>
+  <div class="rounded-lg bg-gray-100 py-2 px-4 mt-8">
+    <h1 class="text-sm">Item folder</h1>
+  </div>
+
+  <div class="px-2 py-4 mt-2 t-card border">
+    <div class="bg-gray-100 rounded-lg overflow-scroll h-96 shadow-inner">
+      <ul class="t-item-box h-full rounded-lg px-2 pb-1" data-controller="drag" data-drag-url="/items/:id/move_repo">
+
+        <div class="text-xs text-gray-300 text-center pt-2">Drop items here</div>
+
+        <% current_user.items.each do |item| %>
+          <%= render partial: 'items/taskless_item', locals: { item: item } %>
+        <% end %>
+
+      </ul>
+    </div>
+  </div>
+
 </div>
