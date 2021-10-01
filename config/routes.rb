@@ -36,10 +36,11 @@ Rails.application.routes.draw do
     get :email_notification, to: "notifications#email_notification"
   end
 
-  resources :items, only: [:index, :create, :show, :destroy] do
+  resources :items, only: [:index, :create, :show, :destroy, :update] do
     member do
       patch :move
       patch :move_repo
+      get :expand
     end
   end
 

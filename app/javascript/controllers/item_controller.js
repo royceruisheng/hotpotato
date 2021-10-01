@@ -81,18 +81,4 @@ export default class extends Controller {
   addMember(member) {
     this.memberTarget.insertAdjacentHTML( 'afterbegin', User.find(task_member_id).first_name )
   }
-
-  deleteItem(e) {
-    e.preventDefault();
-    // console.log("delete item connected");
-    const item_id = this.itemCardTarget.dataset.itemId
-    const url = `/items/${item_id}`
-    
-    fetch(url, {
-      method: 'DELETE',
-      headers: { 'X-CSRF-token': csrfToken() }
-    })
-    .then(this.itemCardTarget.remove()
-    )
-  }
 }

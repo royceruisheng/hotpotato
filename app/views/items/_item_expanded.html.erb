@@ -1,0 +1,40 @@
+<div class="p-4" >
+  <div class="flex justify-between">
+
+    <%# TITLE & DESCRIPT %>
+    <span class="text-base"><%= item.title %></span>
+
+    <%# DELETE BTN %>
+    <button data-action="click->itemactions#closeItem">
+      <svg class="ml-2 fill-current text-gray-200" xmlns="http://www.w3.org/2000/svg" width="11.819" height="11.82" viewBox="0 0 11.819 11.82">
+        <path id="X_simple_1" d="M489.387,711.977l4.214-4.214a.993.993,0,0,0-1.4-1.405l-4.214,4.214-4.214-4.214a.993.993,0,1,0-1.4,1.405l4.214,4.214-4.214,4.214a.993.993,0,1,0,1.4,1.405l4.214-4.214L492.2,717.6a.993.993,0,0,0,1.4-1.405Z" transform="translate(-482.072 -706.067)"/>
+      </svg>
+    </button>
+
+  </div>
+
+  <%# BELOW TITLE %>
+  <div class="flex items-start mt-2">
+    <%# EDIT BTN  %>
+    <button class="mx-1 fill-current hover:text-indigo-600 duration-100 <%= 'hidden' unless item.user_items.empty? %>" data-action="click->itemactions#editForm">
+      <svg  xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15.984 16">
+        <path id="pen_1" d="M34.006,432a2,2,0,0,1-2-2v-2a2,2,0,0,1,.585-1.415l9.99-10a2,2,0,0,1,2.826,0l2,2a2,2,0,0,1,0,2.828l-9.99,10A2,2,0,0,1,36,432Zm0-4v2h2l7.786-7.794-2-2Zm11.2-7.207.792-.793-2-2-.792.793Z" transform="translate(-32.008 -416)"/>
+      </svg>
+    </button>
+
+    <%# DESCRIPTION  %>
+    <span data-itemactions-target="itemDescription" class="pl-2 text-sm"><%= item.description %></span>
+
+    <%# HIDDEN FORM %>
+    <div class="flex-grow pl-1 flex flex-col hidden" data-itemactions-target="itemForm">
+      <input data-itemactions-target="itemDescriptionInput" type="textarea" placeholder="Add description here."
+              class="outline-none"
+              value="<%= item.description %>"
+      >
+      <button data-action="click->itemactions#saveDescription" class="px-2 py-1 bg-gray-100 mt-4 rounded-md">
+        Save
+      </button>
+    </div>
+
+  </div>
+</div>
