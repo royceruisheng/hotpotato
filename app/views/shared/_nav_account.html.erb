@@ -3,8 +3,8 @@
   <button class="t-round-card p-2" data-action="click->account-dropdown#toggle">
     <div class="gap-2 flex items-center justify-between">
 
-      <div class="flex-shrink-0 flex items-center gap-2">
-        <div class="t-no-profile bg-purple-400">
+      <div class="flex-shrink-0 flex items-center gap-2 text-white">
+        <div class="t-no-profile bg-gray-200 text-black">
           <%= current_user.first_name.first.capitalize %><%= current_user.last_name.first.capitalize %>
         </div>
         <div class="text-sm">
@@ -12,8 +12,8 @@
         </div>
       </div>
 
-      <div class="px-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15.429" height="16" viewBox="0 0 15.429 16">
+      <div class="px-2" >
+        <svg xmlns="http://www.w3.org/2000/svg" width="15.429" height="16" viewBox="0 0 15.429 16" class="fill-current text-gray-200">
           <path id="gear_2" d="M679,80a2,2,0,0,1-2-2l.021-.815-.72.415a2,2,0,0,1-2.741-.734l-1-1.741a2,2,0,0,1,.734-2.727l.708-.389-.708-.409a2,2,0,0,1-.734-2.728l1-1.741a2.009,2.009,0,0,1,1.217-.935,2.048,2.048,0,0,1,.52-.067,2,2,0,0,1,1,.269l.7.427V66a2,2,0,0,1,2-2h2a2,2,0,0,1,2,2l-.02.814.72-.415a2,2,0,0,1,1-.269,2.041,2.041,0,0,1,.519.067,2.015,2.015,0,0,1,1.219.935l1,1.741a2,2,0,0,1-.734,2.728l-.722.38.722.418a2,2,0,0,1,.734,2.727l-1,1.741a2.006,2.006,0,0,1-2.741.734l-.7-.427V78a2,2,0,0,1-2,2Zm-1.016-4.543.029.017a1.962,1.962,0,0,1,.987,1.7V78h2v-.826a1.959,1.959,0,0,1,.987-1.7l.029-.017a1.97,1.97,0,0,1,1.971,0l.72.416,1-1.74-.723-.418a1.956,1.956,0,0,1-.98-1.7v-.023a1.959,1.959,0,0,1,.98-1.7l.723-.418-1-1.74-.72.416a1.97,1.97,0,0,1-1.971,0l-.029-.017a1.962,1.962,0,0,1-.987-1.7V66h-2v.826a1.958,1.958,0,0,1-.988,1.7l-.028.017a1.97,1.97,0,0,1-1.971,0l-.72-.416-1,1.74.709.41a1.987,1.987,0,0,1,0,3.442l-.709.41,1,1.74.72-.416a1.97,1.97,0,0,1,1.971,0ZM678,72a2,2,0,1,1,2,2A2,2,0,0,1,678,72Z" transform="translate(-672.284 -64)"/>
         </svg>
       </div>

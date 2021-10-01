@@ -2,7 +2,7 @@
 <%= simple_form_for task, method: 'PATCH' do |f| %>
   <%= f.input :description, as: :string, placeholder: 'Description',
               label: false,
-              input_html: {class: "w-full h-16 text-sm rounded-xl bg-purple-100 my-2 py-2 px-4 outline-none focus:bg-purple-300",
+              input_html: {class: "w-full h-8 text-sm text-gray-500 rounded-xl bg-transparent my-2 px-4 outline-none",
                             autocomplete: "off"
               },
               autofocus: true %>
