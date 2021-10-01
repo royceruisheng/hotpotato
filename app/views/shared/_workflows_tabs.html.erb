@@ -7,8 +7,11 @@
       <div data-workflow-id=<%= workflow.id %> data-controller="sidetabs" class="t-sidetab-btn flex items-center justify-between">
     <% end %>
 
-      <%= link_to workflow_path(workflow), class: "flex-grow" do %>
-          <%= workflow.title %>
+      <%= link_to workflow_path(workflow), class: "flex-grow flex items-center gap-2" do %>
+        <svg class="" xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14">
+          <path id="folder_1" d="M334,451h-4.764l-.447-.895A2,2,0,0,0,327,449h-5a2,2,0,0,0-2,2v10a2,2,0,0,0,2,2h12a2,2,0,0,0,2-2v-8A2,2,0,0,0,334,451Zm-7,0,1,2h6v1H324a1,1,0,0,0-.949.683L322,457.837V451Zm7,10H323.054l1.667-5H334Z" transform="translate(-320 -449)"/>
+        </svg>
+        <%= workflow.title %>
       <% end %>
 
       <label for="toggleBtn<%= workflow.id %>" data-action="change->sidetabs#activateWorkflowToggle" class="cursor-pointer">
@@ -19,7 +22,7 @@
           <% else %>
             <input id="toggleBtn<%= workflow.id %>" type="checkbox" class="hidden">
           <% end %>
-          <div class="toggle-path bg-gray-200 w-9 h-5 rounded-full shadow-inner"></div>
+          <div class="toggle-path bg-gray-800 w-9 h-5 rounded-full shadow-inner"></div>
           <div class="toggle-circle absolute w-3.5 h-3.5 bg-white rounded-full shadow inset-y-.5 left-.5"></div>
         </div>
       </label>

@@ -15,13 +15,13 @@
     @apply  bg-right ;
   }
   .t-sidetab-btn-active {
-    @apply px-4 py-2 my-1 text-sm rounded-lg bg-indigo-100 ;
+    @apply px-4 py-2 my-2 text-sm rounded-lg bg-indigo-100 ;
   }
   .t-sidetab-btn-active a {
     @apply pointer-events-none ;
   }
   .t-sidetab-btn {
-    @apply px-4 py-2 my-1 text-sm rounded-lg bg-indigo-600 text-white hover:bg-blue-600  transition-colors duration-200 ;
+    @apply px-4 py-2 my-2 text-sm rounded-lg bg-indigo-800 text-white hover:bg-blue-600  transition-colors duration-200 ;
   }
   .t-tab-active { // MyTask & Worflows
     @apply text-sm font-medium text-white pb-1 border-b-2 border-indigo-500 ;
