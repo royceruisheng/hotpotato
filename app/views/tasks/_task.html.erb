@@ -10,7 +10,7 @@
       <%# Task title form %>
       <div class="flex-grow flex justify-between items-center hidden" data-toggle-target="taskTitleForm">
 
-        <%= simple_form_for task, method: 'PATCH', namespace: task.id do |f| %>
+        <%= simple_form_for task, method: 'PATCH', namespace: task.id, html: {class: "w-full"} do |f| %>
           <%= f.input :title,
                       label: false,
                       input_html: {class: "w-full text-lg bg-transparent outline-none",
