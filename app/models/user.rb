@@ -30,4 +30,24 @@ class User < ApplicationRecord
   def my_tasks
     self.tasks.where(completed: 'current')
   end
+
+  # hard-coded. To be updated
+  def color
+    case self.email
+    when "royce@taskete.co"
+      "bg-indigo-500"
+    when "daniel@taskete.co"
+      "bg-pink-500"
+    when "ethan@taskete.co"
+      "bg-blue-500"
+    when "prima@taskete.co"
+      "bg-red-500"
+    when "ashley@taskete.co"
+      "bg-purple-500"
+    when "jianzhen@taskete.co"
+      "bg-green-500"
+    when "miguel@taskete.co"
+      "bg-yellow-500"
+    end
+  end
 end
