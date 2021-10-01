@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   before_action :set_my_tasks, only: [:my_tasks]
+  before_action :user_sign_in, only: [:index, :my_tasks]
 
   def index
     @workflows = current_user.workflows.limit(20).reverse_order
@@ -18,5 +19,11 @@ class DashboardController < ApplicationController
 
   def set_my_tasks
     @my_tasks = current_user.my_tasks
+  end
+
+  def user_sign_in
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 end
