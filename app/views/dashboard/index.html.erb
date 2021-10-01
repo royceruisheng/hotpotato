@@ -7,15 +7,14 @@
     <%= render "shared/sidebar_l" %>
   </div>
 
-
-  <div class="main-content w-full pt-4 pl-10">
+  <div class="main-content w-3/4 pt-4 pl-10">
     <div id="workflow-content" data-world-target="contentmain" data-controller="workflow">
       <%= render "workflows/workflow_content", locals: {workflow: @workflow} %>
     </div>
   </div>
-
-  <div class="w-60 pt-2 px-5">
+    <div class="w-1/4 pt-2 px-5">
     <%= render 'shared/sidebar_r' %>
   </div>
+
 
 </div>
