@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:destroy, :move, :move_repo]
+  before_action :set_item, only: [:destroy, :move, :move_repo, :expand, :update]
 
   # def index
   #   @items = Item.all
@@ -45,6 +45,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def expand
+    respond_to do |format|
+      format.text { render partial: 'items/item_expanded', locals: { item: @item }, formats: [:html] }
+    end
+  end
+
   def move
     user_item = @item.user_items.find_by(user_id: current_user.id)
     @item.insert_at(params[:position].to_i)
@@ -61,6 +67,15 @@ class ItemsController < ApplicationController
     if @item.save
       @item.insert_at(params[:position].to_i)
       head :ok if UserItem.create(user_id: current_user.id, item_id: params[:id])
+    end
+  end
+
+  def update
+    description_params = JSON.parse(request.body.read)
+    if @item.update(description_params)
+      respond_to do |format|
+        format.text { render partial: 'items/item_expanded', locals: { item: @item }, formats: [:html]}
+      end
     end
   end
 
