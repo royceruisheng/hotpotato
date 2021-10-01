@@ -4,7 +4,7 @@
     <div class="flex items-center gap-2">
 
       <% if @workflow.activated? %>
-        <div class="text-md font-medium rounded-lg py-2 px-4">
+        <div class="text-lg font-medium rounded-lg py-2 px-4">
           <%= @workflow.title %>
         </div>
         <%= render partial: 'workflows/workflow_status', locals: {workflow: @workflow} %>
@@ -14,7 +14,7 @@
         <%= simple_form_for @workflow, method: 'PUT' do |f| %>
         <%= f.input :title,
                     label: false,
-                    input_html: {class: "group relative text-md font-medium rounded-lg py-2 px-4 outline-none focus:bg-white focus:ring-1 focus:ring-indigo-600",
+                    input_html: {class: "group relative text-lg font-medium rounded-lg py-2 px-4 outline-none focus:bg-white focus:ring-1 focus:ring-indigo-600",
                                  autocomplete: "off"
                     },
                     autofocus: true,

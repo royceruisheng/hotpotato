@@ -4,11 +4,14 @@
 <%# My Tasks content %>
 <% if task.workflow.activated? %>
 <%# Content inside here %>
-  <div data-controller="toggle" class="relative container p-4 flex flex-col justify-between border border-l-8 border-indigo-400 shadow-lg rounded-lg"
+  <div data-controller="toggle" class="relative container p-4 flex flex-col justify-between border shadow-lg rounded-lg"
        data-task-id=<%= task.id %> data-workflow-id=<%= task.workflow.id %>>
 
     <%# Description %>
-    <div class="text-sm pb-4"><%= task.description %></div>
+
+    <div class="text-lg font-medium pb-4"><%= task.title %></div>
+
+    <div class="text-sm pb-4 text-gray-500"><%= task.description %></div>
 
     <div class="flex pb-4">
 
@@ -49,32 +52,35 @@
   <% if next_task %>
     <%= render partial: 'my_tasks/next_task_header', locals: { task: next_task } %>
 
-    <div data-controller="toggle item" data-task-id=<%= next_task.id %> class="p-4 flex shadow-lg rounded-lg border">
-
-    <div class="text-sm pb-4"><%= next_task.description %></div>
+    <div data-controller="toggle item" data-task-id=<%= next_task.id %> class="p-4 shadow-lg rounded-lg border">
+      <div class="text-lg font-medium pb-4"><%= next_task.title %></div>
+      <div class="text-sm pb-4 text-gray-500"><%= next_task.description %></div>
+      <div class="flex pb-4">
     <%# nexttask - Items section %>
-      <div class="flex-grow pr-4 flex flex-col">
-        <ul class="shadow-inner t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= next_task.id %>>
+        <div class="flex-grow pr-4 flex flex-col">
+          <ul class="shadow-inner t-item-box flex-grow bg-gray-100 rounded-lg px-2 pb-1" data-item-target="list" data-controller="drag" data-drag-url="/items/:id/move" data-task-id=<%= next_task.id %>>
 
-          <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
-          <%= render partial: 'items/items', locals: { items: next_task.items, workflow: next_task.workflow, task: next_task  } %>
+            <div class="text-xs text-gray-300 pt-2 text-center">Drop items here</div>
+            <%= render partial: 'items/items', locals: { items: next_task.items, workflow: next_task.workflow, task: next_task  } %>
 
-        </ul>
+          </ul>
 
-        <%= render partial: 'items/itemadd', locals: {task: next_task} %>
-      </div>
+          <%= render partial: 'items/itemadd', locals: {task: next_task} %>
+        </div>
 
       <%# nexttask - Members Section %>
-      <div class="border-l w-40 px-3 flex flex-col">
+        <div class="border-l w-40 px-3 flex flex-col">
 
-        <ul data-toggle-target="taskmemberslist" class="flex-grow">
-          <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users} %>
-        </ul>
+          <ul data-toggle-target="taskmemberslist" class="flex-grow">
+            <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users} %>
+          </ul>
 
-        <%= render partial: 'members/add_member', locals: {task: next_task} %>
+          <%= render partial: 'members/add_member', locals: {task: next_task} %>
+        </div>
       </div>
     <%# flex end %>
     </div>
+
 
   <% else %>
     <div class="flex justify-center">
