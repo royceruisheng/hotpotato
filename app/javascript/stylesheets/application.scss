@@ -54,10 +54,10 @@
 
   // Cards
   .t-card {
-    @apply rounded-lg shadow-lg ;
+    @apply rounded-lg shadow-lg bg-white ;
   }
   .t-round-card {
-    @apply w-full shadow-lg rounded-full ;
+    @apply w-full shadow-lg rounded-full bg-gradient-to-r from-blue-600 to-indigo-700 ;
   }
 
   // Card connector line

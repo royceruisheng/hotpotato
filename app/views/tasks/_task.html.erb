@@ -1,9 +1,9 @@
 
 <div data-task-id=<%= task.id %> data-workflow-id=<%= workflow.id %> data-controller="item toggle notification">
-  <div class="t-card border p-4 mb-2 mx-6 <%= 'bg-indigo-600  text-white' if task.current? %>">
+  <div class="t-card p-4 mb-2 mx-6 <%= task.current? ? "border-indigo-600 border-2" : "border" %>">
     <div class="flex justify-between">
 
-      <button class="text-sm flex-grow text-left" data-action="click->item#getItems click->toggle#toggleHideTitleForm" data-toggle-target="taskTitle">
+      <button class="text-md flex-grow text-left" data-action="click->item#getItems click->toggle#toggleHideTitleForm" data-toggle-target="taskTitle">
         <%= task.title %>
       </button>
 
@@ -13,7 +13,7 @@
         <%= simple_form_for task, method: 'PATCH', namespace: task.id do |f| %>
           <%= f.input :title,
                       label: false,
-                      input_html: {class: "w-full text-sm rounded-xl bg-purple-100 py-2 px-4 outline-none focus:bg-purple-300",
+                      input_html: {class: "w-full text-md bg-transparent outline-none",
                                   autocomplete: "off"
                       },
                       autofocus: true %>
@@ -27,7 +27,7 @@
       </button>
 
       <% if task.current? %>
-        <button data-action="click->task#markComplete" class='<%= 'hidden' unless task.workflow.activated? %> inline-block text-white text-xs' data-task-id=<%= task.id %>>
+        <button data-action="click->task#markComplete" class='<%= 'hidden' unless task.workflow.activated? %> inline-block text-gray-700 text-xs' data-task-id=<%= task.id %>>
           <i class="far fa-check-square"></i>&nbsp;Mark as complete
         </button>
       <% end %>
