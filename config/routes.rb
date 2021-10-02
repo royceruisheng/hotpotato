@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :tasks, only: [:index, :new, :create, :destroy, :update] do
     resources :items, only: [:new]
-    resources :task_members, only: [:create, :new]
+    resources :task_members, only: [:create, :new, :destroy]
     member do
       get :complete_task
       get :complete_mytask
