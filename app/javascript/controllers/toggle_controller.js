@@ -38,9 +38,16 @@ export default class extends Controller {
       member_btn.parentElement.removeChild(member_btn)
     })
   }
-
   addMemberToTaskmembers(member) {
     this.taskmemberslistTarget.insertAdjacentHTML('beforeend', member)
+  }
+
+  deleteTaskMember(e) {
+    fetch(`/tasks/${this.element.dataset.taskId}/task_members/${e.currentTarget.dataset.memberId}`, {
+      method: 'DELETE',
+      headers: { 'X-CSRF-token': csrfToken() }
+    })
+      .then(e.currentTarget.parentElement.removeChild(e.currentTarget))
   }
 
   // generic hider

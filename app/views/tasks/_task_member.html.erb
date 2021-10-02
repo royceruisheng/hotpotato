@@ -1,4 +1,4 @@
-<li>
+<li <%= "data-action=click->toggle#deleteTaskMember" if task.pending? %> data-member-id=<%= member.task_members.find_by(task_id: task.id).id %>>
   <div class="py-1 flex-shrink-0 flex items-center gap-2">
     <div class="t-no-profile-sm <%= member.color %>">
       <%= member.first_name.first.capitalize %><%= member.last_name.first.capitalize %>

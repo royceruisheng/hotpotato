@@ -19,7 +19,7 @@
     <%# Members Section %>
     <div class="border-l w-40 px-3 pt-2">
       <ul>
-        <%= render partial: 'tasks/task_members', locals: {task_members: task.users} %>
+        <%= render partial: 'tasks/task_members', locals: {task_members: task.users, task: task} %>
       </ul>
     </div>
 
@@ -49,7 +49,7 @@
     <%# nexttask - Members Section %>
     <div class="border-l w-40 px-3 pt-2">
       <ul>
-        <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users} %>
+        <%= render partial: 'tasks/task_members', locals: {task_members: next_task.users, task: next_task} %>
       </ul>
     </div>
   <%# flex end %>

@@ -1,22 +1,22 @@
 
 
 <li data-item-id="<%= item.id %>" data-controller="itemactions">
-  <div class="shadow-md rounded-md bg-white p-2 my-2 flex justify-between text-xs text-black">
+  <div class="shadow-md rounded-md bg-white p-2 my-2 flex justify-between text-sm text-black">
 
-    <%= item.title %>
+    <span class="truncate"><%= item.title %></span>
 
 
-    <div class="flex flex-col items-center gap-3 pl-2">
-
-      <button data-action="click->itemactions#deleteItem">
-        <svg class="fill-current text-gray-200 hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" width="11.819" height="11.82" viewBox="0 0 11.819 11.82">
-          <path id="X_simple_1" d="M489.387,711.977l4.214-4.214a.993.993,0,0,0-1.4-1.405l-4.214,4.214-4.214-4.214a.993.993,0,1,0-1.4,1.405l4.214,4.214-4.214,4.214a.993.993,0,1,0,1.4,1.405l4.214-4.214L492.2,717.6a.993.993,0,0,0,1.4-1.405Z" transform="translate(-482.072 -706.067)"/>
-        </svg>
-      </button>
+    <div class="flex items-center gap-3 pl-2">
 
       <button data-action="click->itemactions#expandItem">
         <svg class="fill-current hover:text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 16 15.999">
           <path id="scale_1_up" d="M66,688a2.006,2.006,0,0,1-2-2V674a2.006,2.006,0,0,1,2-2h4a1,1,0,0,1,0,2H66v6h4a2.006,2.006,0,0,1,2,2v4h6v-4a1,1,0,1,1,2,0v4a2.006,2.006,0,0,1-2,2Zm0-2h4v-4H66Zm12-8v-2.586l-3.293,3.293a1,1,0,0,1-1.414-1.414L76.586,674H74a1,1,0,0,1,0-2h5a1,1,0,0,1,1,1v5a1,1,0,1,1-2,0Z" transform="translate(-64 -672)"/>
+        </svg>
+      </button>
+
+      <button data-action="click->itemactions#deleteItem">
+        <svg class="fill-current text-gray-200 hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" width="11.819" height="11.82" viewBox="0 0 11.819 11.82">
+          <path id="X_simple_1" d="M489.387,711.977l4.214-4.214a.993.993,0,0,0-1.4-1.405l-4.214,4.214-4.214-4.214a.993.993,0,1,0-1.4,1.405l4.214,4.214-4.214,4.214a.993.993,0,1,0,1.4,1.405l4.214-4.214L492.2,717.6a.993.993,0,0,0,1.4-1.405Z" transform="translate(-482.072 -706.067)"/>
         </svg>
       </button>
 

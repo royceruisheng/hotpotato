@@ -1,4 +1,4 @@
 
 <% task_members.each do |member| %>
-  <%= render partial: 'tasks/task_member', locals: {member: member} %>
+  <%= render partial: 'tasks/task_member', locals: {member: member, task: task} %>
 <% end %>
