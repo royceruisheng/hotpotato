@@ -10,6 +10,10 @@ class DashboardController < ApplicationController
   end
 
   def my_tasks
+    if @task = @my_tasks.first
+      @next_task = @task.lower_item
+    end
+
     @completed_tasks = current_user.tasks.where(completed: 'completed')
 
     render 'my_tasks/index'
