@@ -11,7 +11,10 @@
 
   <div class="main-content w-3/4 pt-4 pl-10">
     <div id="mytask-content">
-      <%# inject here  %>
+      <% if @task %>
+        <%= render partial: 'my_tasks/my_task_content', locals: { task: @task, next_task: @next_task } %>
+      <% end %>
+
     </div>
   </div>
 

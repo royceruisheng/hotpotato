@@ -2,7 +2,7 @@ import { csrfToken } from "@rails/ujs";
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["expandedCard", "itemDescription", "itemDescriptionInput", "itemForm"]
+  static targets = ["expandedCard", "itemDescription", "itemDescriptionInput", "itemForm", "check"]
 
   connect() {
     this.contentDownloaded = false;
@@ -65,5 +65,15 @@ export default class extends Controller {
   editForm() {
     this.itemDescriptionTarget.classList.toggle('hidden')
     this.itemFormTarget.classList.toggle('hidden')
+  }
+
+  checkItem(e) {
+    e.preventDefault()
+
+    const itemId = this.element.dataset.itemId
+    fetch(`/items/${itemId}/check`, {
+      headers: {}
+    })
+      .then(this.checkTarget.classList.toggle('text-green-400'))
   }
 }
