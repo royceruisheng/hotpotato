@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:destroy, :move, :move_repo, :expand, :update]
+  before_action :set_item, only: [:destroy, :move, :move_repo, :expand, :update, :check]
 
   # def index
   #   @items = Item.all
@@ -48,6 +48,19 @@ class ItemsController < ApplicationController
   def expand
     respond_to do |format|
       format.text { render partial: 'items/item_expanded', locals: { item: @item }, formats: [:html] }
+    end
+  end
+
+  def check
+    if @item.checked == true
+      @item.checked = false
+    else
+      @item.checked = true
+    end
+    @item.save
+
+    respond_to do |format|
+      format.html { head :ok }
     end
   end
 

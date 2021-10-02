@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       patch :move
       patch :move_repo
       get :expand
+      get :check
     end
   end
 
