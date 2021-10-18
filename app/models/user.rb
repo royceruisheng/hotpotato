@@ -33,21 +33,25 @@ class User < ApplicationRecord
 
   # hard-coded. To be updated
   def color
-    case self.email
-    when "royce@taskete.co"
-      "bg-indigo-500"
-    when "daniel@taskete.co"
-      "bg-pink-500"
-    when "ethan@taskete.co"
-      "bg-blue-500"
-    when "prima@taskete.co"
-      "bg-red-500"
-    when "ashley@taskete.co"
-      "bg-purple-500"
-    when "jianzhen@taskete.co"
-      "bg-green-500"
-    when "miguel@taskete.co"
-      "bg-yellow-500"
+    first_letter = self.first_name.first.downcase
+    includes_letter = ->(array) { array.include?(first_letter) }
+
+    if includes_letter.call(%w[a b c])
+      'bg-indigo-500'
+    # elsif ['d', 'e', 'f'].include?(first_letter)
+    #   'bg-pink-500'
+    # elsif ['d', 'e', 'f'].include?(first_letter)
+    #   'bg-blue-500'
+    # elsif ['d', 'e', 'f'].include?(first_letter)
+    #   'bg-red-500'
+    # elsif ['d', 'e', 'f'].include?(first_letter)
+    #   'bg-purple-500'
+    # elsif ['d', 'e', 'f'].include?(first_letter)
+    #   'bg-green-500'
+    # elsif ['d', 'e', 'f'].include?(first_letter)
+    #   'bg-yellow-500'
+    else
+      'bg-gray-300'
     end
   end
 end
