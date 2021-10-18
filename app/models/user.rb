@@ -38,18 +38,18 @@ class User < ApplicationRecord
 
     if includes_letter.call(%w[a b c])
       'bg-indigo-500'
-    # elsif ['d', 'e', 'f'].include?(first_letter)
-    #   'bg-pink-500'
-    # elsif ['d', 'e', 'f'].include?(first_letter)
-    #   'bg-blue-500'
-    # elsif ['d', 'e', 'f'].include?(first_letter)
-    #   'bg-red-500'
-    # elsif ['d', 'e', 'f'].include?(first_letter)
-    #   'bg-purple-500'
-    # elsif ['d', 'e', 'f'].include?(first_letter)
-    #   'bg-green-500'
-    # elsif ['d', 'e', 'f'].include?(first_letter)
-    #   'bg-yellow-500'
+    elsif includes_letter.call(%w[d e f])
+      'bg-pink-500'
+    elsif includes_letter.call(%w[g h i])
+      'bg-blue-500'
+    elsif includes_letter.call(%w[j k l])
+      'bg-red-400'
+    elsif includes_letter.call(%w[m n o])
+      'bg-purple-500'
+    elsif includes_letter.call(%w[p q r s])
+      'bg-green-400'
+    elsif includes_letter.call(%w[t v w y])
+      'bg-yellow-500'
     else
       'bg-gray-300'
     end
