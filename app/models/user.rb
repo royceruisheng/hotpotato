@@ -36,19 +36,19 @@ class User < ApplicationRecord
     first_letter = self.first_name.first.downcase
     includes_letter = ->(array) { array.include?(first_letter) }
 
-    if includes_letter.call(%w[a b c])
+    if includes_letter.call(%w[a h o])
       'bg-indigo-500'
-    elsif includes_letter.call(%w[d e f])
+    elsif includes_letter.call(%w[b i p])
       'bg-pink-500'
-    elsif includes_letter.call(%w[g h i])
+    elsif includes_letter.call(%w[c j q])
       'bg-blue-500'
-    elsif includes_letter.call(%w[j k l])
+    elsif includes_letter.call(%w[d k r])
       'bg-red-400'
-    elsif includes_letter.call(%w[m n o])
+    elsif includes_letter.call(%w[e l s])
       'bg-purple-500'
-    elsif includes_letter.call(%w[p q r s])
+    elsif includes_letter.call(%w[f m t])
       'bg-green-400'
-    elsif includes_letter.call(%w[t v w y])
+    elsif includes_letter.call(%w[g n v w y])
       'bg-yellow-500'
     else
       'bg-gray-300'
