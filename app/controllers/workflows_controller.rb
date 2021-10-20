@@ -78,6 +78,7 @@ class WorkflowsController < ApplicationController
     @workflow.tasks.each do |task|
       task.update(completed: "pending")
     end
+    @workflow.uncomplete
 
     render 'dashboard/index'
   end
