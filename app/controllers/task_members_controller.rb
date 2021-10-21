@@ -2,7 +2,7 @@ class TaskMembersController < ApplicationController
 
   def new
     task_members = Task.find(params['task_id']).users
-    @members = User.all.reject { |user| task_members.include?(user) }
+    @members = User.order(:first_name).reject { |user| task_members.include?(user) }
 
     respond_to do |format|
       format.text { render partial: 'members/members_to_add', locals: { members: @members }, formats: [:html] }

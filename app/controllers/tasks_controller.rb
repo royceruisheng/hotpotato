@@ -32,7 +32,7 @@ class TasksController < ApplicationController
   def show # my_tasks
     @workflow = Workflow.find(params['workflow_id'])
 
-    @task_members = @task.users
+    @task_members = @task.users.order(:first_name)
 
     respond_to do |format|
       format.text { render partial: 'tasks/task_content', locals: { items: @task.items, task: @task, workflow: @workflow, task_members: @task_members }, formats: [:html] }

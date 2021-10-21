@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email # causing error
 
   # validates :email, presence: true
   # validates :first_name, presence: true
@@ -33,21 +33,25 @@ class User < ApplicationRecord
 
   # hard-coded. To be updated
   def color
-    case self.email
-    when "royce@taskete.co"
-      "bg-indigo-500"
-    when "daniel@taskete.co"
-      "bg-pink-500"
-    when "ethan@taskete.co"
-      "bg-blue-500"
-    when "prima@taskete.co"
-      "bg-red-500"
-    when "ashley@taskete.co"
-      "bg-purple-500"
-    when "jianzhen@taskete.co"
-      "bg-green-500"
-    when "miguel@taskete.co"
-      "bg-yellow-500"
+    first_letter = self.first_name.first.downcase
+    includes_letter = ->(array) { array.include?(first_letter) }
+
+    if includes_letter.call(%w[a h o])
+      'bg-indigo-500'
+    elsif includes_letter.call(%w[b i p])
+      'bg-pink-500'
+    elsif includes_letter.call(%w[c j q])
+      'bg-blue-500'
+    elsif includes_letter.call(%w[d k r])
+      'bg-red-400'
+    elsif includes_letter.call(%w[e l s])
+      'bg-purple-500'
+    elsif includes_letter.call(%w[f m t])
+      'bg-green-400'
+    elsif includes_letter.call(%w[g n v w y])
+      'bg-yellow-500'
+    else
+      'bg-gray-300'
     end
   end
 end
